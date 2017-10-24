@@ -40,3 +40,35 @@ The scoring system will be based primarily on goals scored, but should also attr
 The client-server link does not require any type of low-latency, real-time communication. In fact, since communication between clients and servers is required only to update scores and team selections, a delay of even a few seconds when sending data is probably acceptable. This would give our game a greater appeal in the general public, as users with slow Internet connections would still enjoy a satisfactory game experience.
 
 The client-server communication will take place almost solely via data synchronisation operations. Hence, the necessary communication between client and server may be accomplished via only file transfer operations. This should be relatively straightforward to implement, especially if the files are in a standard format like .csv.
+
+# Timeline
+
+## WEEK 10 - RESEARCH AND GAME FLOW
+Sourcing of all relevant information: Players’ information, statistics etc. and creating a database for future use
+
+## Week 11 - BACK-END
+Finalizing user experience and game flow (The process of creating a game, joining a game, changing line up etc.)
+Creating algorithms for drafting order and scoring scheme
+Enable data to be pulled from database
+
+## Week 12 - BACK-END, START ON FRONT-END (Class Presentation on Friday or the following Monday)
+* Work on coming up with a MVP for the presentation
+Creating basic network: sockets and client-server interactions
+Create basic GUI
+Do slides for class presentation
+
+## Week 13: BACK-END AND FRONT-END
+Improve on MVP
+Work on making the GUI easy to use and accessible 
+Troubleshoot 
+Usability tests
+
+## READING WEEK: FRONT-END
+Make changes based on usability tests
+Troubleshoot again
+Exam Week (Final Submission on Tues)
+Final minor touches to be done
+
+# Suggested Libraries
+java.swing, java.awt, java.util, java.lang, java.net, java.io, javax, libgdx, Ice, SLF4J, apache-commons, JUnit
+

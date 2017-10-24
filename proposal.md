@@ -43,30 +43,31 @@ The client-server communication will take place almost solely via data synchroni
 
 # Timeline
 
-## WEEK 10 - RESEARCH AND GAME FLOW
+## Week 10: Research and Gameplay
 Sourcing of all relevant information: Players’ information, statistics etc. and creating a database for future use
 
-## Week 11 - BACK-END
+## Week 11: Back-end
 Finalizing user experience and game flow (The process of creating a game, joining a game, changing line up etc.)
 Creating algorithms for drafting order and scoring scheme
 Enable data to be pulled from database
 
-## Week 12 - BACK-END, START ON FRONT-END (Class Presentation on Friday or the following Monday)
+## Week 12: Back-end, start on front-end (Class Presentation on Friday or the following Monday)
 * Work on coming up with a MVP for the presentation
 Creating basic network: sockets and client-server interactions
 Create basic GUI
 Do slides for class presentation
 
-## Week 13: BACK-END AND FRONT-END
+## Week 13: Back-end and front-end
 Improve on MVP
 Work on making the GUI easy to use and accessible 
 Troubleshoot 
 Usability tests
 
-## READING WEEK: FRONT-END
+## Reading Week: Testing and Troubleshooting
 Make changes based on usability tests
 Troubleshoot again
-Exam Week (Final Submission on Tues)
+
+## Exam Week (Final Submission on Tues)
 Final minor touches to be done
 
 # Suggested Libraries

@@ -52,7 +52,7 @@ Creating algorithms for drafting order and scoring scheme
 Enable data to be pulled from database
 
 ## Week 12: Back-end, start on front-end (Class Presentation on Friday or the following Monday)
-* Work on coming up with a MVP for the presentation
+Work on coming up with a MVP for the presentation
 Creating basic network: sockets and client-server interactions
 Create basic GUI
 Do slides for class presentation

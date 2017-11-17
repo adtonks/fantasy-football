@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -15,7 +16,6 @@ import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -51,14 +51,14 @@ public class FirstDraft extends JPanel {
 		
 		JPanel test = new JPanel();
 		test.setLayout(new GridBagLayout());
-		test.setPreferredSize(new Dimension(750,2000));
+		test.setPreferredSize(new Dimension(800,2000));
 		test.setOpaque(false);
 		test.setBackground(new Color(0,0,0,0));
 		
 		//Scrolling
 		JScrollPane scrollFrame = new JScrollPane(test);
 		test.setAutoscrolls(true);
-		scrollFrame.setPreferredSize(new Dimension(700,550));
+		scrollFrame.setPreferredSize(new Dimension(800,550));
 		scrollFrame.getViewport().setOpaque(false);
 	    scrollFrame.setBorder(null);
 	    scrollFrame.setOpaque(false);
@@ -72,7 +72,7 @@ public class FirstDraft extends JPanel {
 
 		JPanel player = new JPanel();
 		player.setLayout(new BoxLayout(player, BoxLayout.Y_AXIS));
-		player.setPreferredSize(new Dimension(500, 2000));
+		player.setPreferredSize(new Dimension(600, 2000));
 		player.setBorder(new EmptyBorder(20, 20, 20, 20));
 		//player.setAlignmentX(CENTER_ALIGNMENT);
 		player.setAlignmentY(TOP_ALIGNMENT);
@@ -103,8 +103,9 @@ public class FirstDraft extends JPanel {
 		ImageIcon image4 = new ImageIcon(getClass().getResource("syazwan_buhari.png"));
 		ImageIcon image5 = new ImageIcon(getClass().getResource("emmeric_ong.png"));
 		ImageIcon image6 = new ImageIcon(getClass().getResource("basil_chan.png"));
+		ImageIcon image7 = new ImageIcon(getClass().getResource("test.png"));
 		
-		JLabel team1 = new JLabel("Albirex Niigata FC(S)");
+		JLabel team1 = new JLabel("Albirex Niigata FC(S)  ");
 		team1.setFont(headerFont);
 		team1.setAlignmentX(CENTER_ALIGNMENT);
 		team1.setForeground(Color.white);
@@ -176,22 +177,22 @@ public class FirstDraft extends JPanel {
 		team3.setAlignmentX(CENTER_ALIGNMENT);
 		team3.setForeground(Color.white);
 		
-		JPanel team3_players = new JPanel(new GridLayout(2, 5, 10, 10));
+		JPanel team3_players = new JPanel(new GridLayout(2, 6, 10, 10));
 		team3_players.setAlignmentX(CENTER_ALIGNMENT);
 		team3_players.setMaximumSize(new Dimension(500, 300));
 		team3_players.setOpaque(false);
 		team3_players.setBackground(new Color(0,0,0,0));
 
-		MakePlayer one3 = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer two3 = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer three3 = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer four3 = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer five3 = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer six3 = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer seven3 = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer eight3 = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer nine3 = new MakePlayer(textFont, image6, "Basil Chan","GK");
-		MakePlayer ten3 = new MakePlayer(textFont, image6, "Basil Chan","GK");
+		MakePlayer one3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
+		MakePlayer two3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
+		MakePlayer three3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
+		MakePlayer four3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
+		MakePlayer five3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
+		MakePlayer six3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
+		MakePlayer seven3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
+		MakePlayer eight3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
+		MakePlayer nine3 = new MakePlayer(textFont, image7, "Basil Chan","GK");
+		MakePlayer ten3 = new MakePlayer(textFont, image7, "Basil Chan","GK");
 		
 		team3_players.add(one3);
 		team3_players.add(two3);
@@ -227,20 +228,25 @@ public class FirstDraft extends JPanel {
 		chosen.add(Box.createRigidArea(new Dimension(0, 10)));
 		
 		//Listener
-		SnaptoGridListener gl = new SnaptoGridListener(one, chosen, screens, headerFont);
-		one.addMouseListener(gl);
+		SnaptoGridListener gl = new SnaptoGridListener(chosen, screens, headerFont);
 		
-		SnaptoGridListener gl2 = new SnaptoGridListener(ten, chosen, screens, headerFont);
-		ten.addMouseListener(gl2);
+		for (Component h : team1_players.getComponents()) {
+		    if (h instanceof MakePlayer) { 
+		       ((MakePlayer)h).addMouseListener(gl);
+		    }
+		}
 		
-		SnaptoGridListener gl3 = new SnaptoGridListener(two2, chosen, screens, headerFont);
-		two2.addMouseListener(gl3);
+		for (Component h : team2_players.getComponents()) {
+		    if (h instanceof MakePlayer) { 
+		       ((MakePlayer)h).addMouseListener(gl);
+		    }
+		}
 		
-		SnaptoGridListener gl4 = new SnaptoGridListener(three3, chosen, screens, headerFont);
-		three3.addMouseListener(gl4);
-		
-		SnaptoGridListener gl5 = new SnaptoGridListener(five2, chosen, screens, headerFont);
-		five2.addMouseListener(gl5);
+		for (Component h : team3_players.getComponents()) {
+		    if (h instanceof MakePlayer) { 
+		       ((MakePlayer)h).addMouseListener(gl);
+		    }
+		}
 		
 	}
 	
@@ -248,7 +254,7 @@ public class FirstDraft extends JPanel {
 	  protected void paintComponent(Graphics g) {
 		
 		try {
-		    bg = ImageIO.read(getClass().getResource("draft.png"));
+		    bg = ImageIO.read(getClass().getResource("bg.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

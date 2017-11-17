@@ -19,8 +19,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.TableColumn;
 
 import listeners.ButtonListener;
 
@@ -46,10 +49,10 @@ public class HomePage extends JPanel {
 		Font sm0l = headerFont.deriveFont((float) 14);
 		
 		username = new String("Charis");
-		JLabel user = new JLabel("Welcome, " + username);
+		JLabel user = new JLabel("Welcome, " + username + "  ");
 		user.setForeground(Color.WHITE);
 		user.setFont(headerFont);
-		c.insets = new Insets(20, 20, 40, 20);
+		c.insets = new Insets(0, 20, 20, 20);
 		c.gridwidth = 2;
 	    c.gridx = 0;
 	    c.gridy = 0;
@@ -57,10 +60,10 @@ public class HomePage extends JPanel {
 		
 		JPanel games = new JPanel();
 		games.setLayout(new BoxLayout(games, BoxLayout.Y_AXIS));
-		games.setPreferredSize(new Dimension(300, 400));
+		games.setPreferredSize(new Dimension(400, 500));
 		games.setOpaque(true);
 		games.setBackground(new Color(104, 0, 0));
-		games.setBorder(new EmptyBorder(20, 20, 20, 20));
+		games.setBorder(new EmptyBorder(20, 15, 20, 10));
 		c.insets = new Insets(0, 0, 0, 40);
 		c.gridwidth = 1;
 		c.gridheight = 2;
@@ -70,7 +73,7 @@ public class HomePage extends JPanel {
 		
 		JPanel upcomingMatch = new JPanel();
 		upcomingMatch.setLayout(new BorderLayout());
-		upcomingMatch.setPreferredSize(new Dimension(300, 170));
+		upcomingMatch.setPreferredSize(new Dimension(400, 170));
 		upcomingMatch.setBorder(new EmptyBorder(20, 20, 20, 20));
 		c.insets = new Insets(0, 20, 30, 0);
 		c.gridwidth = 1;
@@ -81,7 +84,7 @@ public class HomePage extends JPanel {
 		
 		JPanel menu = new JPanel();
 		menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
-		menu.setPreferredSize(new Dimension(300, 200));
+		menu.setPreferredSize(new Dimension(400, 300));
 		menu.setOpaque(true);
 		menu.setBackground(new Color(104, 0, 0));
 		menu.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -95,22 +98,33 @@ public class HomePage extends JPanel {
 		ButtonListener buttonListener = new ButtonListener(screens);
 
 		//Ongoing Games Panel
-		JLabel ongoing = new JLabel("Ongoing Games");
-		ongoing.setForeground(Color.WHITE);
-		ongoing.setAlignmentX(CENTER_ALIGNMENT);
-		ongoing.setFont(headerFont);
+		JLabel name = new JLabel("MYBESTPALS");
+		name.setForeground(Color.WHITE);
+		name.setAlignmentX(CENTER_ALIGNMENT);
+		name.setFont(headerFont);
 		
-		JButton game1 = new JButton("#MYBESTPALS");
-		game1.setFont(textFont);
-		game1.setAlignmentX(CENTER_ALIGNMENT);
-		game1.setHorizontalAlignment(JLabel.LEFT);;
-		game1.setMaximumSize(new Dimension(250, 70));
-		game1.addActionListener(buttonListener);
-		game1.setActionCommand("game1");
+		JLabel lb = new JLabel("LEADERBOARD");
+		lb.setForeground(Color.WHITE);
+		lb.setAlignmentX(CENTER_ALIGNMENT);
+		lb.setFont(sm0l);
 		
-		games.add(ongoing);
+		String[] columnNames = {"RANK", "PLAYER", "POINTS"};
+		Object[][] data = { {"RANK", "PLAYER", "POINTS"},
+							{"#--", "ADAMTONKS", new Integer(0)},
+						    {"#--", "LOGANYE", new Integer(0)},
+						    {"#--", "ME", new Integer(0)},
+						    {"#--", "SIMON", new Integer(0)},
+						    {"#--", "PERRAULT", new Integer(0)},
+						    {"#--", "FANDI AHMAD", new Integer(0)},
+		};
+		
+		LeaderboardTable leaderboard = new LeaderboardTable(data, columnNames, textFont);    
+		leaderboard.create();
+		
+		games.add(name);
+		games.add(lb);
 		games.add(Box.createRigidArea(new Dimension(0, 15)));
-		games.add(game1);
+		games.add(leaderboard);
 		
 		//Upcoming Match Panel
 		JLabel match = new JLabel("Upcoming Matches");
@@ -138,21 +152,33 @@ public class HomePage extends JPanel {
 		upcomingMatch.add(details, BorderLayout.PAGE_END);
 		
 		//Menu Panel
-		JButton join = new JButton("Join Game");
-		join.setActionCommand("join");
-		join.addActionListener(buttonListener);
-		join.setFont(sm0l);
-		join.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		join.setAlignmentX(CENTER_ALIGNMENT);
-		join.setMaximumSize(new Dimension(200, 50));
+		JButton draft = new JButton("Draft My Team");
+		draft.setFont(sm0l);
+//		draft.setVerticalTextPosition(SwingConstants.BOTTOM);
+//	    draft.setHorizontalTextPosition(SwingConstants.CENTER);
+		draft.setAlignmentX(CENTER_ALIGNMENT);
+		draft.setAlignmentY(BOTTOM_ALIGNMENT);
+		draft.setHorizontalAlignment(JLabel.CENTER);;
+		draft.setMaximumSize(new Dimension(200, 50));
+		draft.addActionListener(buttonListener);
+		draft.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		draft.setActionCommand("draft");
 		
-		JButton create = new JButton("Create New Game");
-		create.setActionCommand("create");
-		create.addActionListener(buttonListener);
-		create.setFont(sm0l);
-		create.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		create.setAlignmentX(CENTER_ALIGNMENT);
-		create.setMaximumSize(new Dimension(200, 50));
+		JButton changeplayers = new JButton("View My Players");
+		changeplayers.setActionCommand("changeplayers");
+		changeplayers.addActionListener(buttonListener);
+		changeplayers.setFont(sm0l);
+		changeplayers.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		changeplayers.setAlignmentX(CENTER_ALIGNMENT);
+		changeplayers.setMaximumSize(new Dimension(200, 50));
+		
+		JButton help = new JButton("HELP");
+		help.setActionCommand("help");
+		help.addActionListener(buttonListener);
+		help.setFont(sm0l);
+		help.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		help.setAlignmentX(CENTER_ALIGNMENT);
+		help.setMaximumSize(new Dimension(200, 50));
 		
 		JButton logout = new JButton("Log Out");
 		logout.setActionCommand("logout");
@@ -162,9 +188,11 @@ public class HomePage extends JPanel {
 		logout.setAlignmentX(CENTER_ALIGNMENT);
 		logout.setMaximumSize(new Dimension(200, 50));
 		
-		menu.add(join);
+		menu.add(draft);
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));
-		menu.add(create);
+		menu.add(changeplayers);
+		menu.add(Box.createRigidArea(new Dimension(0, 10)));
+		menu.add(help);
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));
 		menu.add(logout);
 		

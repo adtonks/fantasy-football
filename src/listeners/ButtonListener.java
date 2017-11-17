@@ -18,13 +18,6 @@ public class ButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		CardLayout cl = (CardLayout) screens.getLayout();
-		if (e.getActionCommand() == "login") {
-			cl.show(screens, "HOME");
-		}
-		
-		if (e.getActionCommand() == "signup") {
-			cl.show(screens, "NEW");
-		}
 		
 		if (e.getActionCommand() == "logout") {
 			cl.show(screens, "HI");
@@ -42,13 +35,22 @@ public class ButtonListener implements ActionListener {
 			cl.show(screens, "HOME");
 		}
 		
-		if (e.getActionCommand() == "game1") {
+		if (e.getActionCommand() == "draft") {
 			cl.show(screens, "FIRST DRAFT");
 		}
 		
 		if (e.getActionCommand() == "save") {
 			cl.show(screens, "HOME");
 		}
+		
+		if (e.getActionCommand() == "changeplayers") {
+			cl.show(screens, "LINEUP");
+		}
+		
+		if (e.getActionCommand() == "help") {
+			cl.show(screens, "HELP");
+		}
+		
 		
 	}
 	

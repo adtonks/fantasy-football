@@ -10,7 +10,6 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import ui.MakePlayer;
 
@@ -18,11 +17,10 @@ public class SnaptoGridListener implements MouseListener, MouseMotionListener {
 
 	private JPanel screens;
 	private Font headerFont;
-	private JPanel thing;
 	private JPanel dest;
+	private int counter = 0;
 	
-	public SnaptoGridListener(JPanel thing, JPanel dest, JPanel screens, Font headerFont) {
-		this.thing = thing;
+	public SnaptoGridListener(JPanel dest, JPanel screens, Font headerFont) {
 		this.dest = dest;
 		this.headerFont = headerFont;
 		this.screens = screens;
@@ -30,23 +28,32 @@ public class SnaptoGridListener implements MouseListener, MouseMotionListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		thing.setVisible(false);
-		dest.add(thing);
-		dest.add(Box.createRigidArea(new Dimension(0, 20)));
-		thing.setMaximumSize(new Dimension (100, 150));
-		thing.setVisible(true);
-		
-		ButtonListener bl = new ButtonListener(screens);
+		Object source = e.getSource();
+		if (source instanceof MakePlayer) {
+			MakePlayer player = (MakePlayer) source;
 			
-		JButton save = new JButton("SAVE");
-		save.setFont(headerFont);
-		save.setMaximumSize(new Dimension(100, 35));
-		save.setAlignmentX(Component.CENTER_ALIGNMENT);
-		save.addActionListener(bl);
-		save.setActionCommand("save");
-					
-		dest.add(save, 12);
+			player.setVisible(false);
+			dest.add(player);
+			dest.add(Box.createRigidArea(new Dimension(0, 20)));
+			player.setMaximumSize(new Dimension (100, 150));
+			player.setVisible(true);
+			counter++;
+			System.out.println(counter);
+			
+			if (counter == 7) {
+			ButtonListener bl = new ButtonListener(screens);
+				
+			JButton save = new JButton("SAVE");
+			save.setFont(headerFont);
+			save.setMaximumSize(new Dimension(100, 35));
+			save.setAlignmentX(Component.CENTER_ALIGNMENT);
+			save.addActionListener(bl);
+			save.setActionCommand("save");
+						
+			dest.add(save);
+			}
+		}
+		
 
 	}
 

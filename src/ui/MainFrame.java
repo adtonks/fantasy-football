@@ -9,13 +9,10 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.plaf.FontUIResource;
 
 public class MainFrame {
 	private JPanel screens;
@@ -54,11 +51,18 @@ public class MainFrame {
 		CreateGame createGame = new CreateGame(screens, headerFont, textFont);
 		createGame.create();
 		
-		JoinGame joinGame = new JoinGame();
+		JoinGame joinGame = new JoinGame(screens, headerFont, textFont);
 		joinGame.create();
 		
 		FirstDraft firstDraft = new FirstDraft(screens, headerFont, textFont);
 		firstDraft.create();
+		
+		Help help = new Help(screens, headerFont, textFont);
+		help.create();
+		
+		ChangeLineup lineup = new ChangeLineup(screens, headerFont, textFont);
+		lineup.create();
+		
 		
 		
 		//Add screens
@@ -68,6 +72,8 @@ public class MainFrame {
 		screens.add(createGame, "CREATE");
 		screens.add(joinGame, "JOIN");
 		screens.add(firstDraft, "FIRST DRAFT");
+		screens.add(help, "HELP");
+		screens.add(lineup, "LINEUP");
 		
 		pane.add(screens);
 	}
@@ -75,7 +81,7 @@ public class MainFrame {
   private static void makeFrame() {
 	//Create and set up window
 	JFrame mainFrame = new JFrame("S League Fantasy Football");
-	mainFrame.setMinimumSize(new Dimension(800, 600));
+	mainFrame.setMinimumSize(new Dimension(1050, 700));
 	mainFrame.setResizable(false);
 	mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	mainFrame.setLayout(new BorderLayout());
@@ -94,26 +100,7 @@ public class MainFrame {
     mainFrame.setVisible(true); 
     
   }
-  
-  //Change default font
-//  public static void setUIFont(final Font font){
-//	  FontUIResource uiFont  =new FontUIResource (font);
-//	  UIManager.put("Label.font", uiFont);
-//	  UIManager.put("TabbedPane.font", uiFont);
-//	  UIManager.put("TextField.font", uiFont);
-//	  UIManager.put("PasswordField.font",uiFont);
-//	  UIManager.put("Button.font",uiFont);
-//	  UIManager.put("RadioButton.font",uiFont);
-//	  UIManager.put("CheckBox.font",uiFont);
-//	  UIManager.put("ComboBox.font",uiFont);
-//	  UIManager.put("Menu.font",uiFont);
-//	  UIManager.put("List.font",uiFont);
-//	  UIManager.put("ListBox.font",uiFont);
-//	  UIManager.put("MenuItem.font",uiFont);
-//	  UIManager.put("Panel.font",uiFont);
-//	  UIManager.put("TitledBorder.font",uiFont);
-//	}
-	 
+
   
   public static void main(String[] args) {
 	  makeFrame();

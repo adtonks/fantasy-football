@@ -42,19 +42,19 @@ public class NewAccount extends JPanel {
 		
 		
 		username = new String("Charis");
-		JLabel user = new JLabel("Welcome, " + username);
+		JLabel user = new JLabel("Welcome, " + username + "  ");
 		user.setForeground(Color.WHITE);
 		user.setFont(headerFont);
 		user.setAlignmentX(CENTER_ALIGNMENT);
 		
-		JLabel none = new JLabel("You have no existing games yet.");
+		JLabel none = new JLabel("You have no existing games yet.  ");
 		none.setForeground(Color.WHITE);
 		none.setFont(textFont);
 		none.setAlignmentX(CENTER_ALIGNMENT);
 	    
 	    
 		JButton join = new JButton("Join Game");
-		join.setActionCommand("submitgroup");
+		join.setActionCommand("join");
 		join.addActionListener(bl);
 		join.setMaximumSize(new Dimension(300, 50));
 		join.setFont(headerFont);

@@ -48,13 +48,13 @@ public class CreateGame extends JPanel {
 		title.setFont(headerFont);
 		title.setAlignmentX(CENTER_ALIGNMENT);
 		
-		JLabel name = new JLabel("Group Name");
+		JLabel name = new JLabel("Group Name  ");
 		name.setForeground(Color.WHITE);
 		name.setFont(textFont);
 		name.setAlignmentX(CENTER_ALIGNMENT);
 		
 		JTextField group_name = new JTextField();
-		group_name.setMaximumSize(new Dimension(200, 40));
+		group_name.setMaximumSize(new Dimension(300, 40));
 		group_name.setFont(headerFont);
 		group_name.setForeground(Color.RED);
 		group_name.setBackground(new Color(0, 0, 0, 0));
@@ -69,13 +69,13 @@ public class CreateGame extends JPanel {
 		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		//Generated Code for New Game
-		JLabel share = new JLabel("Your group has been successfully created.");
+		JLabel share = new JLabel("Your group has been successfully created.  ");
 		share.setForeground(Color.WHITE);
 		share.setFont(textFont);
 		share.setAlignmentX(CENTER_ALIGNMENT);
 		share.setVisible(false);
 		
-		JLabel share2 = new JLabel("Share this code with your friends so they can join your game!");
+		JLabel share2 = new JLabel("Share this code with your friends so they can join your game!!!!!");
 		share2.setForeground(Color.WHITE);
 		share2.setFont(textFont);
 		share2.setAlignmentX(CENTER_ALIGNMENT);

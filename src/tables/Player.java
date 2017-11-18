@@ -16,4 +16,13 @@ public class Player {
 	public void writePlayer() {
 		// update this user in the CSV file
 	}
+	
+	public boolean compareTo(Player otherPlayer){
+		// compare to another football player
+		if (otherPlayer.name == this.name){
+			return true;
+		}
+		return false;
+	}
+		
 }

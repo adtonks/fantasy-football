@@ -1,0 +1,9 @@
+,,,,,,,,,,,,,,,,,,,,,
+PLAYER LIST,,,,,,,,,,,,,,,,,,,,,
+playerID,name,nationality,team,prefPosition,imgPath,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,
+PLAYER RESULTS,,,,,,,,,,,,,,,,,,,,,
+playerID,goals,assists,tackles,saves,GKpoints,DFpoints,MFpoints,FWpoints,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,
+USER LIST,,,,,,,,,,,,,,,,,,,,,
+username,password,email,gameID,points,GK0,DF0,DF1,DF2,DF3,MF0,MF1,MF2,MF3,FW0,FW1,SUB0,SUB1,SUB2,SUB3,SUB4,SUB5

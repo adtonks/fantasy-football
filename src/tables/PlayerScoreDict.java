@@ -27,15 +27,17 @@ public class PlayerScoreDict {
 		String[] csvHeader = new String[]
 				{"playerID", "goals", "assists", "tackles", "saves"};
 		Scanner csvReader = new Scanner(new File("csv_tables/player_results.csv"));
-		csvReader.useDelimiter(",");
+		csvReader.useDelimiter(",|\\n");
 		// check that table headers are correct
 		for(i=0; i<5; i++) {
 			// read first line of headers
 			if(!csvHeader[i].equals(csvReader.next())) {
+				
 				csvReader.close();
 				System.out.println("CSV file formatted incorrectly");
 				throw new ResultsReadError();
 			}
+
 		}
 		if(!csvReader.hasNext()) {
 			csvReader.close();

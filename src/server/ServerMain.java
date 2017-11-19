@@ -19,8 +19,10 @@ public abstract class ServerMain {
 			e.printStackTrace();
 		}
 		try {
-			System.out.println("Score of Menda as DF is" +
-			ScoresDict.findScore(2, Positions.DF));
+			System.out.println("Score of Menda as DF is " +
+					ScoresDict.findScore(2, Positions.DF));
+			System.out.println("Score of Tanaka as MF is " +
+					ScoresDict.findScore(5, Positions.MF));
 		} catch (PlayerNotFound e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

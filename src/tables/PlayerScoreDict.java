@@ -49,8 +49,8 @@ public class PlayerScoreDict {
 				// throw exception if complete player info is not present
 				if(csvReader.hasNext()) {
 					playerInfo[i] = csvReader.nextInt();
-					System.out.println("Player information incomplete");
 				} else {
+					System.out.println("Player information incomplete");
 					csvReader.close();
 					throw new ResultsReadError();
 				}

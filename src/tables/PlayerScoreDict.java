@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import Exceptions.PlayerNotFound;
-import Exceptions.ResultsReadError;
+import exceptions.PlayerNotFound;
+import exceptions.ResultsReadError;
 
 public class PlayerScoreDict {
 	// dictionary that maps playerID to set of scores

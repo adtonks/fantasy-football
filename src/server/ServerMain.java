@@ -2,8 +2,8 @@ package server;
 
 import java.io.FileNotFoundException;
 
-import Exceptions.PlayerNotFound;
-import Exceptions.ResultsReadError;
+import exceptions.PlayerNotFound;
+import exceptions.ResultsReadError;
 import tables.PlayerScoreDict;
 import tables.Positions;
 

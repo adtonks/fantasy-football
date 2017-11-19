@@ -1,7 +1,7 @@
 package tables;
 
 public class PlayerScores {
-	// this object is used as a wrapper for 4 integers, so make them public
+	// this object is just used as a wrapper for 4 integers, so make them public
 	public int GKpts;
 	public int DFpts;
 	public int MFpts;

@@ -1,10 +1,11 @@
 package tables;
 
 public class PlayerScores {
-	int GKpts;
-	int DFpts;
-	int MFpts;
-	int FWpts;
+	// this object is used as a wrapper for 4 integers, so make them public
+	public int GKpts;
+	public int DFpts;
+	public int MFpts;
+	public int FWpts;
 	
 	PlayerScores(int _GKpts, int _DFpts, int _MFpts, int _FWpts) {
 		this.GKpts = _GKpts;

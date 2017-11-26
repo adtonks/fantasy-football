@@ -59,7 +59,7 @@ public class ChangeLineup extends JPanel {
 		pitch.setBackground(new Color(0,0,0,0));
 		
 		//Pitch View and Team
-		PitchView view = new PitchView(smol);
+		PitchView view = new PitchView(textFont);
 		
 		JPanel team = new JPanel();
 		team.setLayout(new BoxLayout(team, BoxLayout.Y_AXIS));
@@ -83,13 +83,13 @@ public class ChangeLineup extends JPanel {
 //		team.add(Box.createRigidArea(new Dimension(0, 10)));
 		
 		/* EXAMPLE */
-		ImageIcon image5 = new ImageIcon(getClass().getResource("test.png"));
-		MakePlayer twelve = new MakePlayer(sm0l, image5, "Basil Chan","GK");
-		MakePlayer thirteen = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer fourteen = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer fifteen = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer sixteen = new MakePlayer(sm0l, image5, "Basil Chan","GK");
-		MakePlayer seventeen = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
+		ImageIcon image5 = new ImageIcon("player_images/Albirex_Niigata/19-kenya-kodama-mf.png");
+		MakePlayer twelve = new MakePlayer(textFont, image5, "Basil Chan","GK");
+		MakePlayer thirteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
+		MakePlayer fourteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
+		MakePlayer fifteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
+		MakePlayer sixteen = new MakePlayer(textFont, image5, "Basil Chan","GK");
+		MakePlayer seventeen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
 		
 		team.add(twelve);
 		team.add(thirteen);

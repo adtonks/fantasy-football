@@ -2,16 +2,15 @@ package server;
 
 import java.io.FileNotFoundException;
 
+import clientObjects.Positions;
 import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
-import tables.PlayerScoreDict;
-import tables.Positions;
 
 public abstract class ServerMain {
 
 	public static void main(String[] args) {
 		// this starts the server
-		// initialise the dictionary to store player points
+		// initialize the dictionary to store player points
 		PlayerScoreDict ScoresDict = new PlayerScoreDict();
 		try {
 			ScoresDict.populateScores();

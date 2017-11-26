@@ -2,6 +2,7 @@ package server;
 
 import java.io.FileNotFoundException;
 
+import clientObjects.LeaderBoard;
 import clientObjects.Player;
 import clientObjects.Positions;
 import clientObjects.User;
@@ -43,6 +44,7 @@ public abstract class ServerMain {
 		System.out.println("player 1 " + test_user.getPlayer(Positions.DF, 3).getName());
 		System.out.println("player 2 " + test_user.getPlayer(Positions.SUB, 5).getName());
 		
+		new LeaderBoard(1002);
 	}
 
 }

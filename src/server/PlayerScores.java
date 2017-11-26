@@ -1,7 +1,7 @@
 package server;
 
-public class PlayerScores {
-	// this object is just used as a wrapper for 4 integers, so make them public
+class PlayerScores {
+	// this object is just used as a wrapper for 4 integers
 	public int GKpts;
 	public int DFpts;
 	public int MFpts;

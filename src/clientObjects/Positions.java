@@ -1,9 +1,9 @@
 package clientObjects;
 
 public enum Positions {
-	SUB,
 	GK,
 	DF,
 	MF,
-	FW;
+	FW,
+	SUB;
 }

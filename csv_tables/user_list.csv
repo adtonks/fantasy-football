@@ -1,4 +1,4 @@
-username,password,email,gameID,points,GK0,DF0,DF1,DF2,DF3,MF0,MF1,MF2,MF3,FW0,FW1,SUB0,SUB1,SUB2,SUB3,SUB4,SUB5
-adtonks,dog,tonks@yahoo.com,12b3fr,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
-logan_213,cat,ye@live.com,12b3fr,0,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34
-cool.charis,abc!@#$,charis@yale.edu,12b3fr,0,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51
+username,password,email,gameID,isHost,points,week,GK0,DF0,DF1,DF2,DF3,MF0,MF1,MF2,MF3,FW0,FW1,SUB0,SUB1,SUB2,SUB3,SUB4,SUB5
+adtonks,dog,tonks@yahoo.com,1002,1,0,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
+logan_213,cat,ye@live.com,1003,0,0,0,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34
+cool.charis,abc!@#$,charis@yale.edu,1004,0,0,0,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51

@@ -74,7 +74,6 @@ public class FirstDraft extends JPanel {
 		player.setLayout(new BoxLayout(player, BoxLayout.Y_AXIS));
 		player.setPreferredSize(new Dimension(600, 2000));
 		player.setBorder(new EmptyBorder(20, 20, 20, 20));
-		//player.setAlignmentX(CENTER_ALIGNMENT);
 		player.setAlignmentY(TOP_ALIGNMENT);
 		player.setOpaque(false);
 		player.setBackground(new Color(0,0,0,0));
@@ -96,47 +95,43 @@ public class FirstDraft extends JPanel {
 		c.gridy = 0;
 		test.add(chosen, c);
 		
-		//Add Players to Players Component
-		ImageIcon image = new ImageIcon(getClass().getResource("ali_hudzaifi.png"));
-		ImageIcon image2 = new ImageIcon(getClass().getResource("ridhuan_barudin.png"));
-		ImageIcon image3 = new ImageIcon(getClass().getResource("anders_aplin.png"));
-		ImageIcon image4 = new ImageIcon(getClass().getResource("syazwan_buhari.png"));
-		ImageIcon image5 = new ImageIcon(getClass().getResource("emmeric_ong.png"));
-		ImageIcon image6 = new ImageIcon(getClass().getResource("basil_chan.png"));
-		ImageIcon image7 = new ImageIcon(getClass().getResource("test.png"));
-		
-		JLabel team1 = new JLabel("Albirex Niigata FC(S)  ");
-		team1.setFont(headerFont);
-		team1.setAlignmentX(CENTER_ALIGNMENT);
-		team1.setForeground(Color.white);
+		//ADD ALL THE TEAMS!!!!		
+		JLabel albirex = new JLabel("Albirex Niigata FC(S)  ");
+		albirex.setFont(headerFont);
+		albirex.setAlignmentX(CENTER_ALIGNMENT);
+		albirex.setForeground(Color.white);
 
-		JPanel team1_players = new JPanel(new GridLayout(2, 5, 10, 10));
-		team1_players.setMaximumSize(new Dimension(500, 300));
-		team1_players.setAlignmentX(CENTER_ALIGNMENT);
-		team1_players.setOpaque(false);
-		team1_players.setBackground(new Color(0,0,0,0));
-
-		MakePlayer one = new MakePlayer(textFont, image, "Ali Huzaifi","MF");
-		MakePlayer two = new MakePlayer(textFont, image, "Ali Huzaifi","MF");
-		MakePlayer three = new MakePlayer(textFont, image, "Ali Huzaifi","MF");
-		MakePlayer four = new MakePlayer(textFont, image, "Ali Huzaifi","MF");
-		MakePlayer five = new MakePlayer(textFont, image, "Ali Huzaifi","DF");
-		MakePlayer six = new MakePlayer(textFont, image, "Ali Huzaifi","DF");
-		MakePlayer seven = new MakePlayer(textFont, image, "Ali Huzaifi","DF");
-		MakePlayer eight = new MakePlayer(textFont, image, "Ali Huzaifi","DF");
-		MakePlayer nine = new MakePlayer(textFont, image2, "Ridhuan Barudin","GK");
-		MakePlayer ten = new MakePlayer(textFont, image2, "Ridhuan Barudin","GK");
+		JPanel albirex_players = new JPanel(new GridLayout(2, 7, 10, 10));
+		albirex_players.setMaximumSize(new Dimension(500, 300));
+		albirex_players.setAlignmentX(CENTER_ALIGNMENT);
+		albirex_players.setOpaque(false);
+		albirex_players.setBackground(new Color(0,0,0,0));
 		
-		team1_players.add(one);
-		team1_players.add(two);
-		team1_players.add(three);
-		team1_players.add(four);
-		team1_players.add(five);
-		team1_players.add(six);
-		team1_players.add(seven);
-		team1_players.add(eight);
-		team1_players.add(nine);
-		team1_players.add(ten);
+		//MakePlayer one = new MakePlayer(Player object);
+
+		MakePlayer one = new MakePlayer(textFont, "player_images/Albirex_Niigata/1-shuhei-yamada-jap-GK.png", "Shuhei Yamada","GK", 1);
+		MakePlayer two = new MakePlayer(textFont, "player_images/Albirex_Niigata/2-tomoki-menda-df.png", "Tomoki Menda","DF", 2);
+		MakePlayer three = new MakePlayer(textFont, "player_images/Albirex_Niigata/3-takuya-akiyama-df.png", "Takuya Akiyama", "DF", 3);
+		MakePlayer four = new MakePlayer(textFont, "player_images/Albirex_Niigata/4-yuuki-yamanouchi-df.png", "Yuuki Yamanouchi", "DF", 4);
+		MakePlayer five = new MakePlayer(textFont, "player_images/Albirex_Niigata/5-naofumi-tanaka-df.png", "Naofumi Tanaka", "DF", 5);
+		MakePlayer six = new MakePlayer(textFont, "player_images/Albirex_Niigata/6-shuto-inaba-mf.png", "Shuto Inaba", "MF", 6);
+		MakePlayer seven = new MakePlayer(textFont, "player_images/Albirex_Niigata/7-ryota-nakai-mf.png", "Ryota Nakai", "MF", 7);
+		MakePlayer eight = new MakePlayer(textFont, "player_images/Albirex_Niigata/8-hiroyoshi-kamata-fw.png", "Hiroyoshi Kamata", "FW", 8);
+		MakePlayer nine = new MakePlayer(textFont, "player_images/Albirex_Niigata/9-tsubasa-sano-fw.png", "Tsubasa Sano", "FW", 9);
+		MakePlayer ten = new MakePlayer(textFont, "player_images/Albirex_Niigata/10-kento-nagasaki-mf.png", "Kento Nagasaki", "MF", 10);
+		MakePlayer eleven = new MakePlayer(textFont, "player_images/Albirex_Niigata/11-shoichiro-sakamoto-fw.png", "Shiochiro Sakamoto", "FW", 11);
+
+		albirex_players.add(one);
+		albirex_players.add(two);
+		albirex_players.add(three);
+		albirex_players.add(four);
+		albirex_players.add(five);
+		albirex_players.add(six);
+		albirex_players.add(seven);
+		albirex_players.add(eight);
+		albirex_players.add(nine);
+		albirex_players.add(ten);
+		albirex_players.add(eleven);
 		
 		JLabel team2 = new JLabel("Geylang International FC");
 		team2.setAlignmentX(CENTER_ALIGNMENT);
@@ -150,28 +145,6 @@ public class FirstDraft extends JPanel {
 		team2_players.setOpaque(false);
 		team2_players.setBackground(new Color(0,0,0,0));
 
-		MakePlayer one2 = new MakePlayer(textFont, image3, "Anders Aplin","MF");
-		MakePlayer two2 = new MakePlayer(textFont, image3, "Anders Aplin","MF");
-		MakePlayer three2 = new MakePlayer(textFont, image3, "Anders Aplin","MF");
-		MakePlayer four2 = new MakePlayer(textFont, image3, "Anders Aplin","MF");
-		MakePlayer five2 = new MakePlayer(textFont, image3, "Anders Aplin","MF");
-		MakePlayer six2 = new MakePlayer(textFont, image3, "Anders Aplin","MF");
-		MakePlayer seven2 = new MakePlayer(textFont, image3, "Anders Aplin","MF");
-		MakePlayer eight2 = new MakePlayer(textFont, image3, "Anders Aplin","MF");
-		MakePlayer nine2 = new MakePlayer(textFont, image4, "Syazwan Buhari","GK");
-		MakePlayer ten2 = new MakePlayer(textFont, image4, "Syazwan Buhari","GK");
-		
-		team2_players.add(one2);
-		team2_players.add(two2);
-		team2_players.add(three2);
-		team2_players.add(four2);
-		team2_players.add(five2);
-		team2_players.add(six2);
-		team2_players.add(seven2);
-		team2_players.add(eight2);
-		team2_players.add(nine2);
-		team2_players.add(ten2);
-
 		JLabel team3 = new JLabel("Hougang United FC");
 		team3.setFont(headerFont);
 		team3.setAlignmentX(CENTER_ALIGNMENT);
@@ -182,32 +155,10 @@ public class FirstDraft extends JPanel {
 		team3_players.setMaximumSize(new Dimension(500, 300));
 		team3_players.setOpaque(false);
 		team3_players.setBackground(new Color(0,0,0,0));
-
-		MakePlayer one3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
-		MakePlayer two3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
-		MakePlayer three3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
-		MakePlayer four3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
-		MakePlayer five3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
-		MakePlayer six3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
-		MakePlayer seven3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
-		MakePlayer eight3 = new MakePlayer(textFont, image7, "Emmeric Ong","MF");
-		MakePlayer nine3 = new MakePlayer(textFont, image7, "Basil Chan","GK");
-		MakePlayer ten3 = new MakePlayer(textFont, image7, "Basil Chan","GK");
 		
-		team3_players.add(one3);
-		team3_players.add(two3);
-		team3_players.add(three3);
-		team3_players.add(four3);
-		team3_players.add(five3);
-		team3_players.add(six3);
-		team3_players.add(seven3);
-		team3_players.add(eight3);
-		team3_players.add(nine3);
-		team3_players.add(ten3);
-		
-		player.add(team1);
+		player.add(albirex);
 		player.add(Box.createRigidArea(new Dimension(0, 30)));
-		player.add(team1_players);
+		player.add(albirex_players);
 		player.add(Box.createRigidArea(new Dimension(0, 30)));
 		player.add(team2);
 		player.add(Box.createRigidArea(new Dimension(0, 30)));
@@ -230,7 +181,7 @@ public class FirstDraft extends JPanel {
 		//Listener
 		SnaptoGridListener gl = new SnaptoGridListener(chosen, screens, headerFont);
 		
-		for (Component h : team1_players.getComponents()) {
+		for (Component h : albirex_players.getComponents()) {
 		    if (h instanceof MakePlayer) { 
 		       ((MakePlayer)h).addMouseListener(gl);
 		    }

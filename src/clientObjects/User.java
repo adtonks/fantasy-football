@@ -1,17 +1,25 @@
 package clientObjects;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
+import exceptions.IndexDoesNotExist;
+import exceptions.ResultsReadError;
+import exceptions.UserNotFound;
 
 // this object is read from and written to the user list CSV file
 public class User {
-	String username;
-	String password;
-	String email;
-	int gameID;
-	boolean isHost;
-	int points;
-	int week;
+	private final String username;
+	private final String password;
+	private final String email;
+	private final int gameID;
+	private final boolean isHost;
+	private int points;
+	private int week;
 	List<Player> GKs; // 1 player
 	List<Player> DFs; // 4 players
 	List<Player> MFs; // 4 players
@@ -20,8 +28,71 @@ public class User {
 
 	/* search through the CSV to find user info and initialize object */
 	/* only called by server */
-	public User(int _playerID) {
-		
+	public User(String _username) throws ResultsReadError,
+	FileNotFoundException,UserNotFound {
+		int i;
+		String[] csvHeader = new String[]
+				{"username", "password", "email", "gameID", "isHost",
+						"points", "week", "GK0", "DF0", "DF1", "DF2",
+						"DF3", "MF0", "MF1", "MF2", "MF3", "FW0", "FW1",
+						"SUB0", "SUB1", "SUB2", "SUB3", "SUB4", "SUB5"};
+		Scanner csvReader = new Scanner(new File("csv_tables/user_list.csv"));
+		csvReader.useDelimiter(",|\\n");
+		// check that table headers are correct
+		for(i=0; i<24; i++) {
+			// read first line of headers
+			if(!csvHeader[i].equals(csvReader.next())) {
+				csvReader.close();
+				System.out.println("CSV file formatted incorrectly");
+				throw new ResultsReadError();
+			}
+
+		}
+		if(!csvReader.hasNext()) {
+			csvReader.close();
+			System.out.println("CSV file empty");
+			throw new ResultsReadError();
+		}
+		this.GKs = new ArrayList<Player>();
+		this.DFs = new ArrayList<Player>();
+		this.MFs = new ArrayList<Player>();
+		this.FWs = new ArrayList<Player>();
+		this.SUBs = new ArrayList<Player>();
+		try {
+			while(!csvReader.hasNext(_username)) {
+				for(i=0; i<24; i++)
+					csvReader.next();
+			}
+		} catch(NoSuchElementException e) {
+			System.out.println("User not found");
+			csvReader.close();
+			throw new UserNotFound();
+		}
+		// throw exception if complete player info is not present
+		try {
+			this.username = csvReader.next();
+			this.password = csvReader.next();
+			this.email = csvReader.next();
+			this.gameID = csvReader.nextInt();
+			this.isHost = csvReader.nextInt() == 1;
+			this.points = csvReader.nextInt();
+			this.week = csvReader.nextInt();
+			for(i=0; i<1; i++)
+				GKs.add(new Player(csvReader.nextInt()));
+			for(i=0; i<4; i++)
+				DFs.add(new Player(csvReader.nextInt()));
+			for(i=0; i<4; i++)
+				MFs.add(new Player(csvReader.nextInt()));
+			for(i=0; i<2; i++)
+				FWs.add(new Player(csvReader.nextInt()));
+			for(i=0; i<6; i++)
+				SUBs.add(new Player(csvReader.nextInt()));					
+		} catch(NoSuchElementException e) {
+			System.out.println("User information incomplete");
+			csvReader.close();
+			throw new ResultsReadError();
+		}
+		csvReader.close();
 	}
 	
 	/* construct a new player object, for insertion into CSV by server */
@@ -34,11 +105,152 @@ public class User {
 		this.isHost = _isHost;
 		this.points = 0;
 		this.week = 0;
-		GKs = null;
-		DFs = null;
-		MFs = null;
-		FWs = null;
-		SUBs = null;
+		this.GKs = new ArrayList<Player>();
+		this.DFs = new ArrayList<Player>();
+		this.MFs = new ArrayList<Player>();
+		this.FWs = new ArrayList<Player>();
+		this.SUBs = new ArrayList<Player>();
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public int getWeek() {
+		return week;
+	}
+
+	public void setWeek(int week) {
+		this.week = week;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public int getGameID() {
+		return gameID;
+	}
+
+	public boolean isHost() {
+		return isHost;
+	}
+	
+	public Player getGK(int index) throws IndexDoesNotExist {
+		if((index<0) || (0<index))
+			throw new IndexDoesNotExist();
+		return(this.GKs.get(index));
+	}
+	
+	public Player getDF(int index) throws IndexDoesNotExist {
+		if((index<0) || (3<index))
+			throw new IndexDoesNotExist();
+		return(this.DFs.get(index));
+	}
+	
+	public Player getMF(int index) throws IndexDoesNotExist {
+		if((index<0) || (3<index))
+			throw new IndexDoesNotExist();
+		return(this.MFs.get(index));
+	}
+	
+	public Player getFW(int index) throws IndexDoesNotExist {
+		if((index<0) || (1<index))
+			throw new IndexDoesNotExist();
+		return(this.FWs.get(index));
+	}
+	
+	public Player getSUB(int index) throws IndexDoesNotExist {
+		if((index<0) || (5<index))
+			throw new IndexDoesNotExist();
+		return(this.SUBs.get(index));
+	}
+	
+	public Player findPlayerByID(int playerID) {
+		// returns the player if player ID exists, null otherwise
+		int i;
+		for(i=0; i<1; i++) {
+			if(this.GKs.get(i).getPlayerID() == playerID)
+				return(this.GKs.get(i));
+		}	
+		for(i=0; i<4; i++) {
+			if(this.DFs.get(i).getPlayerID() == playerID)
+				return(this.DFs.get(i));
+		}		
+		for(i=0; i<4; i++) {
+			if(this.MFs.get(i).getPlayerID() == playerID)
+				return(this.MFs.get(i));
+		}
+		for(i=0; i<2; i++) {
+			if(this.FWs.get(i).getPlayerID() == playerID)
+				return(this.FWs.get(i));
+		}
+		for(i=0; i<6; i++) {
+			if(this.SUBs.get(i).getPlayerID() == playerID)
+				return(this.SUBs.get(i));
+		}
+		return(null);
+	}
+	
+	private void insertPlayerIntoID(Player newPlayer, int playerID) {
+		// returns the player if player ID exists, null otherwise
+		int i;
+		for(i=0; i<1; i++) {
+			if(this.GKs.get(i).getPlayerID() == playerID)
+				this.GKs.set(i, newPlayer);
+		}	
+		for(i=0; i<4; i++) {
+			if(this.DFs.get(i).getPlayerID() == playerID)
+				this.DFs.set(i, newPlayer);
+		}		
+		for(i=0; i<4; i++) {
+			if(this.MFs.get(i).getPlayerID() == playerID)
+				this.MFs.set(i, newPlayer);
+		}
+		for(i=0; i<2; i++) {
+			if(this.FWs.get(i).getPlayerID() == playerID)
+				this.FWs.set(i, newPlayer);
+		}
+		for(i=0; i<6; i++) {
+			if(this.SUBs.get(i).getPlayerID() == playerID)
+				this.SUBs.set(i, newPlayer);
+		}
+	}
+	
+	public void substitute(int playerID1, int playerID2) {
+		Player player1 = findPlayerByID(playerID1);
+		Player player2 = findPlayerByID(playerID2);
+		insertPlayerIntoID(player2, playerID1);
+		insertPlayerIntoID(player1, playerID2);
+	}
+	
+	public Player getPlayer(Positions position, int index) {
+		switch(position) {
+		case GK:
+			return(this.GKs.get(index));
+		case DF:
+			return(this.DFs.get(index));
+		case MF:
+			return(this.MFs.get(index));
+		case FW:
+			return(this.FWs.get(index));
+		case SUB:
+			return(this.SUBs.get(index));
+		default:
+			return(null);	
+		}
 	}
 	
 }

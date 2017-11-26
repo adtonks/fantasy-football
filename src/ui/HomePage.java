@@ -109,6 +109,8 @@ public class HomePage extends JPanel {
 		lb.setFont(sm0l);
 		
 		String[] columnNames = {"RANK", "PLAYER", "POINTS"};
+		
+		//PARSE DATA HERE
 		Object[][] data = { {"RANK", "PLAYER", "POINTS"},
 							{"#--", "ADAMTONKS", new Integer(0)},
 						    {"#--", "LOGANYE", new Integer(0)},
@@ -131,6 +133,7 @@ public class HomePage extends JPanel {
 		match.setFont(headerFont);
 		match.setHorizontalAlignment(JLabel.CENTER);
 		
+		//DEPENDING ON THE MATCH CSV it will get different images
 		ImageIcon image1 = new ImageIcon(getClass().getResource("tampines-rovers-fc.png"));
 		JLabel team1 = new JLabel("", image1, JLabel.CENTER);
 		
@@ -138,9 +141,11 @@ public class HomePage extends JPanel {
 		vs.setFont(headerFont);
 		vs.setHorizontalAlignment(JLabel.CENTER);
 		
+		//DEPENDING ON THE MATCH CSV it will get different images
 		ImageIcon image2 = new ImageIcon(getClass().getResource("warriors-fc.png"));
 		JLabel team2 = new JLabel("", image2, JLabel.CENTER);
 		
+		//DEPENDING ON THE MATCH CSV it will get different times
 		JLabel details = new JLabel("15 November 2017, 8.00pm");
 		details.setFont(textFont);
 		details.setHorizontalAlignment(JLabel.CENTER);
@@ -152,17 +157,42 @@ public class HomePage extends JPanel {
 		upcomingMatch.add(details, BorderLayout.PAGE_END);
 		
 		//Menu Panel
-		JButton draft = new JButton("Draft My Team");
+		
+		//Labels depending on whether you are host or not
+		JLabel host_msg = new JLabel("You are the host of this game.  ");
+		host_msg.setFont(textFont);
+		host_msg.setAlignmentX(CENTER_ALIGNMENT);
+		host_msg.setHorizontalAlignment(JLabel.CENTER);
+		host_msg.setForeground(Color.white);
+		
+		JLabel nonhost_msg = new JLabel("The host of the game has to start the draft.   ");
+		nonhost_msg.setFont(textFont);
+		nonhost_msg.setAlignmentX(CENTER_ALIGNMENT);
+		nonhost_msg.setHorizontalAlignment(JLabel.CENTER);
+		nonhost_msg.setForeground(Color.white);
+		
+		//Host's Button
+		JButton draft = new JButton("Start Draft");
 		draft.setFont(sm0l);
-//		draft.setVerticalTextPosition(SwingConstants.BOTTOM);
-//	    draft.setHorizontalTextPosition(SwingConstants.CENTER);
 		draft.setAlignmentX(CENTER_ALIGNMENT);
 		draft.setAlignmentY(BOTTOM_ALIGNMENT);
-		draft.setHorizontalAlignment(JLabel.CENTER);;
+		draft.setHorizontalAlignment(JLabel.CENTER);
 		draft.setMaximumSize(new Dimension(200, 50));
 		draft.addActionListener(buttonListener);
 		draft.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		draft.setActionCommand("draft");
+		
+		//Non host's button
+		JButton nonhost = new JButton("Draft My Team");
+		nonhost.setFont(sm0l);
+		nonhost.setAlignmentX(CENTER_ALIGNMENT);
+		nonhost.setAlignmentY(BOTTOM_ALIGNMENT);
+		nonhost.setHorizontalAlignment(JLabel.CENTER);;
+		nonhost.setMaximumSize(new Dimension(200, 50));
+		nonhost.addActionListener(buttonListener);
+		nonhost.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		nonhost.setActionCommand("draft");
+		nonhost.setEnabled(false);
 		
 		JButton changeplayers = new JButton("View My Players");
 		changeplayers.setActionCommand("changeplayers");
@@ -188,7 +218,16 @@ public class HomePage extends JPanel {
 		logout.setAlignmentX(CENTER_ALIGNMENT);
 		logout.setMaximumSize(new Dimension(200, 50));
 		
-		menu.add(draft);
+//		if (user.isHost()) {
+			menu.add(host_msg);
+			menu.add(Box.createRigidArea(new Dimension(0, 10)));
+			menu.add(draft);
+//		}
+//		else {
+//			menu.add(nonhost_msg);
+//			menu.add(Box.createRigidArea(new Dimension(0, 10)));
+//			menu.add(nonhost);
+//		}
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));
 		menu.add(changeplayers);
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));

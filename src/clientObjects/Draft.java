@@ -1,9 +1,10 @@
+package clientObjects;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Draft {
 	public ArrayList<Player> remainingPlayers;
-	public User currentPlayerChoosing;
+	public int draftIndex;
 	public ArrayList<User> draftOrder;
 	public User[] players;
 
@@ -52,15 +53,7 @@ public class Draft {
 	public void footballPlayerDrafted(Player draftedPlayer){
 		
 		this.remainingPlayers.remove(draftedPlayer);
-		
-		/**
-		int index;
-		for (int i = 0; i<remainingPlayers.size();i++) {
-			if (draftedPlayer.compareTo(this.remainingPlayers.get(i))) {
-				index = i;
-			}
-		**/
-		
+			
 	}
 
 }

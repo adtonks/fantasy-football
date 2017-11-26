@@ -21,8 +21,20 @@ public class User {
 		// initialize object according to info in CSV
 	}
 	
+	public User(String username, String password, String email) {
+		//User object created when a user signs up
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		//implement store to CSV file
+		
+	}
+	
 	public void writeUser() {
 		// update this user in the CSV file
 	}
+	
+	public void swapPlayer
+	
 	
 }

@@ -2,14 +2,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Draft {
-	public ArrayList<FootballPlayer> remainingPlayers;
-	public UserPlayer currentPlayerChoosing;
-	public ArrayList<UserPlayer> draftOrder;
-	public UserPlayer[] players;
+	public ArrayList<Player> remainingPlayers;
+	public User currentPlayerChoosing;
+	public ArrayList<User> draftOrder;
+	public User[] players;
 
-	public Draft(FootballPlayer[] AllPlayers, UserPlayer[] players) {
-		ArrayList<FootballPlayer> remainingPlayers = new ArrayList<FootballPlayer>();
-		ArrayList<FootballPlayer> draftOrder = new ArrayList<FootballPlayer>();
+	public Draft(Player[] AllPlayers, User[] players) {
+		ArrayList<Player> remainingPlayers = new ArrayList<Player>();
+		ArrayList<Player> draftOrder = new ArrayList<Player>();
 		
 		for(int i = 0;i < AllPlayers.length;i++) {
 			this.remainingPlayers.add(AllPlayers[i]);
@@ -22,7 +22,7 @@ public class Draft {
 
 		// random shuffling
 		int index;
-		UserPlayer temp;
+		User temp;
 		Random random = new Random();
 		for (int i = this.players.length - 1; i > 0; i--) {
 			index = random.nextInt(i + 1);
@@ -49,7 +49,7 @@ public class Draft {
 
 	}
 	
-	public void footballPlayerDrafted(FootballPlayer draftedPlayer){
+	public void footballPlayerDrafted(Player draftedPlayer){
 		
 		this.remainingPlayers.remove(draftedPlayer);
 		

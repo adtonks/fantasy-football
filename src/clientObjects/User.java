@@ -196,36 +196,71 @@ public class User {
 		return(null);
 	}
 	
-	private void insertPlayerIntoID(Player newPlayer, int playerID) {
-		// returns the player if player ID exists, null otherwise
+	private int insertPlayerIntoID(Player newPlayer, int playerID1,
+			int playerID2, int in_index) {
+		// returns the player if playerID1 exists, null otherwise
 		int i;
+		// is player1 before or after player2?
+		int index = 1;
 		for(i=0; i<1; i++) {
-			if(this.GKs.get(i).getPlayerID() == playerID)
-				this.GKs.set(i, newPlayer);
+			if(this.GKs.get(i).getPlayerID() == playerID2)
+				index = 0;
+			if(this.GKs.get(i).getPlayerID() == playerID1)
+				if(in_index == 0)
+					this.GKs.set(i, newPlayer);
+				else
+					in_index = 0;
 		}	
 		for(i=0; i<4; i++) {
-			if(this.DFs.get(i).getPlayerID() == playerID)
-				this.DFs.set(i, newPlayer);
+			if(this.DFs.get(i).getPlayerID() == playerID2)
+				index = 0;
+			if(this.DFs.get(i).getPlayerID() == playerID1)
+				if(in_index == 0)
+					this.DFs.set(i, newPlayer);
+				else
+					in_index = 0;
 		}		
 		for(i=0; i<4; i++) {
-			if(this.MFs.get(i).getPlayerID() == playerID)
-				this.MFs.set(i, newPlayer);
+			if(this.MFs.get(i).getPlayerID() == playerID2)
+				index = 0;
+			if(this.MFs.get(i).getPlayerID() == playerID1)
+				if(in_index == 0)
+					this.MFs.set(i, newPlayer);
+				else
+					in_index = 0;
 		}
 		for(i=0; i<2; i++) {
-			if(this.FWs.get(i).getPlayerID() == playerID)
-				this.FWs.set(i, newPlayer);
+			if(this.FWs.get(i).getPlayerID() == playerID2)
+				index = 0;
+			if(this.FWs.get(i).getPlayerID() == playerID1)
+				if(in_index == 0)
+					this.FWs.set(i, newPlayer);
+				else
+					in_index = 0;
 		}
 		for(i=0; i<6; i++) {
-			if(this.SUBs.get(i).getPlayerID() == playerID)
-				this.SUBs.set(i, newPlayer);
+			if(this.SUBs.get(i).getPlayerID() == playerID2)
+				index = 0;
+			if(this.SUBs.get(i).getPlayerID() == playerID1)
+				if(in_index == 0)
+					this.SUBs.set(i, newPlayer);
+				else
+					in_index = 0;
 		}
+		return(index);
 	}
 	
 	public void substitute(int playerID1, int playerID2) {
 		Player player1 = findPlayerByID(playerID1);
 		Player player2 = findPlayerByID(playerID2);
-		insertPlayerIntoID(player2, playerID1);
-		insertPlayerIntoID(player1, playerID2);
+		System.out.println("substitute");
+		System.out.println(player1.getName());
+		System.out.println(player2.getName());
+		insertPlayerIntoID(player2, playerID1, playerID2,
+				insertPlayerIntoID(player1, playerID2, playerID1, 0));
+		System.out.println(player1.getName());
+		System.out.println("substitute");
+		/* insertPlayerIntoID(player1, playerID2); */
 	}
 	
 	public Player getPlayer(Positions position, int index) {

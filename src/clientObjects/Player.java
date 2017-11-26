@@ -33,7 +33,6 @@ public class Player {
 		for(i=0; i<6; i++) {
 			// read first line of headers
 			if(!csvHeader[i].equals(csvReader.next())) {
-				System.out.println(i + " " + csvHeader[i]);
 				csvReader.close();
 				System.out.println("CSV file formatted incorrectly");
 				throw new ResultsReadError();

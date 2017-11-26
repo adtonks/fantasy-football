@@ -34,7 +34,5 @@ public class User {
 		// update this user in the CSV file
 	}
 	
-	public void swapPlayer
-	
-	
+
 }

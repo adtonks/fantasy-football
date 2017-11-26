@@ -9,8 +9,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -21,6 +25,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import clientObjects.Player;
+import exceptions.ResultsReadError;
+import exceptions.UserNotFound;
 import listeners.ButtonListener;
 import listeners.SnaptoGridListener;
 
@@ -73,7 +80,7 @@ public class FirstDraft extends JPanel {
 		JPanel player = new JPanel();
 		player.setLayout(new BoxLayout(player, BoxLayout.Y_AXIS));
 		player.setPreferredSize(new Dimension(600, 2000));
-		player.setBorder(new EmptyBorder(20, 20, 20, 20));
+		player.setBorder(new EmptyBorder(20, 10, 20, 10));
 		player.setAlignmentY(TOP_ALIGNMENT);
 		player.setOpaque(false);
 		player.setBackground(new Color(0,0,0,0));
@@ -86,7 +93,7 @@ public class FirstDraft extends JPanel {
 		chosen.setLayout(new BoxLayout(chosen, BoxLayout.Y_AXIS));
 		chosen.setAlignmentX(LEFT_ALIGNMENT);
 		chosen.setPreferredSize(new Dimension(150, 2000));
-		chosen.setBorder(new EmptyBorder(20, 20, 20, 20));
+		chosen.setBorder(new EmptyBorder(20, 0, 20, 0));
 		chosen.setBackground(new Color(104, 0, 0));
 		c.insets = new Insets(0, 0, 0, 0);
 		c.gridwidth = 1;
@@ -101,37 +108,26 @@ public class FirstDraft extends JPanel {
 		albirex.setAlignmentX(CENTER_ALIGNMENT);
 		albirex.setForeground(Color.white);
 
-		JPanel albirex_players = new JPanel(new GridLayout(2, 7, 10, 10));
-		albirex_players.setMaximumSize(new Dimension(500, 300));
+		JPanel albirex_players = new JPanel(new GridLayout(4, 6, 10, 0));
+		albirex_players.setMaximumSize(new Dimension(600, 500));
 		albirex_players.setAlignmentX(CENTER_ALIGNMENT);
 		albirex_players.setOpaque(false);
 		albirex_players.setBackground(new Color(0,0,0,0));
 		
-		//MakePlayer one = new MakePlayer(Player object);
-
-		MakePlayer one = new MakePlayer(textFont, "player_images/Albirex_Niigata/1-shuhei-yamada-jap-GK.png", "Shuhei Yamada","GK", 1);
-		MakePlayer two = new MakePlayer(textFont, "player_images/Albirex_Niigata/2-tomoki-menda-df.png", "Tomoki Menda","DF", 2);
-		MakePlayer three = new MakePlayer(textFont, "player_images/Albirex_Niigata/3-takuya-akiyama-df.png", "Takuya Akiyama", "DF", 3);
-		MakePlayer four = new MakePlayer(textFont, "player_images/Albirex_Niigata/4-yuuki-yamanouchi-df.png", "Yuuki Yamanouchi", "DF", 4);
-		MakePlayer five = new MakePlayer(textFont, "player_images/Albirex_Niigata/5-naofumi-tanaka-df.png", "Naofumi Tanaka", "DF", 5);
-		MakePlayer six = new MakePlayer(textFont, "player_images/Albirex_Niigata/6-shuto-inaba-mf.png", "Shuto Inaba", "MF", 6);
-		MakePlayer seven = new MakePlayer(textFont, "player_images/Albirex_Niigata/7-ryota-nakai-mf.png", "Ryota Nakai", "MF", 7);
-		MakePlayer eight = new MakePlayer(textFont, "player_images/Albirex_Niigata/8-hiroyoshi-kamata-fw.png", "Hiroyoshi Kamata", "FW", 8);
-		MakePlayer nine = new MakePlayer(textFont, "player_images/Albirex_Niigata/9-tsubasa-sano-fw.png", "Tsubasa Sano", "FW", 9);
-		MakePlayer ten = new MakePlayer(textFont, "player_images/Albirex_Niigata/10-kento-nagasaki-mf.png", "Kento Nagasaki", "MF", 10);
-		MakePlayer eleven = new MakePlayer(textFont, "player_images/Albirex_Niigata/11-shoichiro-sakamoto-fw.png", "Shiochiro Sakamoto", "FW", 11);
-
-		albirex_players.add(one);
-		albirex_players.add(two);
-		albirex_players.add(three);
-		albirex_players.add(four);
-		albirex_players.add(five);
-		albirex_players.add(six);
-		albirex_players.add(seven);
-		albirex_players.add(eight);
-		albirex_players.add(nine);
-		albirex_players.add(ten);
-		albirex_players.add(eleven);
+		List<MakePlayer> albirexList = new ArrayList<MakePlayer>();
+		
+		for (int i = 1; i <= 23; i++) {
+			try {
+				albirexList.add(new MakePlayer(textFont, new Player(i)));
+			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
+				e.printStackTrace();
+			}
+		}
+		
+		for (int i = 0; i < 23; i++)
+		{
+			albirex_players.add(albirexList.get(i));
+		}
 		
 		JLabel team2 = new JLabel("Geylang International FC");
 		team2.setAlignmentX(CENTER_ALIGNMENT);

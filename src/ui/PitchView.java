@@ -113,43 +113,43 @@ public class PitchView extends JPanel {
 		/* ************** EXAMPLE ************** */
 		ImageIcon image5 = new ImageIcon(getClass().getResource("test.png"));
 		
-		MakePlayer one = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer two = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer three = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer four = new MakePlayer(sm0l, image5, "Basil Chan","GK");
-		MakePlayer five = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer seven = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer eight = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer nine = new MakePlayer(sm0l, image5, "Basil Chan","GK");
-		MakePlayer six = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer ten = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		MakePlayer eleven = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-		
-		gk.add(Box.createRigidArea(new Dimension(350, 0)));
-		gk.add(one);
-		
-		df.add(Box.createRigidArea(new Dimension(80, 0)));
-		df.add(two);
-		df.add(Box.createRigidArea(new Dimension(80, 0)));
-		df.add(three);
-		df.add(Box.createRigidArea(new Dimension(80, 0)));
-		df.add(four);
-		df.add(Box.createRigidArea(new Dimension(80, 0)));
-		df.add(five);
-		
-		mf.add(Box.createRigidArea(new Dimension(80, 0)));
-		mf.add(eight);
-		mf.add(Box.createRigidArea(new Dimension(80, 0)));
-		mf.add(nine);
-		mf.add(Box.createRigidArea(new Dimension(80, 0)));
-		mf.add(six);
-		mf.add(Box.createRigidArea(new Dimension(80, 0)));
-		mf.add(seven);
-		
-		fw.add(Box.createRigidArea(new Dimension(200, 0)));
-		fw.add(ten);
-		fw.add(Box.createRigidArea(new Dimension(180, 0)));
-		fw.add(eleven);
+//		MakePlayer one = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
+//		MakePlayer two = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
+//		MakePlayer three = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
+//		MakePlayer four = new MakePlayer(sm0l, image5, "Basil Chan","GK");
+//		MakePlayer five = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
+//		MakePlayer seven = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
+//		MakePlayer eight = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
+//		MakePlayer nine = new MakePlayer(sm0l, image5, "Basil Chan","GK");
+//		MakePlayer six = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
+//		MakePlayer ten = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
+//		MakePlayer eleven = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
+//		
+//		gk.add(Box.createRigidArea(new Dimension(350, 0)));
+//		gk.add(one);
+//		
+//		df.add(Box.createRigidArea(new Dimension(80, 0)));
+//		df.add(two);
+//		df.add(Box.createRigidArea(new Dimension(80, 0)));
+//		df.add(three);
+//		df.add(Box.createRigidArea(new Dimension(80, 0)));
+//		df.add(four);
+//		df.add(Box.createRigidArea(new Dimension(80, 0)));
+//		df.add(five);
+//		
+//		mf.add(Box.createRigidArea(new Dimension(80, 0)));
+//		mf.add(eight);
+//		mf.add(Box.createRigidArea(new Dimension(80, 0)));
+//		mf.add(nine);
+//		mf.add(Box.createRigidArea(new Dimension(80, 0)));
+//		mf.add(six);
+//		mf.add(Box.createRigidArea(new Dimension(80, 0)));
+//		mf.add(seven);
+//		
+//		fw.add(Box.createRigidArea(new Dimension(200, 0)));
+//		fw.add(ten);
+//		fw.add(Box.createRigidArea(new Dimension(180, 0)));
+//		fw.add(eleven);
 		
 	}
 	

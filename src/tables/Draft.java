@@ -17,7 +17,7 @@ public class Draft {
 		this.players = players;
 		
 	}
-
+ 
 	public void createDraftOrder() {
 
 		// random shuffling

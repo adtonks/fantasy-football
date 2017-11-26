@@ -285,4 +285,27 @@ public class User  implements Serializable {
 		}
 	}
 	
+	public String toCSVrow() {
+		return(this.username + "," + this.password + "," + this.email + "," +
+				this.gameID + "," + (this.isHost?1:0) + "," +
+				this.points + "," + this.week + "," +
+				this.GKs.get(0).getPlayerID() + "," +
+				this.DFs.get(0).getPlayerID() + "," +
+				this.DFs.get(1).getPlayerID() + "," +
+				this.DFs.get(2).getPlayerID() + "," +
+				this.DFs.get(3).getPlayerID() + "," +
+				this.MFs.get(0).getPlayerID() + "," +
+				this.MFs.get(1).getPlayerID() + "," +
+				this.MFs.get(2).getPlayerID() + "," +
+				this.MFs.get(3).getPlayerID() + "," + 
+				this.FWs.get(0).getPlayerID() + "," +
+				this.FWs.get(1).getPlayerID() + "," +
+				this.SUBs.get(0).getPlayerID() + "," +
+				this.SUBs.get(1).getPlayerID() + "," +
+				this.SUBs.get(2).getPlayerID() + "," +
+				this.SUBs.get(3).getPlayerID() + "," +
+				this.SUBs.get(4).getPlayerID() + "," +
+				this.SUBs.get(5).getPlayerID());
+	}
+	
 }

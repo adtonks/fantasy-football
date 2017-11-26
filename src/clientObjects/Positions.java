@@ -1,4 +1,4 @@
-package tables;
+package clientObjects;
 
 public enum Positions {
 	SUB,

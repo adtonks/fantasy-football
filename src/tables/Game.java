@@ -1,12 +1,20 @@
+import java.util.ArrayList;
 
 public class Game {
 
-public UserPlayer[] players;
+public ArrayList<User> players;
 public int currentWeek;
-public UserPlayer[] leaderBoard;
-public UserPlayer[] winners;
+public User[] leaderBoard;
+public User[] winners;
 public String roomCode;
-public UserPlayer[] host;
+public User host;
+public boolean ended;
+
+public Game(User host, String roomCode) {
+	this.host = host;
+	this.roomCode = roomCode;
+}
+
 
  
 }

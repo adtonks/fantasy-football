@@ -206,46 +206,56 @@ public class User {
 			if(this.GKs.get(i).getPlayerID() == playerID2)
 				index = 0;
 			if(this.GKs.get(i).getPlayerID() == playerID1)
-				if(in_index == 0)
+				if(in_index == 0) {
 					this.GKs.set(i, newPlayer);
-				else
+					return(index);
+				} else {
 					in_index = 0;
+				}
 		}	
 		for(i=0; i<4; i++) {
 			if(this.DFs.get(i).getPlayerID() == playerID2)
 				index = 0;
 			if(this.DFs.get(i).getPlayerID() == playerID1)
-				if(in_index == 0)
+				if(in_index == 0) {
 					this.DFs.set(i, newPlayer);
-				else
+					return(index);
+				} else {
 					in_index = 0;
+				}
 		}		
 		for(i=0; i<4; i++) {
 			if(this.MFs.get(i).getPlayerID() == playerID2)
 				index = 0;
 			if(this.MFs.get(i).getPlayerID() == playerID1)
-				if(in_index == 0)
+				if(in_index == 0) {
 					this.MFs.set(i, newPlayer);
-				else
+					return(index);
+				} else {
 					in_index = 0;
+				}
 		}
 		for(i=0; i<2; i++) {
 			if(this.FWs.get(i).getPlayerID() == playerID2)
 				index = 0;
 			if(this.FWs.get(i).getPlayerID() == playerID1)
-				if(in_index == 0)
+				if(in_index == 0) {
 					this.FWs.set(i, newPlayer);
-				else
+					return(index);
+				} else {
 					in_index = 0;
+				}
 		}
 		for(i=0; i<6; i++) {
 			if(this.SUBs.get(i).getPlayerID() == playerID2)
 				index = 0;
 			if(this.SUBs.get(i).getPlayerID() == playerID1)
-				if(in_index == 0)
+				if(in_index == 0) {
 					this.SUBs.set(i, newPlayer);
-				else
+					return(index);
+				} else {
 					in_index = 0;
+				}
 		}
 		return(index);
 	}
@@ -253,14 +263,8 @@ public class User {
 	public void substitute(int playerID1, int playerID2) {
 		Player player1 = findPlayerByID(playerID1);
 		Player player2 = findPlayerByID(playerID2);
-		System.out.println("substitute");
-		System.out.println(player1.getName());
-		System.out.println(player2.getName());
 		insertPlayerIntoID(player2, playerID1, playerID2,
 				insertPlayerIntoID(player1, playerID2, playerID1, 0));
-		System.out.println(player1.getName());
-		System.out.println("substitute");
-		/* insertPlayerIntoID(player1, playerID2); */
 	}
 	
 	public Player getPlayer(Positions position, int index) {

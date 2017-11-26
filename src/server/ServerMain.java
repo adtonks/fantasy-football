@@ -36,12 +36,12 @@ public abstract class ServerMain {
 		test_player = new Player(63);
 		System.out.println(test_player.getTeam());
 		
-		System.out.println(test_user.getPlayer(Positions.MF, 2).getName());
-		System.out.println(test_user.getPlayer(Positions.MF, 3).getName());
-		test_user.substitute(test_user.getPlayer(Positions.MF, 2).getPlayerID(),
-				test_user.getPlayer(Positions.MF, 3).getPlayerID());
-		System.out.println(test_user.getPlayer(Positions.MF, 2).getName());
-		System.out.println(test_user.getPlayer(Positions.MF, 3).getName());
+		System.out.println("player 1 " + test_user.getPlayer(Positions.DF, 3).getName());
+		System.out.println("player 2 " + test_user.getPlayer(Positions.SUB, 5).getName());
+		test_user.substitute(test_user.getPlayer(Positions.DF, 3).getPlayerID(),
+				test_user.getPlayer(Positions.SUB, 5).getPlayerID());
+		System.out.println("player 1 " + test_user.getPlayer(Positions.DF, 3).getName());
+		System.out.println("player 2 " + test_user.getPlayer(Positions.SUB, 5).getName());
 		
 	}
 

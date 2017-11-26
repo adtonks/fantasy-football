@@ -1,8 +1,8 @@
 package clientObjects;
 
+import java.io.Serializable;
 
-
-public class LeaderBoard {
+public class LeaderBoard  implements Serializable{
 	int gameID;
 	// ordered array of leaders for the game
 	String[] username;

@@ -2,13 +2,14 @@ package clientObjects;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 
-public class Player {
+public class Player implements Serializable {
 	// this is a read-only object
 	private final int playerID;
 	private final String name;

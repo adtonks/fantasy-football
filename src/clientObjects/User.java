@@ -2,6 +2,7 @@ package clientObjects;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -12,7 +13,7 @@ import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 
 // this object is read from and written to the user list CSV file
-public class User {
+public class User  implements Serializable {
 	private final String username;
 	private final String password;
 	private final String email;

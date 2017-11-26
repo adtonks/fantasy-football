@@ -35,7 +35,13 @@ public abstract class ServerMain {
 		System.out.println(test_user.getEmail());
 		test_player = new Player(63);
 		System.out.println(test_player.getTeam());
+		
 		System.out.println(test_user.getPlayer(Positions.MF, 2).getName());
+		System.out.println(test_user.getPlayer(Positions.MF, 3).getName());
+		test_user.substitute(test_user.getPlayer(Positions.MF, 2).getPlayerID(),
+				test_user.getPlayer(Positions.MF, 3).getPlayerID());
+		System.out.println(test_user.getPlayer(Positions.MF, 2).getName());
+		System.out.println(test_user.getPlayer(Positions.MF, 3).getName());
 		
 	}
 

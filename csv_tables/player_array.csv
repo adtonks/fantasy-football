@@ -1,4 +1,3 @@
-<<<<<<< .merge_file_kE5h0Q
 playerID,name,nationality,team,prefPosition,img_path
 1,Shuhei Yamada,Japanese,Albirex Niigata,GK,player_images/Albirex_Niigata/1-shuhei-yamada-jap-GK.png
 2,Tomoki Menda,Japanese,Albirex Niigata,DF,player_images/Albirex_Niigata/2-tomoki-menda-df.png
@@ -203,7 +202,7 @@ playerID,name,nationality,team,prefPosition,img_path
 201,Hyrulnizam Jumaat,Singaporean,Warriors,GK,player_images/Warriors/wrfc_22_hyrulnizam-jumaat_gk.png
 202,Ho Wai Loon,Singaporean,Warriors,DF,player_images/Warriors/wrfc_24_ho-wai-loon_df.png
 203,Sharin Majid,Singaporean,Warriors,MF,player_images/Warriors/wrfc_25_sharin-majid_mf.png
-=======
+Err:510,,,,,
 playerID,name,nationality,team,prefPosition,img_path
 1,Shuhei Yamada,Japanese,Albirex Niigata,GK,"""player_images/Albirex_Niigata/1-shuhei-yamada-jap-GK.png"""
 2,Tomoki Menda,Japanese,Albirex Niigata,DF,"""player_images/Albirex_Niigata/2-tomoki-menda-df.png"""
@@ -237,7 +236,7 @@ playerID,name,nationality,team,prefPosition,img_path
 30,Aung Kyaw Naing,Burmese,Balestier Khalsa,MF,"""player_images/Balestier_Khalsa/7-aung-kyaw-naing-myanmar-mf.png"""
 31,Raihan Rahman,Singaporean,Balestier Khalsa,MF,"""player_images/Balestier_Khalsa/bkfc_8_raihan-rahman_mf.png"""
 32,Kyaw Zayar Win,Burmese,Balestier Khalsa,MF,"""player_images/Balestier_Khalsa/9-kyaw-zayar-win-myanmar-mf.png"""
-33,Nanda Linn Kyaw Chit,Burmese,Balestier Khalsa,FW,"""player_images/Balestier_Khalsa/bkfc_10_nŠndŠ-linn-kyŠw-chit_myanmar-fw.png"""
+33,Nanda Linn Kyaw Chit,Burmese,Balestier Khalsa,FW,"""player_images/Balestier_Khalsa/bkfc_10_nï¿½ndï¿½-linn-kyï¿½w-chit_myanmar-fw.png"""
 34,Huzaifah Aziz,Singaporean,Balestier Khalsa,DF,"""player_images/Balestier_Khalsa/bkfc_11_huzaifah-aziz_df.png"""
 35,Sheikh Hadi,Singaporean,Balestier Khalsa,DF,"""player_images/Balestier_Khalsa/bkfc_12_sheikh-hadi_df.png"""
 36,Zulkhair Mustaffa,Singaporean,Balestier Khalsa,DF,"""player_images/Balestier_Khalsa/bkfc_13_zulkhair-mustaffa_df.png"""
@@ -408,4 +407,4 @@ playerID,name,nationality,team,prefPosition,img_path
 201,Hyrulnizam Jumaat,Singaporean,Warriors,GK,"""player_images/Warriors/wrfc_22_hyrulnizam-jumaat_gk.png"""
 202,Ho Wai Loon,Singaporean,Warriors,DF,"""player_images/Warriors/wrfc_24_ho-wai-loon_df.png"""
 203,Sharin Majid,Singaporean,Warriors,MF,"""player_images/Warriors/wrfc_25_sharin-majid_mf.png"""
->>>>>>> .merge_file_FLTgYk
+>>>>>>> .merge_file_FLTgYk,,,,,

@@ -18,13 +18,13 @@ public class User {
 	private final String email;
 	private final int gameID;
 	private final boolean isHost;
-	private int points;
-	private int week;
-	List<Player> GKs; // 1 player
-	List<Player> DFs; // 4 players
-	List<Player> MFs; // 4 players
-	List<Player> FWs; // 2 players
-	List<Player> SUBs; // 6 players
+	private final int points;
+	private final int week;
+	private final List<Player> GKs; // 1 player
+	private final List<Player> DFs; // 4 players
+	private final List<Player> MFs; // 4 players
+	private final List<Player> FWs; // 2 players
+	private final List<Player> SUBs; // 6 players
 
 	/* search through the CSV to find user info and initialize object */
 	/* only called by server */
@@ -116,16 +116,8 @@ public class User {
 		return points;
 	}
 
-	public void setPoints(int points) {
-		this.points = points;
-	}
-
 	public int getWeek() {
 		return week;
-	}
-
-	public void setWeek(int week) {
-		this.week = week;
 	}
 
 	public String getUsername() {

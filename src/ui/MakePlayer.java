@@ -10,22 +10,18 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.imageio.ImageIO;
 
-import listeners.SnaptoGridListener;
+import clientObjects.Player;
 
 public class MakePlayer extends JPanel {
-	
-	int playerID;
 
- public MakePlayer(Font textFont, String path, String name, String position, int playerID) {
-	 
-	 		this.playerID = playerID;
+	public MakePlayer(Font textFont, Player player) {
 
-			ImageIcon image = new ImageIcon(path);		
+	 		ImageIcon image = new ImageIcon(player.getImgPath());			
 		
 			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.setMaximumSize(new Dimension(200, 200));
 			this.setBackground(new Color(0, 0, 0, 0));
 			this.setOpaque(false);
 			
@@ -36,18 +32,18 @@ public class MakePlayer extends JPanel {
 			pic.setAlignmentX(CENTER_ALIGNMENT);
 			
 			//Name and Position
-			JLabel name_ = new JLabel(name);
+			JLabel name_ = new JLabel(player.getName());
 			name_.setFont(newFont);
 			name_.setAlignmentX(CENTER_ALIGNMENT);
 			name_.setOpaque(true);
 			name_.setBackground(new Color(104, 0, 0));
 			name_.setForeground(Color.white);
 			
-			JLabel position_ = new JLabel(position);
+			JLabel position_ = new JLabel(player.getPrefPosition().name());
 			position_.setFont(newFont);
 			position_.setAlignmentX(CENTER_ALIGNMENT);
 			position_.setOpaque(true);
-			position_.setBackground(new Color(94, 0, 0));
+			position_.setBackground(new Color(104, 0, 0));
 			position_.setForeground(Color.white);
 			
 			this.add(pic);
@@ -57,8 +53,4 @@ public class MakePlayer extends JPanel {
 			this.add(position_);
 		}
  
- public int getID() {
-	 return playerID;
- }
-		
 }

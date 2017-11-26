@@ -83,21 +83,21 @@ public class ChangeLineup extends JPanel {
 //		team.add(Box.createRigidArea(new Dimension(0, 10)));
 		
 		/* EXAMPLE */
-		ImageIcon image5 = new ImageIcon("player_images/Albirex_Niigata/19-kenya-kodama-mf.png");
-		MakePlayer twelve = new MakePlayer(textFont, image5, "Basil Chan","GK");
-		MakePlayer thirteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer fourteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer fifteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		MakePlayer sixteen = new MakePlayer(textFont, image5, "Basil Chan","GK");
-		MakePlayer seventeen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-		
-		team.add(twelve);
-		team.add(thirteen);
-		team.add(fourteen);
-		team.add(fifteen);
-		team.add(sixteen);
-		team.add(seventeen);
-		
+//		ImageIcon image5 = new ImageIcon("player_images/Albirex_Niigata/19-kenya-kodama-mf.png");
+//		MakePlayer twelve = new MakePlayer(textFont, image5, "Basil Chan","GK");
+//		MakePlayer thirteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
+//		MakePlayer fourteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
+//		MakePlayer fifteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
+//		MakePlayer sixteen = new MakePlayer(textFont, image5, "Basil Chan","GK");
+//		MakePlayer seventeen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
+//		
+//		team.add(twelve);
+//		team.add(thirteen);
+//		team.add(fourteen);
+//		team.add(fifteen);
+//		team.add(sixteen);
+//		team.add(seventeen);
+//		
 		//Save Button
 		JButton save = new JButton("Save Lineup");
 		save.setFont(smol);

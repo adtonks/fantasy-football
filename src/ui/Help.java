@@ -47,17 +47,24 @@ public class Help extends JPanel {
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		
-		String t = "HOW TO PLAY:\n"
-				+ "Step 1\n"
-				+ "Create a new game, or join a game with your friends. You probably would have done this step already.\n\n"
-				+ "Step 2\n"
-				+ "Build your fantasy football team of 17 players during the draft.\n\n"
-				+ "Step 3\n"
-				+ "Earn points when your players make moves during the actual season.\n\n"
-				+ "Step 4\n"
+		String t = "WHAT IS THIS ABOUT?\n\n"
+				+ "Welcome to S-League's Fantasy Football! This is the first of its kind in Singapore.\n\n"
+				+ "HOW DO I PLAY THIS GAME?\n\n"
+				+ "STEP 1:\n"
+				+ "To be reading this, you either created a new game or joined an existing game. If you did the former, you are the host of that game.\n\n"
+				+ "STEP 2:\n"
+				+ "Wait for your friends to join! When a maximum of 10 people have joined your game, set a time and place for you guys to come together to start drafting!\n"
+				+ "Only the host of the game can start the draft.\n\n"
+				+ "STEP 3:\n"
+				+ "During the draft, choose 17 players of any position and football club. The order of choosing is randomized.\n\n"
+				+ "STEP 4:\n"
+				+ "Earn points when your players make good moves such as tackles, assists and saves during the actual season.\n\n"
+				+ "STEP 5:\n"
 				+ "Strategise before every match and change your starting lineup to maximise your points!\n\n"
-				+ "Step 5\n"
-				+ "Win the game.";
+				+ "Step 6\n"
+				+ "Win the game.\n\n"
+				+ "WOW I LUV DIS SO MUCH WHO DEVELOPED IT?\n\n"
+				+ "Logan Ye, Adam Tonks and Charis Anne Lim. :)\n";
 		
 		JTextPane instructions = new JTextPane();
 		instructions.setMaximumSize(new Dimension(900, 550));

@@ -14,6 +14,7 @@ public class LeaderboardTable extends JPanel {
 	private Object[][] data;
 	private String[] headers;
 	private Font textFont;
+	private int me_row;
 	
 	public LeaderboardTable (Object[][] data, String[] headers, Font textFont) {
 		this.data = data;
@@ -28,9 +29,12 @@ public class LeaderboardTable extends JPanel {
 	table.setForeground(Color.WHITE);
 	table.setFont(textFont);
 	table.setShowGrid(false);
-//	table.setOpaque(false);
 	table.setEnabled(false);
-	table.setRowSelectionInterval(3, 3);
+
+	//Depending on where the ME is
+	me_row = getRowByValue(table, "ME");
+	table.setRowSelectionInterval(me_row, me_row);
+	
 	
 
 	
@@ -52,4 +56,18 @@ public class LeaderboardTable extends JPanel {
 	this.setBackground(new Color(104, 0, 0));
 	}
 	
+	 public static int getRowByValue(JTable model, String user) {
+		    for (int i = model.getRowCount() - 1; i >= 0; --i) {
+		        for (int j = model.getColumnCount() - 1; j >= 0; --j) {
+		            if (model.getValueAt(i, j).equals(user)) {
+		            		return i;
+		            }
+		        }
+		    }
+			return 0;
+		 }
+
+	
 }
+
+

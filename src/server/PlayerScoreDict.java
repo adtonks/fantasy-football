@@ -1,4 +1,4 @@
-package tables;
+package server;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import clientObjects.Positions;
 import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 

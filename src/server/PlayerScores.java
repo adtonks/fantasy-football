@@ -1,4 +1,4 @@
-package tables;
+package server;
 
 public class PlayerScores {
 	// this object is just used as a wrapper for 4 integers, so make them public

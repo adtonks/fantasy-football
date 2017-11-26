@@ -13,9 +13,10 @@ import exceptions.UserNotFound;
 import server.UserPoints;
 
 public class LeaderBoard {
-	private int gameID;
+	private final int gameID;
 	// ordered list of (username, points) pairs in descending order
-	private List<UserPoints> userPointsList;
+	private final List<UserPoints> userPointsList;
+	private final int boardLen;
 
 	public LeaderBoard(int _gameID) throws ResultsReadError, FileNotFoundException, UserNotFound {
 		this.gameID = _gameID;
@@ -63,15 +64,21 @@ public class LeaderBoard {
 		csvReader.close();
 		
 		Collections.sort(userPointsList, new Comparator<UserPoints>() {
-		    public int compare(UserPoints left, UserPoints right) {
-		        return Integer.compare(right.points, left.points);
-		    }
-		});	
+			public int compare(UserPoints up1, UserPoints up2) {
+				return Integer.compare(up2.points, up1.points);
+			}
+		});
+		
+		this.boardLen = userPointsList.size();
 		
 	}
 
 	public int getGameID() {
 		return gameID;
+	}
+
+	public int getBoardLen() {
+		return boardLen;
 	}
 	
 	public List<UserPoints> getUserPointsList() {

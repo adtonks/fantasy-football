@@ -1,6 +1,7 @@
 package server;
 
 public class UserPoints {
+	// this object is just a wrapper
 	public String username;
 	public int points;
 	

@@ -74,7 +74,7 @@ public class User {
 			this.password = csvReader.next();
 			this.email = csvReader.next();
 			this.gameID = csvReader.nextInt();
-			this.isHost = csvReader.nextInt() == 1;
+			this.isHost = (csvReader.nextInt() == 1);
 			this.points = csvReader.nextInt();
 			this.week = csvReader.nextInt();
 			for(i=0; i<1; i++)

@@ -1,8 +1,9 @@
 package clientObjects;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Draft {
+public class Draft implements Serializable{
 	public ArrayList<Player> remainingPlayers;
 	public int draftIndex;
 	public ArrayList<User> draftOrder;
@@ -16,6 +17,7 @@ public class Draft {
 			this.remainingPlayers.add(AllPlayers[i]);
 		}
 		this.players = players;
+		draftIndex = 0;
 		
 	}
  
@@ -34,7 +36,7 @@ public class Draft {
 
 		//snake order draft creation
 		boolean snakeOrder = true;
-		for (int i = 0; i < players.length * 17; i++) {
+		for (int i = 0; i < players.length * 17; i+=17) {
 
 			if (snakeOrder) {
 				for (int j = 1; j <= players.length; j++) {
@@ -53,7 +55,9 @@ public class Draft {
 	public void footballPlayerDrafted(Player draftedPlayer){
 		
 		this.remainingPlayers.remove(draftedPlayer);
-			
+		draftIndex++; 
 	}
+	
+	
 
 }

@@ -1,17 +1,5 @@
 package clientObjects;
 
-<<<<<<< HEAD
-import java.io.Serializable;
-
-public class LeaderBoard  implements Serializable{
-	int gameID;
-	// ordered array of leaders for the game
-	String[] username;
-	// points[i] is number of points for usernames[i]
-	int[] points;
-	
-	LeaderBoard() {
-=======
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -74,7 +62,6 @@ public class LeaderBoard {
 		}
 		
 		csvReader.close();
->>>>>>> 0e0f0f74e72bab5797094a6092ffe648a7af3e8d
 		
 		Collections.sort(userPointsList, new Comparator<UserPoints>() {
 			public int compare(UserPoints up1, UserPoints up2) {

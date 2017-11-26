@@ -83,7 +83,7 @@ public class ChangeLineup extends JPanel {
 //		team.add(Box.createRigidArea(new Dimension(0, 10)));
 		
 		/* EXAMPLE */
-		ImageIcon image5 = new ImageIcon(getClass().getResource("test.png"));
+		ImageIcon image5 = new ImageIcon("player_images/Balestier Khalsa/bkfc_1_renonathan-amurthalingam_gk.png");
 		MakePlayer twelve = new MakePlayer(textFont, image5, "Basil Chan","GK");
 		MakePlayer thirteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
 		MakePlayer fourteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");

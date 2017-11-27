@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import clientObjects.Player;
+import clientObjects.User;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 import listeners.ButtonListener;
@@ -44,11 +45,11 @@ public class ChangeLineup extends JPanel {
 	private Font textFont;
 	private BufferedImage bg = null;
 	private FirstDraft draft;
-	private int[] lineup_arr;
+	private User user_obj;
 	
 	/**
 	 * This constructor points the parameters as the current instance.
-	 * @param draft
+	 * @param draft, drafting screen
 	 * @param screens, the main JPanel with cardlayout
 	 * @param headerFont, the custom font
 	 * @param textFont, the custom font
@@ -66,8 +67,7 @@ public class ChangeLineup extends JPanel {
 	 * to the panel. 
 	 * @param lineup_arr, an array of player IDs with the index representing order of adding
 	 */
-	public void create(int[] lineup_arr) {
-		
+	public void create(User user_obj, int[] lineup_arr) {	
 		Font smol = headerFont.deriveFont((float) 14);
 		
 		//Create Main Panel
@@ -87,10 +87,9 @@ public class ChangeLineup extends JPanel {
 		pitch.setBackground(new Color(0,0,0,0));
 		
 		//Pitch View and Team
-		LineupListener gl = new LineupListener(this, lineup_arr);		
+		LineupListener gl = new LineupListener(user_obj, this, lineup_arr);		
 		PitchView view = new PitchView(gl, lineup_arr, this, textFont, draft);
-
-				
+			
 		JPanel team = new JPanel();
 		team.setLayout(new BoxLayout(team, BoxLayout.Y_AXIS));
 		team.setMaximumSize(new Dimension(150, 550));
@@ -108,7 +107,8 @@ public class ChangeLineup extends JPanel {
 		myTeam.setFont(sm0l);
 		myTeam.setForeground(Color.WHITE);
 		myTeam.setAlignmentX(CENTER_ALIGNMENT);
-
+		
+		if (draft.isDrafted()) {
 		
 		List<MakePlayer> startingList = new ArrayList<MakePlayer>();
 		
@@ -126,8 +126,9 @@ public class ChangeLineup extends JPanel {
 			startingList.get(i).setName(Integer.toString(startingList.get(i).getID()));
 		}
 		
+		}
 		
-			
+		
 		//Save Button
 		JButton save = new JButton("Save Lineup");
 		save.setFont(smol);
@@ -145,6 +146,7 @@ public class ChangeLineup extends JPanel {
 		this.add(Box.createRigidArea(new Dimension(0, 15)));
 		this.add(save);
 	}
+	
 	
 	/** 
 	 * This method paints the background of the panel with a resource image.

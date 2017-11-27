@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 
 import clientFunctions.Sfunctions;
 import clientObjects.User;
+import ui.ChangeLineup;
+import ui.FirstDraft;
 import ui.HomePage;
 import ui.JoinGame;
 
@@ -27,6 +29,7 @@ public class JoinValidGameListener implements ActionListener {
 	private JoinGame panel;
 	private JPanel screens;
 	private Font textFont;
+	private int[] arr, anotherarr;
 	
 	/**
 	 * This constructor points the parameters as the current instance.
@@ -69,6 +72,23 @@ public class JoinValidGameListener implements ActionListener {
 				
 				HomePage homepage = (HomePage) screens.getComponent(2);
 				homepage.create(test);
+				
+				arr = new int[203];
+				for (int i = 0; i < arr.length; i++) {
+					arr[i] = i+1;
+				}
+				
+				FirstDraft firstdraft = (FirstDraft) screens.getComponent(5);
+				firstdraft.create(test, arr);
+				
+				anotherarr = new int[17];
+				for (int i = 0; i < anotherarr.length; i++) {
+					anotherarr[i] = i+1;
+				}
+				
+				ChangeLineup lineup = (ChangeLineup) screens.getComponent(7);
+				lineup.create(test, anotherarr);
+				
 				cl.show(screens, "HOME");
 				 
 			 }

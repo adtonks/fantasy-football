@@ -26,6 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import clientObjects.Player;
+import clientObjects.User;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 import listeners.ButtonListener;
@@ -67,9 +68,10 @@ public class FirstDraft extends JPanel {
 	 * This method adds all the necessary components and players to the panel
 	 * and takes an array of players in the order they should be added
 	 * to the panel. 
+	 * @param user_obj, takes in current user's details
 	 * @param bigarr, an array of all player IDs with the index representing order of adding
 	 */
-	public void create(int[] bigarr) {
+	public void create(User user_obj, int[] bigarr) {
 		
 		//Create Main Panel
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -139,7 +141,7 @@ public class FirstDraft extends JPanel {
 		chosen.add(Box.createRigidArea(new Dimension(0, 10)));
 		
 		//Listener
-		DraftListener gl = new DraftListener(bigarr, this, chosen, screens, headerFont);
+		DraftListener gl = new DraftListener(user_obj, bigarr, this, chosen, screens, headerFont);
 		
 		//ALBIREX NIIGATA	
 		JLabel albirex = new JLabel("Albirex Niigata FC(S)  ");
@@ -487,16 +489,22 @@ public class FirstDraft extends JPanel {
 		return arr;
 	}
 	
+	/**
+	 * This boolean getter is for the lineup screen to know if 
+	 * players are already chosen or not.
+	 * @return
+	 */
 	public boolean isDrafted() {
 		return isDrafted;
 	}
 	
+	/**
+	 * This boolean setter is to let the system know that the user
+	 * has already drafted or not.
+	 * @param already
+	 */
 	public void setDrafted(boolean already) {
 		isDrafted = already;
-	}
-	
-	public void setLineup(ChangeLineup cl) {
-		this.cl = cl;
 	}
 	
 	/** 

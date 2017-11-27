@@ -12,6 +12,9 @@ import javax.swing.JTextField;
 
 import clientFunctions.Sfunctions;
 import clientObjects.User;
+import exceptions.IndexDoesNotExist;
+import ui.ChangeLineup;
+import ui.FirstDraft;
 import ui.HomePage;
 import ui.StartScreen;
 
@@ -29,6 +32,7 @@ public class LogInListener implements ActionListener {
 	private JPanel screens;
 	private Font textFont;
 	private User user_obj;
+	private int[] arr, anotherarr;
 
 	/**
 	 * This constructor points the parameters as the current instance.
@@ -65,9 +69,75 @@ public class LogInListener implements ActionListener {
 			if (Sfunctions.sUsernameExist(user_)) {
 				 user_obj = Sfunctions.sUserPull(user_, pw_);
 				 if (user_obj != null) {
+					 
 					 HomePage homepage = (HomePage) screens.getComponent(2);
 					 homepage.create(user_obj);
-					 cl.show(screens, "HOME");
+					 
+					arr = new int[203];
+					for (int i = 0; i < arr.length; i++) {
+						arr[i] = i+1;
+					}
+						
+					FirstDraft firstdraft = (FirstDraft) screens.getComponent(5);
+					firstdraft.create(user_obj, arr);
+					
+					anotherarr = new int[17];
+					for (int i = 0; i < anotherarr.length; i++) {
+						
+						//Goalies
+						if (i == 0) {
+							try {
+								anotherarr[i] = user_obj.getGK(0).getPlayerID();
+							} catch (IndexDoesNotExist e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						
+						//Defenders
+						if (i >= 1 && i <= 4) {
+							try {
+								anotherarr[i] = user_obj.getDF(i-1).getPlayerID();
+							} catch (IndexDoesNotExist e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						
+						//Midfielders
+						if (i >= 5 && i <= 8) {
+							try {
+								anotherarr[i] = user_obj.getMF(i-5).getPlayerID();
+							} catch (IndexDoesNotExist e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						//Forwards
+						if (i >= 9 && i <= 10) {
+							try {
+								anotherarr[i] = user_obj.getFW(i-9).getPlayerID();
+							} catch (IndexDoesNotExist e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						//Substitutes
+						if (i >= 11 && i <= 16) {
+							try {
+								anotherarr[i] = user_obj.getMF(i-11).getPlayerID();
+							} catch (IndexDoesNotExist e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						
+					}
+					
+					ChangeLineup lineup = (ChangeLineup) screens.getComponent(7);
+					lineup.create(user_obj, anotherarr);
+					
+					cl.show(screens, "HOME");
 				 }
 				 else {
 					 JLabel label = new JLabel("Incorrect username or password. Please try again!!!");

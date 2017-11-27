@@ -8,6 +8,8 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 
+import clientFunctions.Sfunctions;
+import clientObjects.User;
 import ui.ChangeLineup;
 import ui.MakePlayer;
 
@@ -24,13 +26,15 @@ public class LineupListener implements MouseListener, ActionListener {
 	private int clicked = 0;
 	private int store1 = 0, store2 = 0;
 	private int[] arr;
+	private User user_obj;
 	
 	/**
 	 * This constructor points the parameters as the current instance.
 	 * @param cl, the current JPanel that needs to be repainted
 	 * @param arr, the array of 17 players that is ordered
 	 */
-	public LineupListener(ChangeLineup cl, int[] arr) {
+	public LineupListener(User user_obj, ChangeLineup cl, int[] arr) {
+		this.user_obj = user_obj;
 		this.cl = cl;
 		this.arr = arr;
 	}
@@ -100,11 +104,7 @@ public class LineupListener implements MouseListener, ActionListener {
 					 break;
 				 }
 			 }
-					 
-				for (int x = 0; x < 17; x++) {
-				 System.out.println(arr[x]);
-				}
-					 
+				setArr(arr);	 
 				cl.removeAll();
 				cl.create(arr);
 				cl.revalidate();
@@ -119,12 +119,22 @@ public class LineupListener implements MouseListener, ActionListener {
 
 	 }
 	
+	public void setArr(int[] arr) {
+		this.arr = arr;
+	}
+	
+	public int[] getArr() {
+		return this.arr;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+
 		for (int x = 0; x < 17; x++) {
 			 System.out.print(arr[x] + "\t");
 			}
+		user_obj.insertArr(arr);
+		
 	}
 	
 

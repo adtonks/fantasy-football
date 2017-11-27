@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import clientObjects.User;
 import ui.ChangeLineup;
 import ui.FirstDraft;
 import ui.MakePlayer;
@@ -33,16 +34,19 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 	private int id, counter = 0;
 	private int[] bigarr, arr;
 	private FirstDraft draft;
+	private User user_obj;
 	
 	/**
 	 * This constructor points the parameters as the current instance.
+	 * @param user_obj, takes in the current user's details
 	 * @param bigarr, ID array of all players in S League
 	 * @param draft, the drafting screen
 	 * @param dest, the chosen players panel
 	 * @param screens, the main JPanel
 	 * @param headerFont, the custom font
 	 */
-	public DraftListener(int[] bigarr, FirstDraft draft, JPanel dest, JPanel screens, Font headerFont) {
+	public DraftListener(User user_obj, int[] bigarr, FirstDraft draft, JPanel dest, JPanel screens, Font headerFont) {
+		this.user_obj = user_obj;
 		this.draft = draft;
 		this.dest = dest;
 		this.headerFont = headerFont;
@@ -104,9 +108,12 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 					dest.add(Box.createRigidArea(new Dimension(0, 20)));
 					dest.add(save);
 					
-					draft.setArr(arr);
 					draft.setDrafted(true);
 					//returns an array of the 17 Player IDs
+					user_obj.insertArr(arr);
+					
+					//
+					
 			}
 		}
 	}		

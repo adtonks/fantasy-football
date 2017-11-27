@@ -39,6 +39,7 @@ public class PitchView extends JPanel {
 	private FirstDraft draft;
 	private ChangeLineup cl;
 	private LineupListener gl;
+//	private User user_obj;
 
 	/**
 	 * This class takes a listener, an array of 17 player IDs, the JPanel it belongs to, custom font and the drafting screen
@@ -49,7 +50,9 @@ public class PitchView extends JPanel {
 	 * @param draft, the screen for drafting
 	 */
 	public PitchView(LineupListener gl, int[] arr, ChangeLineup cl, Font textFont, FirstDraft draft) {
-		
+//	public PitchView(LineupListener gl, User user_obj, ChangeLineup cl, Font textFont, FirstDraft draft) {
+//		this.user_obj = user_obj;
+
 		this.gl = gl;
 		this.arr = arr;
 		this.cl = cl;
@@ -145,6 +148,16 @@ public class PitchView extends JPanel {
 				e.printStackTrace();
 			}
 		}
+		
+		//Add array into database
+//		for (int i = 0; i < 11; i++) {
+//			try {
+//				startingList.add(new MakePlayer(textFont, user_obj.getSUB(i)));
+//			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
+//				e.printStackTrace();
+//			}
+//		}
+		
 		
 		for (int i = 0; i < 11; i++) {
 			startingList.get(i).addMouseListener(gl);

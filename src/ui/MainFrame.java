@@ -66,25 +66,16 @@ public class MainFrame {
 		JoinGame joinGame = new JoinGame(screens, headerFont, textFont);
 		joinGame.create();
 		
-		arr = new int[203];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = i+1;
-		}
+
 		FirstDraft firstDraft = new FirstDraft(arr, screens, headerFont, textFont);
-		firstDraft.create(arr);
+//		firstDraft.create(arr);
 		
 		Help help = new Help(screens, headerFont, textFont);
 		help.create();
 		
 		
-		//TEST FIRST
-		anotherarr = new int[17];
-		for (int i = 0; i < anotherarr.length; i++) {
-			anotherarr[i] = i+1;
-		}
 		ChangeLineup lineup = new ChangeLineup(firstDraft, screens, headerFont, textFont);
-		firstDraft.setLineup(lineup);
-		lineup.create(anotherarr);
+//		lineup.create(anotherarr);
 		
 		
 		

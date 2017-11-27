@@ -16,8 +16,22 @@ import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 
+/**
+ * C Prefixed functions that the client requests for, but are found on the server side.
+ * @author charisannelim
+ *
+ */
 public abstract class Cfunctions {
-
+	
+	/**
+	 * cUserPull takes a username and password and returns a valid user object
+	 * @param _username, username
+	 * @param _password, password
+	 * @return User object
+	 * @throws FileNotFoundException, error
+	 * @throws ResultsReadError, error
+	 * @throws UserNotFound, error
+	 */
 	static User cUserPull(String _username, String _password) throws FileNotFoundException, ResultsReadError, UserNotFound {
 		// returns null if incorrect password
 		User userRet = new User(_username);
@@ -27,6 +41,11 @@ public abstract class Cfunctions {
 			return(null);
 	}
 	
+	/**
+	 * cGetPlayer inputs a player ID and returns a Player object
+	 * @param _playerID, player ID
+	 * @return Player object, null if player cannot be found
+	 */
 	static Player cGetPlayer(int _playerID) {
 		// returns null if player cannot be found
 		try {
@@ -42,6 +61,13 @@ public abstract class Cfunctions {
 		}
 	}
 	
+	/**
+	 * cNewUser inputs a User object and passes it along to the server to be inserted
+	 * into the database as a new user.
+	 * @param _newUser, User object
+	 * @throws ResultsReadError, results are not read correctly
+	 * @throws IOException
+	 */
 	static void cNewUser(User _newUser) throws ResultsReadError, IOException {
 		Writer csvWriter;
 		int i;
@@ -95,6 +121,12 @@ public abstract class Cfunctions {
 		
 	}
 	
+	/**
+	 * cUserPush takes a User object as an argument and actually inserts it
+	 * into the csv file. 
+	 * @param _inUser, the User object
+	 * @return boolean value, depending if it managed to update or not
+	 */
 	static boolean cUserPush(User _inUser) throws ResultsReadError, IOException {
 		Writer csvWriter;
 		int i, inUserWk;
@@ -174,6 +206,11 @@ public abstract class Cfunctions {
 		}
 	}
 	
+	/**
+	 * cUsernameExist takes a username string as an argument and checks if such a user exists
+	 * @param _username
+	 * @return true if yes, no if it does not exist
+	 */
 	static boolean cUsernameExist(String _username) throws ResultsReadError, PlayerNotFound, IOException {
 		int i;
 		String[] csvHeader = new String[]
@@ -214,6 +251,11 @@ public abstract class Cfunctions {
 		return(false);
 	}
 	
+	/**
+	 * cGameIDExist takes a gameID as an argument and checks if such a game exists
+	 * @param _gameID
+	 * @return true if yes, no if it does not exist
+	 */
 	static boolean cGameIDExist(int _gameID) throws ResultsReadError, PlayerNotFound, IOException {
 		int i;
 		String[] csvHeader = new String[]
@@ -256,10 +298,20 @@ public abstract class Cfunctions {
 		return(false);
 	}
 	
+	/**
+	 * cGetBoard takes a gameID as an argument and returns the LeaderBoard scores, rankings
+	 * and such for the given game
+	 * @param _gameID
+	 * @return Leaderboard object
+	 */
 	static LeaderBoard cGetBoard(int _gameID) throws FileNotFoundException, ResultsReadError, UserNotFound {
 		return(new LeaderBoard(_gameID));
 	}
 	
+	/**
+	 * sGenGameID() generates a unique ID that people can use to join games with their friends.
+	 * @return a random int ID
+	 */
 	static int cGenGameID() throws ResultsReadError, PlayerNotFound, IOException {
 		int currGameID = 1000;
 		while(Cfunctions.cGameIDExist(currGameID))

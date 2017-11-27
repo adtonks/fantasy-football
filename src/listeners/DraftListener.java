@@ -78,21 +78,42 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 			}
 			System.out.println(counter);
 			
-			//mark player as taken in array
-			for (int i = 0; i < 203; i++) {
-				if (player.getID() == bigarr[i]) {
-					bigarr[i] = 0;
-					break;
-				}
-			}
 			
 			player.setVisible(false);
 			dest.add(player);
 			player.setMaximumSize(new Dimension (150, 100));
 			player.setVisible(true);
 			player.setEnabled(false);
-			//arr[counter-1] = id;
-			//System.out.println(arr[counter-1]);
+			arr[counter-1] = id;
+			System.out.println(arr[counter-1]);
+			
+			//stops user from pressing anything
+			draft.setEnabled(false);
+			JOptionPane.showMessageDialog(draft, "Too many players selected. Please save and exit.",
+					  "In Process",JOptionPane.OK_OPTION);
+			
+			//mark player as taken in array maybe no need
+			for (int i = 0; i < 203; i++) {
+				if (player.getID() == bigarr[i]) {
+					bigarr[i] = 0;
+					break;
+				}
+			}
+
+			//send message that this player has been taken out with my player that has been taken out
+			
+			//sends draft requests repeatedly until the one i get back returns something
+			//draft object that has all the remaining players
+			
+			//map it to an array with zeroes representing those that are not in the remaining players.
+			
+			//after which I need to repaint everything with the new array
+			draft.removeAll();
+			draft.create(user_obj, bigarr);
+			draft.revalidate();
+			draft.repaint();
+			draft.setEnabled(true);
+			
 				
 	
 				if (counter == 17) {

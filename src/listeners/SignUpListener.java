@@ -86,26 +86,50 @@ public class SignUpListener implements ActionListener {
 		
 	}
 	
+	/**
+	 * This sets the username of the user.
+	 * @param user, user input string
+	 */
 	public static void setUsername(String user) {
 		username = user;
 	}
 	
+	/**
+	 * This gets the username of the user
+	 * @return username
+	 */
 	public static String getUsername() {
 		return username;
 	}
 	
+	/**
+	 * This sets the password of the user.
+	 * @param password, user input string
+	 */
 	public static void setPW(String pw) {
 		password = pw;
 	}
 	
+	/**
+	 * This gets the password of the user
+	 * @return password
+	 */
 	public static String getPW() {
 		return password;
 	}
 	
+	/**
+	 * This sets the email add of the user.
+	 * @param email add, user input string
+	 */
 	public static void setEmail(String email) {
 		emailadd = email;
 	}
 	
+	/**
+	 * This gets the email of the user
+	 * @return email
+	 */
 	public static String getEmail() {
 		return emailadd;
 	}

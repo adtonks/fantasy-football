@@ -11,12 +11,25 @@ import java.util.Scanner;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 
+/**
+ * This class holds the number of users in this game, the gameID, the ranking and the points for everyone.
+ * points for everyone.
+ * @author adamtonks
+ *
+ */
 public class LeaderBoard {
 	private final int gameID;
 	// ordered list of (username, points) pairs in descending order
 	private final int boardLen;
 	private final List<UserPoints> userPointsList;
 
+	/**
+	 * It takes in the unique game ID and retrieves the relevant information
+	 * @param _gameID, an int
+	 * @throws ResultsReadError, the results are not read correctly
+	 * @throws FileNotFoundException, file cannot be found
+	 * @throws UserNotFound, the user cannot be found in
+	 */
 	public LeaderBoard(int _gameID) throws ResultsReadError, FileNotFoundException, UserNotFound {
 		this.gameID = _gameID;
 		this.userPointsList = new ArrayList<UserPoints>();
@@ -72,7 +85,10 @@ public class LeaderBoard {
 		
 	}
 	
-	// construct leaderboard from CSV line
+	/**
+	 * This method constructs the leaderboard from the CSV line
+	 * @param input, the CSVline 
+	 */
 	public LeaderBoard(CSVline input) {
 		Scanner csvReader = new Scanner(input.string);
 		csvReader.useDelimiter(",");
@@ -85,18 +101,34 @@ public class LeaderBoard {
 		}
 	}
 
+	/**
+	 * A getter of the game ID
+	 * @return int, gameID
+	 */
 	public int getGameID() {
 		return gameID;
 	}
 
+	/**
+	 * The getter of the number of users in the game
+	 * @return boardLen, number of users
+	 */
 	public int getBoardLen() {
 		return boardLen;
 	}
 	
+	/**
+	 * The getter of each user and their updated points
+	 * @return userPointsList, List of users and points
+	 */
 	public List<UserPoints> getUserPointsList() {
 		return userPointsList;
 	}
 	
+	/**
+	 * Translates the Leaderboard details into a string to be stored in the csv file.
+	 * @return
+	 */
 	public String toCSVrow() {
 		int i;
 		String csvRow = this.gameID + "," + this.boardLen;

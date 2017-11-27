@@ -30,12 +30,10 @@ public class Draft implements Serializable{
 	/**
 	* Constructor for the Draft class
 	* @param AllPlayers all the football players in the league
-	* @param players all the users who will be playing in this game of fantasy S-League
-	* @param d3 the third parameter to be
-	averaged
-	* @return the average of d1, d2 and d3
-	* @throws NotANumberException if any
-	parameter is equals to Double.NaN
+	* @param all the users who will be playing in this game of fantasy S-League
+	* @param 
+	* @return 
+	* @throws 
 	*/
 	public Draft(Player[] AllPlayers, User[] players) {
 		ArrayList<Player> remainingPlayers = new ArrayList<Player>();

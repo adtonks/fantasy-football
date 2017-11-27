@@ -10,15 +10,28 @@ import clientObjects.Positions;
 import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 
+/**
+ * A class tha tmaps the player ID to the set of scores
+ * @author charisannelim
+ *
+ */
 public class PlayerScoreDict {
 	// dictionary that maps playerID to set of scores
 	private Map<Integer, PlayerScores> resultsDict;
 	
+	/**
+	 * Does not take any arguments to initialize
+	 */
 	public PlayerScoreDict() {
 		// initialize the dictionary using a hash table
 		this.resultsDict = new HashMap<Integer,PlayerScores>();
 	}
 	
+	/**
+	 * populate the dictionary by reading from results CSV file
+	 * @throws ResultsReadError, results not read correctly
+	 * @throws FileNotFoundException, file is not found
+	 */
 	public void populateScores() throws ResultsReadError, FileNotFoundException {
 		// populate the dictionary by reading from results CSV file
 		// the CSV files we read are simple, so avoid using external library
@@ -72,6 +85,13 @@ public class PlayerScoreDict {
 		csvReader.close();
 	}
 	
+	/**
+	 * Takes player ID and his position and finds the relevant scores based on which position he played
+	 * @param _playerID
+	 * @param _position
+	 * @return
+	 * @throws PlayerNotFound
+	 */
 	public int findScore(int _playerID, Positions _position) throws PlayerNotFound {
 		// return the score of player, for relevant position
 		if(_playerID ==-1)

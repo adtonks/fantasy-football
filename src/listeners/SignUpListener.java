@@ -1,5 +1,6 @@
 package listeners;
 
+import clientFunctions.Sfunctions;
 import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -27,6 +28,10 @@ public class SignUpListener implements ActionListener {
 	private JPanel screens;
 	private StartScreen panel;
 	private Font textFont;
+	
+	private static String password;
+	private static String emailadd;
+	private static String username;
 
 	/**
 	 * This constructor points the parameters as the current instance.
@@ -63,10 +68,13 @@ public class SignUpListener implements ActionListener {
 			String email_ = email.getText();
 			
 			//check database for existing usernames
+			//if (Sfunctions.sUsernameExist(user_) == false) {
 			 if (user_.equals("adam")) {
 				 cl.show(screens, "NEW");
 				 //store password
+				 setPW(pw_);
 				 //store email
+				 setEmail(email_);
 			 }
 			 else {
 				 JLabel label = new JLabel("This username has already been taken...");
@@ -77,6 +85,30 @@ public class SignUpListener implements ActionListener {
 			
 		}
 		
+	}
+	
+	public static void setUsername(String user) {
+		username = user;
+	}
+	
+	public static String getUsername() {
+		return username;
+	}
+	
+	public static void setPW(String pw) {
+		password = pw;
+	}
+	
+	public static String getPW() {
+		return password;
+	}
+	
+	public static void setEmail(String email) {
+		emailadd = email;
+	}
+	
+	public static String getEmail() {
+		return emailadd;
 	}
 
 }

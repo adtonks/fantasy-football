@@ -54,7 +54,6 @@ public class JoinGame extends JPanel {
 		this.setBorder(new EmptyBorder(60, 30, 30, 30));
 		this.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		ButtonListener bl = new ButtonListener(screens);
 		Font sm0l = headerFont.deriveFont((float) 14); 
 		
 		JLabel title = new JLabel("JOIN GAME");

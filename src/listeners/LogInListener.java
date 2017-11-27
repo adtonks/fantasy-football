@@ -10,6 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import clientFunctions.Sfunctions;
+import clientObjects.User;
+import ui.HomePage;
 import ui.StartScreen;
 
 /**
@@ -25,6 +28,7 @@ public class LogInListener implements ActionListener {
 	private StartScreen panel;
 	private JPanel screens;
 	private Font textFont;
+	private User user_obj;
 
 	/**
 	 * This constructor points the parameters as the current instance.
@@ -57,17 +61,28 @@ public class LogInListener implements ActionListener {
 			String user_ = user.getText();
 			String pw_ = pw.getText();
 			
-			//check database
-			 if (user_.equals("charis") && pw_.equals("password")) {
-				 cl.show(screens, "HOME");
-			 }
-			 else {
-				 JLabel label = new JLabel("Incorrect username or password. Please try again!!!");
+			//check database if user name exists first, if yes then pull.
+			if (Sfunctions.sUsernameExist(user_)) {
+				 user_obj = Sfunctions.sUserPull(user_, pw_);
+				 if (user_obj != null) {
+					 HomePage homepage = (HomePage) screens.getComponent(2);
+					 homepage.create(user_obj);
+					 cl.show(screens, "HOME");
+				 }
+				 else {
+					 JLabel label = new JLabel("Incorrect username or password. Please try again!!!");
+					 label.setFont(textFont);
+					 JOptionPane.showMessageDialog(panel, label,
+							  "Error",JOptionPane.ERROR_MESSAGE);
+				 }
+				
+			}
+			else {
+				JLabel label = new JLabel("This user does not exist. Please try again");
 				 label.setFont(textFont);
 				 JOptionPane.showMessageDialog(panel, label,
 						  "Error",JOptionPane.ERROR_MESSAGE);
-				}
-			
+			}
 			
 		}
 

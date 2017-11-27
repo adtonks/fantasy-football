@@ -58,7 +58,7 @@ public class MainFrame {
 		newAccount.create();
 		
 		HomePage userHome = new HomePage(screens, headerFont, textFont);
-		userHome.create();
+//		userHome.create();
 		
 		CreateGame createGame = new CreateGame(screens, headerFont, textFont);
 		createGame.create();

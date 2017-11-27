@@ -8,6 +8,8 @@ import javax.swing.JTable;
 
 import javax.swing.table.TableColumn;
 
+import clientObjects.LeaderBoard;
+
 /**
  * This class creates a table of all the users, ranks and their points for the leaderboard.
  * @author charisannelim
@@ -19,6 +21,7 @@ public class LeaderboardTable extends JPanel {
 	private String[] headers;
 	private Font textFont;
 	private int me_row;
+	private LeaderBoard lb;
 	
 	/**
 	 * Takes an object array and returns a formatted table
@@ -26,8 +29,14 @@ public class LeaderboardTable extends JPanel {
 	 * @param headers, column names
 	 * @param textFont, custom font
 	 */
-	public LeaderboardTable (Object[][] data, String[] headers, Font textFont) {
-		this.data = data;
+//	public LeaderboardTable (Object[][] data, String[] headers, Font textFont) {
+//		this.data = data;
+//		this.headers = headers;
+//		this.textFont = textFont;
+//	}
+	
+	public LeaderboardTable (LeaderBoard lb, String[] headers, Font textFont) {
+		this.lb = lb;
 		this.headers = headers;
 		this.textFont = textFont;
 	}
@@ -36,6 +45,21 @@ public class LeaderboardTable extends JPanel {
 	 * This method adds all the necessary components to the JPanel.
 	 */
 	public void create() {
+		
+	//Change Leaderboard to Object[][]
+	for (int i = 0; i < lb.getBoardLen(); i++) {
+		for (int j = 0; j < 2; j++) {
+			if (j == 0) {
+				data[i][j] = "#" + Integer.toString(i + 1);
+			}
+			else if (j == 1) {
+				data[i][j] = lb.getUserPointsList().get(i).username;
+			}
+			else if (j == 2) {
+				data[i][j] = Integer.toString(lb.getUserPointsList().get(i).points);
+			}
+		}
+	}
 	
 	JTable table = new JTable(data, headers);
 	table.setBackground(new Color(104, 0, 0));

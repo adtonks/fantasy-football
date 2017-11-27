@@ -20,7 +20,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import clientFunctions.Sfunctions;
+import clientObjects.User;
 import listeners.ButtonListener;
+import listeners.SignUpListener;
 
 /**
  * This class represents the screen where users just signed up and are choosing
@@ -99,9 +102,8 @@ public class CreateGame extends JPanel {
 		share2.setVisible(false);
 		
 		JTextField code = new JTextField(5);
-		code.setMaximumSize(new Dimension(100, 40));
+		code.setMaximumSize(new Dimension(70, 40));
 		code.setFont(headerFont);
-		code.setText("4ZJ2QD");
 		code.setForeground(Color.RED);
 		code.setBackground(new Color(0, 0, 0, 0));
 		code.setOpaque(false);
@@ -119,11 +121,24 @@ public class CreateGame extends JPanel {
 		button.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int gameID = Sfunctions.sGenGameID();
 				share.setVisible(true);
 				share2.setVisible(true);
+				code.setText(Integer.toString(gameID));
 				code.setVisible(true);
 				button.setVisible(false);
 				home.setVisible(true);
+				
+				//Create new User object
+				User test = new User(SignUpListener.getUsername(),
+									 SignUpListener.getPW(),
+									 SignUpListener.getEmail(),
+									 gameID,
+									 true);
+				Sfunctions.sNewUser(test);
+				
+				HomePage homepage = (HomePage) screens.getComponent(2);
+				homepage.create(test);
 			}
 	    });
 		

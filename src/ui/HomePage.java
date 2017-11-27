@@ -12,6 +12,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -27,6 +28,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableColumn;
 
+import clientFunctions.Sfunctions;
+import clientObjects.LeaderBoard;
+import clientObjects.User;
+import exceptions.ResultsReadError;
+import exceptions.UserNotFound;
 import listeners.ButtonListener;
 
 /**
@@ -43,6 +49,7 @@ public class HomePage extends JPanel {
 	private Font headerFont;
 	private Font textFont;
 	private BufferedImage bg = null;
+	private LeaderBoard leaderboard;
 	
 /**
   * This constructor points the parameters as the current instance.
@@ -59,14 +66,13 @@ public class HomePage extends JPanel {
 	/**
 	 * This method adds all necessary components to the JFrame.
 	 */
-	public void create() {
+	public void create(User user_obj) {
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		Font sm0l = headerFont.deriveFont((float) 14);
 		
-		username = new String("Charis");
-		JLabel user = new JLabel("Welcome, " + username + "  ");
+		JLabel user = new JLabel("Welcome, " + user_obj.getUsername() + "  ");
 		user.setForeground(Color.WHITE);
 		user.setFont(headerFont);
 		c.insets = new Insets(0, 20, 20, 20);
@@ -115,7 +121,7 @@ public class HomePage extends JPanel {
 		ButtonListener buttonListener = new ButtonListener(screens);
 
 		//Ongoing Games Panel
-		String groupname = "MYBESTPALS";
+		String groupname = "GAME" + Integer.toString(user_obj.getGameID());
 		JLabel name = new JLabel(groupname);
 		name.setForeground(Color.WHITE);
 		name.setAlignmentX(CENTER_ALIGNMENT);
@@ -128,7 +134,6 @@ public class HomePage extends JPanel {
 		
 		String[] columnNames = {"RANK", "PLAYER", "POINTS"};
 		
-		//PARSE DATA HERE
 		Object[][] data = { {"RANK", "PLAYER", "POINTS"},
 							{"#--", "ADAMTONKS", new Integer(0)},
 						    {"#--", "LOGANYE", new Integer(0)},
@@ -138,13 +143,18 @@ public class HomePage extends JPanel {
 						    {"#--", "FANDI AHMAD", new Integer(0)},
 		};
 		
-		LeaderboardTable leaderboard = new LeaderboardTable(data, columnNames, textFont);    
-		leaderboard.create();
+//		LeaderboardTable leaderboard_table = new LeaderboardTable(data, columnNames, textFont);    
+//		leaderboard_table.create();
+		
+		leaderboard = Sfunctions.sGetBoard(user_obj.getGameID());
+		
+		LeaderboardTable leaderboard_table = new LeaderboardTable(leaderboard, columnNames, textFont);    
+		leaderboard_table.create();
 		
 		games.add(name);
 		games.add(lb);
 		games.add(Box.createRigidArea(new Dimension(0, 15)));
-		games.add(leaderboard);
+		games.add(leaderboard_table);
 		
 		//Upcoming Match Panel
 		JLabel match = new JLabel("Upcoming Matches");
@@ -231,8 +241,7 @@ public class HomePage extends JPanel {
 				 games.add(lb);
 				 games.add(Box.createRigidArea(new Dimension(0, 15)));
 				 
-				 //new something here ask adam
-				 games.add(leaderboard);
+				 games.add(leaderboard_table);
 				 games.revalidate();
 				 games.repaint();
 			 }
@@ -259,16 +268,16 @@ public class HomePage extends JPanel {
 		logout.setAlignmentX(CENTER_ALIGNMENT);
 		logout.setMaximumSize(new Dimension(200, 40));
 		
-//		if (user.isHost()) {
+		if (user_obj.isHost()) {
 			menu.add(host_msg);
 			menu.add(Box.createRigidArea(new Dimension(0, 10)));
 			menu.add(draft);
-//		}
-//		else {
-//			menu.add(nonhost_msg);
-//			menu.add(Box.createRigidArea(new Dimension(0, 10)));
-//			menu.add(nonhost);
-//		}
+		}
+		else {
+			menu.add(nonhost_msg);
+			menu.add(Box.createRigidArea(new Dimension(0, 10)));
+			menu.add(nonhost);
+		}
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));
 		menu.add(changeplayers);
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));

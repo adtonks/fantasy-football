@@ -10,6 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import clientFunctions.Sfunctions;
+import clientObjects.User;
+import ui.HomePage;
 import ui.JoinGame;
 
 /**
@@ -53,8 +56,21 @@ public class JoinValidGameListener implements ActionListener {
 			String code_ = code.getText();
 			
 			//check game IDs
-			 if (code_.equals("1234")) {
-				 cl.show(screens, "HOME");
+			if (Sfunctions.sGameIDExist(Integer.parseInt(code_))) {
+//			 if (code_.equals("1234")) {
+				 
+				//Create new User object
+				User test = new User(SignUpListener.getUsername(),
+										 SignUpListener.getPW(),
+										 SignUpListener.getEmail(),
+										 Integer.parseInt(code_),
+										 true);
+				Sfunctions.sNewUser(test);
+				
+				HomePage homepage = (HomePage) screens.getComponent(2);
+				homepage.create(test);
+				cl.show(screens, "HOME");
+				 
 			 }
 			 else {
 				 JLabel label = new JLabel("Invalid code. Please try again!!!");

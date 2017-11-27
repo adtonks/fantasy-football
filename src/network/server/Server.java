@@ -10,11 +10,7 @@ public class Server {
 	private Socket client;
 	private PrintWriter pw;
 	
-	public static void main(String[] args){
-		Server serv = new Server(3820);
 
-		serv.acceptClientLoop();
-	}
 	
 	public Server(int port) {
 		try {

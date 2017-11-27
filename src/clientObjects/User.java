@@ -96,6 +96,44 @@ public class User  implements Serializable {
 		csvReader.close();
 	}
 	
+	// construct User object from csv line
+	public User(CSVline input) throws ResultsReadError {
+		Scanner csvReader = new Scanner(input.string);
+		int i;
+		csvReader.useDelimiter(",");
+
+		this.GKs = new ArrayList<Player>();
+		this.DFs = new ArrayList<Player>();
+		this.MFs = new ArrayList<Player>();
+		this.FWs = new ArrayList<Player>();
+		this.SUBs = new ArrayList<Player>();
+		// throw exception if complete player info is not present
+		try {
+			this.username = csvReader.next();
+			this.password = csvReader.next();
+			this.email = csvReader.next();
+			this.gameID = csvReader.nextInt();
+			this.isHost = (csvReader.nextInt() == 1);
+			this.points = csvReader.nextInt();
+			this.week = csvReader.nextInt();
+			for(i=0; i<1; i++)
+				GKs.add(new Player(csvReader.nextInt()));
+			for(i=0; i<4; i++)
+				DFs.add(new Player(csvReader.nextInt()));
+			for(i=0; i<4; i++)
+				MFs.add(new Player(csvReader.nextInt()));
+			for(i=0; i<2; i++)
+				FWs.add(new Player(csvReader.nextInt()));
+			for(i=0; i<6; i++)
+				SUBs.add(new Player(csvReader.nextInt()));					
+		} catch(NoSuchElementException | FileNotFoundException | ResultsReadError | UserNotFound e) {
+			System.out.println("User information incomplete");
+			csvReader.close();
+			throw new ResultsReadError();
+		}
+		csvReader.close();
+	}
+	
 	/* construct a new player object, for insertion into CSV by server */
 	public User(String _username, String _password, String _email,
 			int _gameID, boolean _isHost) {
@@ -317,6 +355,27 @@ public class User  implements Serializable {
 				((this.SUBs.get(3)==null)?-1:this.SUBs.get(3).getPlayerID()) + "," +
 				((this.SUBs.get(4)==null)?-1:this.SUBs.get(4).getPlayerID()) + "," +
 				((this.SUBs.get(5)==null)?-1:this.SUBs.get(5).getPlayerID()));
+	}
+	
+	public void insertArr(int[] playerIDs) {
+		// returns the player if playerID1 exists, null otherwise
+		int i;
+		try {
+			for(i=0; i<1; i++)
+				this.GKs.set(i, new Player(playerIDs[i]));
+			for(i=0; i<4; i++)
+				this.DFs.set(i, new Player(playerIDs[i+1]));
+			for(i=0; i<4; i++)
+				this.MFs.set(i, new Player(playerIDs[i+5]));
+			for(i=0; i<2; i++)
+				this.FWs.set(i, new Player(playerIDs[i+9]));
+			for(i=0; i<6; i++)
+				this.SUBs.set(i, new Player(playerIDs[i+11]));
+		} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return;
 	}
 	
 }

@@ -35,7 +35,7 @@ public class Draft implements Serializable{
 	* @return 
 	* @throws 
 	*/
-	public Draft(Player[] AllPlayers, User[] players) {
+	public Draft(Player[] AllPlayers, User[] players, User current) {
 		ArrayList<Player> remainingPlayers = new ArrayList<Player>();
 		ArrayList<Player> draftOrder = new ArrayList<Player>();
 		
@@ -93,6 +93,11 @@ public class Draft implements Serializable{
 			return false;
 		}
 	}
+	
+	public static Draft draftPull(int gameID) {
+		if (u)
+	}
+	
 	
 
 }

@@ -100,46 +100,21 @@ public abstract class Sfunctions {
 	public static boolean sUsernameExist(String _username) {
 		try {
 		Socket mySocket = new Socket("127.0.0.1", 8080);
-		Writer socketWr = new PrintWriter(mySocket.getOutputStream());
-		BufferedReader replyReader;
-		/*
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
+		PrintWriter socketWr = new PrintWriter(mySocket.getOutputStream());
+		BufferedReader socketRd = new BufferedReader(new InputStreamReader(
+				mySocket.getInputStream()));
+		String reply;
+		
 		// returns true if username exists, false otherwise
 		String request = "sUsernameExist:" + _username + ";";
 		System.out.println("Client sends: " + request);
 		socketWr.write(request);
-		socketWr.flush();
 		socketWr.close();
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		replyReader = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
-		char[] reply = new char[20];
-		
-		
-		System.out.println("Client receives: " + replyReader.readLine());
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println("yes");
+		reply = socketRd.lines().collect(Collectors.joining("\n"));
+		System.out.println("Client receives: " + reply);
+		System.out.println("hello");
 		mySocket.close();
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return(false);
 		} catch (Exception e) {
 			return(false);

@@ -1,14 +1,21 @@
 package server;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Reader;
 import java.io.Writer;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import clientObjects.LeaderBoard;
 import clientObjects.Positions;
@@ -16,46 +23,30 @@ import clientObjects.User;
 import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
+import network.server.MyServer;
 
 public abstract class ServerMain {
 
 	public static void main(String[] args) throws ResultsReadError, UserNotFound, IOException {
 		// this starts the server
-		// initialize the dictionary to store player points
-		int i;
-		User test_user;
-		LeaderBoard leadPrev, leadNew;
-		test_user = new User("adtonks");
-		
-		test_user.substitute(test_user.getPlayer(Positions.GK, 0).getPlayerID(),
-				test_user.getPlayer(Positions.SUB, 5).getPlayerID());
-		
-		Cfunctions.cUserPush(test_user);
-
-		leadPrev = new LeaderBoard(1002);
-		for(i=0; i<leadPrev.getBoardLen(); i++) {
-			System.out.println(leadPrev.getUserPointsList().get(i).username);
-			System.out.println(leadPrev.getUserPointsList().get(i).points);
+		String reply;
+		Socket clientSocket;
+		Writer socketWr;
+		ServerSocket myServer = new ServerSocket(8080);
+		while(true) {
+			System.out.println("Waiting for client");
+			clientSocket = myServer.accept();
+			System.out.println("Client received");
+			String input = new BufferedReader(new InputStreamReader(
+					clientSocket.getInputStream())).lines().collect(Collectors.joining("\n"));
+			System.out.println("Received: " + input);
+			reply = TextProcessor.parseReq(input);
+			System.out.println("Sending: " + reply);
+			socketWr = new PrintWriter(clientSocket.getOutputStream());
+			socketWr.write(reply);
+			socketWr.flush();
+			socketWr.close();
 		}
-		try {
-			update();
-		} catch (PlayerNotFound e) {
-			e.printStackTrace();
-		}
-		leadNew = new LeaderBoard(1002);
-		for(i=0; i<leadNew.getBoardLen(); i++) {
-			System.out.println(leadNew.getUserPointsList().get(i).username);
-			System.out.println(leadNew.getUserPointsList().get(i).points);
-		}
-		
-		try {
-			endSeason();
-		} catch (PlayerNotFound e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		Cfunctions.cGetBoard(4000);
 		
 	}
 	

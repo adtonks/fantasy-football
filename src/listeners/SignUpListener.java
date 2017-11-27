@@ -68,8 +68,7 @@ public class SignUpListener implements ActionListener {
 			String email_ = email.getText();
 			
 			//check database for existing usernames
-			//if (Sfunctions.sUsernameExist(user_) == false) {
-			 if (user_.equals("adam")) {
+			if (Sfunctions.sUsernameExist(user_) == false) {
 				 cl.show(screens, "NEW");
 				 //store password
 				 setPW(pw_);

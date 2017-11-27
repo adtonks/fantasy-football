@@ -7,15 +7,17 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import server.TextProcessor;
+
 public class ClientThread extends Thread {
 	private Socket client;
 	private PrintWriter pw;
 	private BufferedReader br;
 	private ObjectOutputStream ow;
 
-	private Server server;
+	private MyServer server;
 
-	public ClientThread(Socket c, Server Server) {
+	public ClientThread(Socket c, MyServer Server) {
 		this.server = Server;
 		this.client = c;
 		try {
@@ -50,6 +52,7 @@ public class ClientThread extends Thread {
 		try {
 			while ((inc = this.br.readLine()) != null) {
 				System.out.println("Server: Waiting for input");
+				System.out.println("*" + inc);
 				return inc;
 			}
 		} catch (IOException e) {
@@ -64,9 +67,8 @@ public class ClientThread extends Thread {
 
 		System.out.println("Server: Client connected");
 		String message = this.readTextFromClient();
-		System.out.println(message);
-		this.sendMessage("You said " + message);
-		
+		System.out.println("Received: " + message);
+		this.sendMessage(TextProcessor.parseReq(message));
 		
 		System.out.println("Server: client was disconnected");
 		

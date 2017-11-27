@@ -1,10 +1,22 @@
 package clientFunctions;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
 import clientObjects.CSVline;
 import clientObjects.LeaderBoard;
 import clientObjects.Player;
 import clientObjects.User;
 import exceptions.ResultsReadError;
+import network.client.Client;
 import server.TextProcessor;
 
 // this class holds the s prefixed functions
@@ -56,10 +68,52 @@ public abstract class Sfunctions {
 	}
 	
 	public static boolean sUsernameExist(String _username) {
+		try {
+		Socket mySocket = new Socket("127.0.0.1", 8080);
+		Writer socketWr = new PrintWriter(mySocket.getOutputStream());
+		BufferedReader replyReader;
+		/*
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 		// returns true if username exists, false otherwise
 		String request = "sUsernameExist:" + _username + ";";
-		String reply = TextProcessor.parseReq(request);
-		return(reply.equals("SERVER_TRU"));
+		System.out.println("Client sends: " + request);
+		socketWr.write(request);
+		socketWr.flush();
+		socketWr.close();
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		replyReader = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
+		char[] reply = new char[20];
+		
+		
+		System.out.println("Client receives: " + replyReader.readLine());
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mySocket.close();
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return(false);
+		} catch (Exception e) {
+			return(false);
+		}
 	}
 	
 	public static boolean sGameIDExist(int _gameID) {

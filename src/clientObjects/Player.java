@@ -10,6 +10,11 @@ import java.util.Scanner;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 
+/**
+ * This Player is a read only object that stores all the data about each real life S-League player.
+ * @author charisannelim
+ *
+ */
 public class Player implements Serializable {
 	// this is a read-only object
 	private final int playerID;
@@ -20,6 +25,13 @@ public class Player implements Serializable {
 	private final Positions prefPosition;
 	private final String imgPath;
 	
+	/**
+	 * The class takes in a player ID and returns the Player object
+	 * @param _playerID, an int
+	 * @throws ResultsReadError, results not read correctly
+	 * @throws FileNotFoundException, file is not found
+	 * @throws UserNotFound, user does not exist
+	 */
 	public Player(int _playerID) throws ResultsReadError,
 	FileNotFoundException,	UserNotFound {
 		// search through the CSV to find player info
@@ -75,6 +87,11 @@ public class Player implements Serializable {
 		csvReader.close();
 	}
 	
+	/**
+	 * Constructs the Player object from the csv line
+	 * @param input, the CSV line with player data
+	 * @throws ResultsReadError, results are not read correctly
+	 */
 	// construct User object from csv line
 	public Player(CSVline input) throws ResultsReadError {
 		Scanner csvReader = new Scanner(input.string);
@@ -96,6 +113,11 @@ public class Player implements Serializable {
 		csvReader.close();
 	}
 	
+	/**
+	 * Comparing two players
+	 * @param otherPlayer
+	 * @return boolean, if they are the same player, true, if not, false
+	 */
 	public boolean compareTo(Player otherPlayer){
 		// compare to another football player
 		if (otherPlayer.getName() == this.getName()){
@@ -104,30 +126,58 @@ public class Player implements Serializable {
 		return false;
 	}
 
+	/**
+	 * A getter of unique player ID
+	 * @return int, player ID
+	 */
 	public int getPlayerID() {
 		return playerID;
 	}
 
+	/**
+	 * A getter of Player name
+	 * @return String, name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * A getter of the nationality of the Player
+	 * @return String, nationality
+	 */
 	public String getNationality() {
 		return nationality;
 	}
 
+	/**
+	 * A getter of the team of the Player.
+	 * @return
+	 */
 	public String getTeam() {
 		return team;
 	}
 
+	/**
+	 * A getter of the preferred position of the Player
+	 * @return Positions object
+	 */
 	public Positions getPrefPosition() {
 		return prefPosition;
 	}
 
+	/**
+	 * A getter of the image path of the Player's profile iamge
+	 * @return a String, image_path
+	 */
 	public String getImgPath() {
 		return imgPath;
 	}
 	
+	/**
+	 * A method to turn a player object into a CSV row
+	 * @return
+	 */
 	public String toCSVrow() {
 		return(this.playerID + "," + this.name + "," + this.nationality + "," +
 				this.team + "," + this.prefPosition + "," + this.imgPath);

@@ -13,6 +13,12 @@ import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 
+/**
+ * This class, the User object, is red from and written to the user list CSV file and is a
+ * representation of the users playing the fantasy football game.
+ * @author adamtonks
+ *
+ */
 // this object is read from and written to the user list CSV file
 public class User  implements Serializable {
 	private final String username;
@@ -28,8 +34,17 @@ public class User  implements Serializable {
 	private final List<Player> FWs; // 2 players
 	private final List<Player> SUBs; // 6 players
 
-	/* search through the CSV to find user info and initialize object */
-	/* only called by server */
+	/**
+	 * A User takes in a username and returns the user object
+	 * @param _username
+	 * @throws ResultsReadError, results are not read correctly
+	 * @throws FileNotFoundException, file is not found
+	 * @throws UserNotFound, user is not found
+	 * 
+	 */
+	
+	//search through the CSV to find user info and initialize object 
+	// only called by server 
 	public User(String _username) throws ResultsReadError,
 	FileNotFoundException,UserNotFound {
 		int i, ID;
@@ -122,6 +137,11 @@ public class User  implements Serializable {
 		csvReader.close();
 	}
 	
+	/**
+	 * Constructs the User object from the CSV line
+	 * @param input, the CSV line
+	 * @throws ResultsReadError, results are not read correctly
+	 */
 	// construct User object from csv line
 	public User(CSVline input) throws ResultsReadError {
 		Scanner csvReader = new Scanner(input.string);
@@ -185,6 +205,14 @@ public class User  implements Serializable {
 		csvReader.close();
 	}
 	
+	/**
+	 * Constructs a new user object for insertion into CSV by server
+	 * @param _username, name of user
+	 * @param _password, password
+	 * @param _email, email address
+	 * @param _gameID, unique game ID
+	 * @param _isHost, whether the user created the game or not
+	 */
 	/* construct a new player object, for insertion into CSV by server */
 	public User(String _username, String _password, String _email,
 			int _gameID, boolean _isHost) {
@@ -213,64 +241,128 @@ public class User  implements Serializable {
 			SUBs.add(null);	
 	}
 	
+	/**
+	 * Getter for Points
+	 * @return points
+	 */
 	public int getPoints() {
 		return points;
 	}
 
+	/**
+	 * Getter for the week
+	 * @return week number
+	 */
 	public int getWeek() {
 		return week;
 	}
 
+	/**
+	 * Getter for the username
+	 * @return username
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * Getter for the user's password
+	 * @return password
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Getter for the email
+	 * @return String with email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/** 
+	 * Getter for the unique game ID
+	 * @return game ID
+	 */
 	public int getGameID() {
 		return gameID;
 	}
 
+	/** 
+	 * Getter for whether the user is the game host
+	 * @return boolean value
+	 */
 	public boolean isHost() {
 		return isHost;
 	}
 	
+	/**
+	 * Gets the player in the goal keeper position
+	 * @param index, zero for goalie
+	 * @return Player object
+	 * @throws IndexDoesNotExist, there is no goalie
+	 */
 	public Player getGK(int index) throws IndexDoesNotExist {
 		if((index<0) || (0<index))
 			throw new IndexDoesNotExist();
 		return(this.GKs.get(index));
 	}
 	
+	/**
+	 * Gets the players in defender positions
+	 * @param index, 4 defenders
+	 * @return Player object
+	 * @throws IndexDoesNotExist, there are no defenders
+	 */
 	public Player getDF(int index) throws IndexDoesNotExist {
 		if((index<0) || (3<index))
 			throw new IndexDoesNotExist();
 		return(this.DFs.get(index));
 	}
 	
+	/**
+	 * Gets the players in midfielder positions
+	 * @param index, 4 midfielder
+	 * @return Player object
+	 * @throws IndexDoesNotExist, there are no midfielders
+	 */
 	public Player getMF(int index) throws IndexDoesNotExist {
 		if((index<0) || (3<index))
 			throw new IndexDoesNotExist();
 		return(this.MFs.get(index));
 	}
 	
+	/**
+	 * Gets the players in forward positions
+	 * @param index, 4 forward
+	 * @return Player object
+	 * @throws IndexDoesNotExist, there are no forward
+	 */
 	public Player getFW(int index) throws IndexDoesNotExist {
 		if((index<0) || (1<index))
 			throw new IndexDoesNotExist();
 		return(this.FWs.get(index));
 	}
 	
+	/**
+	 * Gets the players in substitutes positions
+	 * @param index, 4 defenders
+	 * @return Player object
+	 * @throws IndexDoesNotExist, there are no substitutes
+	 */
 	public Player getSUB(int index) throws IndexDoesNotExist {
 		if((index<0) || (5<index))
 			throw new IndexDoesNotExist();
 		return(this.SUBs.get(index));
 	}
 	
+	/**
+	 * Method to find the player by ID
+	 * @param playerID, int
+	 * @return Player object
+	 * @throws PlayerNotFound, player does not exist
+	 */
 	public Player findPlayerByID(int playerID) throws PlayerNotFound {
 		// returns the player if player ID exists, exception otherwise
 		int i;
@@ -302,6 +394,14 @@ public class User  implements Serializable {
 		throw new PlayerNotFound();
 	}
 	
+	/**
+	 * Method to insert the player into the ID
+	 * @param newPlayer, player object
+	 * @param playerID1, the player ID of one player
+	 * @param playerID2, player ID of the second
+	 * @param in_index, insert first player at index of second
+	 * @return
+	 */
 	private int insertPlayerIntoID(Player newPlayer, int playerID1,
 			int playerID2, int in_index) {
 		// returns the player if playerID1 exists, null otherwise
@@ -366,6 +466,11 @@ public class User  implements Serializable {
 		return(index);
 	}
 	
+	/**
+	 * Swop player positions
+	 * @param playerID1, player one
+	 * @param playerID2, player two
+	 */
 	public void substitute(int playerID1, int playerID2) {
 		Player player1 = null;
 		Player player2 = null;
@@ -380,6 +485,12 @@ public class User  implements Serializable {
 				insertPlayerIntoID(player1, playerID2, playerID1, 0));
 	}
 	
+	/**
+	 * Get the player by his preferred position and index
+	 * @param position, preferred position
+	 * @param index, index of player
+	 * @return the Player object
+	 */
 	public Player getPlayer(Positions position, int index) {
 		switch(position) {
 		case GK:
@@ -397,6 +508,10 @@ public class User  implements Serializable {
 		}
 	}
 	
+	/**
+	 * Converts all the user details into a CSV line
+	 * @return one whole string with all the data
+	 */
 	public String toCSVrow() {
 		return(this.username + "," + this.password + "," + this.email + "," +
 				this.gameID + "," + (this.isHost?1:0) + "," +
@@ -420,6 +535,10 @@ public class User  implements Serializable {
 				((this.SUBs.get(5)==null)?-1:this.SUBs.get(5).getPlayerID()));
 	}
 	
+	/**
+	 * Takes an array of player IDs that are ordered and sets them accordingly in the user object
+	 * @param playerIDs, unique player IDs
+	 */
 	public void insertArr(int[] playerIDs) {
 		// returns the player if playerID1 exists, null otherwise
 		int i;

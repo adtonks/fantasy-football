@@ -148,7 +148,7 @@ public class LogInListener implements ActionListener {
 				
 			}
 			else {
-				JLabel label = new JLabel("This user does not exist. Please try again");
+				JLabel label = new JLabel("This user does not exist. Please try again!!!!!");
 				 label.setFont(textFont);
 				 JOptionPane.showMessageDialog(panel, label,
 						  "Error",JOptionPane.ERROR_MESSAGE);

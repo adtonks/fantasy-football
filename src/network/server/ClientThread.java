@@ -54,6 +54,7 @@ public class ClientThread extends Thread {
 
 		System.out.println("Server: Client connected");
 		String message = this.readTextFromClient();
+		
 		System.out.println(message);
 		this.sendMessage("You said " + message);
 	

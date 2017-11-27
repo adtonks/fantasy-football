@@ -1,5 +1,10 @@
 package clientObjects;
 
+/**
+ * A class to represent Users and their Points
+ * @author adamtonks
+ *
+ */
 public class UserPoints {
 	// this object is just a wrapper
 	public String username;

@@ -70,6 +70,8 @@ public class SignUpListener implements ActionListener {
 			//check database for existing usernames
 			if (Sfunctions.sUsernameExist(user_) == false) {
 				 cl.show(screens, "NEW");
+				 
+				 setUsername(user_);
 				 //store password
 				 setPW(pw_);
 				 //store email

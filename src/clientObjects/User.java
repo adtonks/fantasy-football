@@ -99,6 +99,7 @@ public class User  implements Serializable {
 	/* construct a new player object, for insertion into CSV by server */
 	public User(String _username, String _password, String _email,
 			int _gameID, boolean _isHost) {
+		int i;
 		this.username = _username;
 		this.password = _password;
 		this.email = _email;
@@ -111,6 +112,16 @@ public class User  implements Serializable {
 		this.MFs = new ArrayList<Player>();
 		this.FWs = new ArrayList<Player>();
 		this.SUBs = new ArrayList<Player>();
+		for(i=0; i<1; i++)
+			GKs.add(null);
+		for(i=0; i<4; i++)
+			DFs.add(null);
+		for(i=0; i<4; i++)
+			MFs.add(null);
+		for(i=0; i<2; i++)
+			FWs.add(null);
+		for(i=0; i<6; i++)
+			SUBs.add(null);	
 	}
 	
 	public int getPoints() {
@@ -289,23 +300,23 @@ public class User  implements Serializable {
 		return(this.username + "," + this.password + "," + this.email + "," +
 				this.gameID + "," + (this.isHost?1:0) + "," +
 				this.points + "," + this.week + "," +
-				this.GKs.get(0).getPlayerID() + "," +
-				this.DFs.get(0).getPlayerID() + "," +
-				this.DFs.get(1).getPlayerID() + "," +
-				this.DFs.get(2).getPlayerID() + "," +
-				this.DFs.get(3).getPlayerID() + "," +
-				this.MFs.get(0).getPlayerID() + "," +
-				this.MFs.get(1).getPlayerID() + "," +
-				this.MFs.get(2).getPlayerID() + "," +
-				this.MFs.get(3).getPlayerID() + "," + 
-				this.FWs.get(0).getPlayerID() + "," +
-				this.FWs.get(1).getPlayerID() + "," +
-				this.SUBs.get(0).getPlayerID() + "," +
-				this.SUBs.get(1).getPlayerID() + "," +
-				this.SUBs.get(2).getPlayerID() + "," +
-				this.SUBs.get(3).getPlayerID() + "," +
-				this.SUBs.get(4).getPlayerID() + "," +
-				this.SUBs.get(5).getPlayerID());
+				((this.GKs.get(0)==null)?-1:this.GKs.get(0).getPlayerID()) + "," +
+				((this.DFs.get(0)==null)?-1:this.DFs.get(0).getPlayerID()) + "," +
+				((this.DFs.get(1)==null)?-1:this.DFs.get(1).getPlayerID()) + "," +
+				((this.DFs.get(2)==null)?-1:this.DFs.get(2).getPlayerID()) + "," +
+				((this.DFs.get(3)==null)?-1:this.DFs.get(3).getPlayerID()) + "," +
+				((this.MFs.get(0)==null)?-1:this.MFs.get(0).getPlayerID()) + "," +
+				((this.MFs.get(1)==null)?-1:this.MFs.get(1).getPlayerID()) + "," +
+				((this.MFs.get(2)==null)?-1:this.MFs.get(2).getPlayerID()) + "," +
+				((this.MFs.get(3)==null)?-1:this.MFs.get(3).getPlayerID()) + "," + 
+				((this.FWs.get(0)==null)?-1:this.FWs.get(0).getPlayerID()) + "," +
+				((this.FWs.get(1)==null)?-1:this.FWs.get(1).getPlayerID()) + "," +
+				((this.SUBs.get(0)==null)?-1:this.SUBs.get(0).getPlayerID()) + "," +
+				((this.SUBs.get(1)==null)?-1:this.SUBs.get(1).getPlayerID()) + "," +
+				((this.SUBs.get(2)==null)?-1:this.SUBs.get(2).getPlayerID()) + "," +
+				((this.SUBs.get(3)==null)?-1:this.SUBs.get(3).getPlayerID()) + "," +
+				((this.SUBs.get(4)==null)?-1:this.SUBs.get(4).getPlayerID()) + "," +
+				((this.SUBs.get(5)==null)?-1:this.SUBs.get(5).getPlayerID()));
 	}
 	
 }

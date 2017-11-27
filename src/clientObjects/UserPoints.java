@@ -1,4 +1,4 @@
-package server;
+package clientObjects;
 
 public class UserPoints {
 	// this object is just a wrapper

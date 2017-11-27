@@ -59,30 +59,6 @@ public abstract class ServerMain {
 		
 	}
 	
-	public User cUserPull(String _username, String _password) throws FileNotFoundException, ResultsReadError, UserNotFound {
-		// returns null if incorrect password
-		User userRet = new User(_username);
-		if(userRet.getPassword().equals(_password))
-			return(userRet);
-		else
-			return(null);
-	}
-	
-	public Player cGetPlayer(int _playerID) {
-		// returns null if player cannot be found
-		try {
-			return(new Player(_playerID));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return(null);
-		} catch (ResultsReadError e) {
-			e.printStackTrace();
-			return(null);
-		} catch (UserNotFound e) {
-			return(null);
-		}
-	}
-	
 	private static void update() throws ResultsReadError, PlayerNotFound, IOException {
 		PlayerScoreDict scoreDict = new PlayerScoreDict();
 		Writer csvWriter;
@@ -174,6 +150,7 @@ public abstract class ServerMain {
 		
 	}
 	
+	// end the season by settin
 	private static void endSeason() throws ResultsReadError, PlayerNotFound, IOException {
 		Scanner csvReader;
 		Writer csvWriter;

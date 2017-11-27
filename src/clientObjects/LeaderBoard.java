@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
-import server.UserPoints;
 
 public class LeaderBoard {
 	private final int gameID;

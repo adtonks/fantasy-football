@@ -74,6 +74,8 @@ public class PlayerScoreDict {
 	
 	public int findScore(int _playerID, Positions _position) throws PlayerNotFound {
 		// return the score of player, for relevant position
+		if(_playerID ==-1)
+			return(0);
 		PlayerScores scores = this.resultsDict.get(_playerID);
 		if(scores == null) {
 			System.out.println("Player " + _playerID + " not found");

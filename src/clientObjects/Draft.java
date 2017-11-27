@@ -1,14 +1,42 @@
+/**
+* Represents the draft stage of a game 
+* @author Logan Ye
+* @version 1.0, November 27th
+*/
+
 package clientObjects;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Draft implements Serializable{
+	/**
+	* Stores the remaining players in the draft
+	*/
 	public ArrayList<Player> remainingPlayers;
+	/**
+	* Tracks the index of the current player that should be drafting
+	*/
 	public int draftIndex;
+	/**
+	* Stores the order of the draft by user
+	*/
 	public ArrayList<User> draftOrder;
+	/**
+	* Stores the users who will be drafting
+	*/
 	public User[] players;
 
+	/**
+	* Constructor for the Draft class
+	* @param AllPlayers all the football players in the league
+	* @param players all the users who will be playing in this game of fantasy S-League
+	* @param d3 the third parameter to be
+	averaged
+	* @return the average of d1, d2 and d3
+	* @throws NotANumberException if any
+	parameter is equals to Double.NaN
+	*/
 	public Draft(Player[] AllPlayers, User[] players) {
 		ArrayList<Player> remainingPlayers = new ArrayList<Player>();
 		ArrayList<Player> draftOrder = new ArrayList<Player>();
@@ -21,6 +49,7 @@ public class Draft implements Serializable{
 		
 	}
  
+	
 	public void createDraftOrder() {
 
 		// random shuffling
@@ -58,6 +87,14 @@ public class Draft implements Serializable{
 		draftIndex++; 
 	}
 	
+	public boolean checkifDrafting(String Username) {
+		if(draftOrder.get(draftIndex).getUsername().equals(Username)){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 
 }

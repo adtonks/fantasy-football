@@ -9,22 +9,20 @@ import java.net.Socket;
 
 public class ClientThread extends Thread {
 	private Socket client;
-	private ReadingThread reading;
 	private PrintWriter pw;
 	private BufferedReader br;
 	private ObjectOutputStream ow;
 
 	
-	private OOPServer server;
+	private Server server;
 
-	public ClientThread(Socket c, OOPServer oopServer)
+	public ClientThread(Socket c, Server Server)
 	{
-		this.server = oopServer;
+		this.server = Server;
 		this.client = c;
 		try {
 			this.pw = new PrintWriter(this.client.getOutputStream());	
 			this.br = new BufferedReader(new InputStreamReader(this.client.getInputStream()));
-			this.reading = new ReadingThread(this.br, this);
 			this.ow = new ObjectOutputStream(this.client.getOutputStream());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -34,7 +32,7 @@ public class ClientThread extends Thread {
 
 	}
 	
-	public synchronized void sendMessage(String message)
+	public void sendMessage(String message)
 	{
 		this.pw.println(message);
 		this.pw.flush();
@@ -53,8 +51,8 @@ public class ClientThread extends Thread {
 	@Override
 	public void run()
 	{
-		this.reading.start();
-		// We will complete that later
+
+		System.out.println("Client disconnecting, cleaning the data!");
 	}
 
 	public void cleanConnection()

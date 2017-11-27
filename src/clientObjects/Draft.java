@@ -30,10 +30,7 @@ public class Draft implements Serializable{
 	/**
 	* Constructor for the Draft class
 	* @param AllPlayers all the football players in the league
-	* @param all the users who will be playing in this game of fantasy S-League
-	* @param 
-	* @return 
-	* @throws 
+	* @param all the users who will be playing in this game of fantasy S-League 
 	*/
 	public Draft(Player[] AllPlayers, User[] players) {
 		ArrayList<Player> remainingPlayers = new ArrayList<Player>();
@@ -48,6 +45,10 @@ public class Draft implements Serializable{
 	}
  
 	
+	/** 
+	 * This method uses the list of users in the object to create the order that the users will be drafting in 
+	 * 
+	 */
 	public void createDraftOrder() {
 
 		// random shuffling
@@ -78,13 +79,22 @@ public class Draft implements Serializable{
 		}
 
 	}
-	
+	/** 
+	 * This method removes the player that has been drafted from the draft list, and increments the draft index  
+	 * @param draftedPlayer - the player that has been drafted by the current user
+	 * 
+	 */
 	public void footballPlayerDrafted(Player draftedPlayer){
 		
 		this.remainingPlayers.remove(draftedPlayer);
 		draftIndex++; 
 	}
 	
+	/** 
+	 * This method checks if a user is the user who should be drafting at the moment 
+	 * @param Username - the username of the player object at the current indice of the draft order
+	 * 
+	 */
 	public boolean checkifDrafting(String Username) {
 		if(draftOrder.get(draftIndex).getUsername().equals(Username)){
 			return true;

@@ -15,6 +15,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import clientObjects.LeaderBoard;
@@ -31,7 +32,7 @@ public abstract class ServerMain {
 		// this starts the server
 		String reply;
 		Socket clientSocket;
-		Writer socketWr;
+		PrintWriter socketWr;
 		ServerSocket myServer = new ServerSocket(8080);
 		while(true) {
 			System.out.println("Waiting for client");
@@ -42,10 +43,19 @@ public abstract class ServerMain {
 			System.out.println("Received: " + input);
 			reply = TextProcessor.parseReq(input);
 			System.out.println("Sending: " + reply);
+			System.out.println("hello");
 			socketWr = new PrintWriter(clientSocket.getOutputStream());
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			socketWr.write(reply);
 			socketWr.flush();
+			System.out.println("written");
 			socketWr.close();
+			clientSocket.close();
 		}
 		
 	}

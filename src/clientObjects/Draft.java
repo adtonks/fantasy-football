@@ -32,7 +32,7 @@ public class Draft implements Serializable{
 	* @param AllPlayers all the football players in the league
 	* @param all the users who will be playing in this game of fantasy S-League 
 	*/
-	public Draft(Player[] AllPlayers, User[] players) {
+	public Draft(Player[] AllPlayers, User[] players, User current) {
 		ArrayList<Player> remainingPlayers = new ArrayList<Player>();
 		ArrayList<Player> draftOrder = new ArrayList<Player>();
 		
@@ -103,6 +103,11 @@ public class Draft implements Serializable{
 			return false;
 		}
 	}
+	
+	public static Draft draftPull(int gameID) {
+		if (u)
+	}
+	
 	
 
 }

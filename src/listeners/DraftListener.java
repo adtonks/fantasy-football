@@ -102,7 +102,7 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 
 			//send message that this player has been taken out with my player that has been taken out
 			
-			//sends draft requests repeatedly until the one i get back returns something
+			//sends draft requests repeatedly until the one i get back returns a
 			//draft object that has all the remaining players
 			
 			//map it to an array with zeroes representing those that are not in the remaining players.

@@ -31,6 +31,7 @@ import javax.swing.table.TableColumn;
 import clientFunctions.Sfunctions;
 import clientObjects.LeaderBoard;
 import clientObjects.User;
+import exceptions.IndexDoesNotExist;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 import listeners.ButtonListener;
@@ -50,6 +51,7 @@ public class HomePage extends JPanel {
 	private Font textFont;
 	private BufferedImage bg = null;
 	private LeaderBoard leaderboard;
+	private int[] anotherarr;
 	
 /**
   * This constructor points the parameters as the current instance.
@@ -229,6 +231,73 @@ public class HomePage extends JPanel {
 		changeplayers.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		changeplayers.setAlignmentX(CENTER_ALIGNMENT);
 		changeplayers.setMaximumSize(new Dimension(200, 40));
+		changeplayers.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ChangeLineup lineup = (ChangeLineup) screens.getComponent(7);
+				lineup.removeAll();
+				
+				anotherarr = new int[17];
+				for (int i = 0; i < anotherarr.length; i++) {
+					
+					//Goalies
+					if (i == 0) {
+						try {
+							anotherarr[i] = user_obj.getGK(0).getPlayerID();
+						} catch (IndexDoesNotExist e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
+					//Defenders
+					if (i >= 1 && i <= 4) {
+						try {
+							anotherarr[i] = user_obj.getDF(i-1).getPlayerID();
+						} catch (IndexDoesNotExist e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
+					//Midfielders
+					if (i >= 5 && i <= 8) {
+						try {
+							anotherarr[i] = user_obj.getMF(i-5).getPlayerID();
+						} catch (IndexDoesNotExist e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					//Forwards
+					if (i >= 9 && i <= 10) {
+						try {
+							anotherarr[i] = user_obj.getFW(i-9).getPlayerID();
+						} catch (IndexDoesNotExist e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					//Substitutes
+					if (i >= 11 && i <= 16) {
+						try {
+							anotherarr[i] = user_obj.getMF(i-11).getPlayerID();
+						} catch (IndexDoesNotExist e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
+				}
+				
+				lineup.create(user_obj, anotherarr);
+				lineup.revalidate();
+				lineup.repaint();
+				
+			}
+			
+		});
 		
 		JButton refresh = new JButton("Refresh Leaderboard");
 		refresh.setActionCommand("refresh");

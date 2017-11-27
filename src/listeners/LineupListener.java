@@ -106,7 +106,7 @@ public class LineupListener implements MouseListener, ActionListener {
 			 }
 				setArr(arr);	 
 				cl.removeAll();
-				cl.create(arr);
+				cl.create(user_obj, arr);
 				cl.revalidate();
 			 	cl.repaint();
 				

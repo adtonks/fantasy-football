@@ -48,7 +48,7 @@ public class LeaderboardTable extends JPanel {
 		
 	//Change Leaderboard to Object[][]
 	for (int i = 0; i < lb.getBoardLen(); i++) {
-		for (int j = 0; j < 2; j++) {
+		for (int j = 0; j < 3; j++) {
 			if (j == 0) {
 				data[i][j] = "#" + Integer.toString(i + 1);
 			}

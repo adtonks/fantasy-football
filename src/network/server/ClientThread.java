@@ -34,16 +34,6 @@ public class ClientThread extends Thread {
 		this.pw.flush();
 	}
 
-	public void sendObjectToClient(Object obj) {
-		try {
-			this.ow.writeObject(obj);
-			this.ow.flush();
-			this.cleanConnection();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public String readTextFromClient() {
 
 		String inc = "";
@@ -66,10 +56,10 @@ public class ClientThread extends Thread {
 		String message = this.readTextFromClient();
 		System.out.println(message);
 		this.sendMessage("You said " + message);
-		
+	
 		
 		System.out.println("Server: client was disconnected");
-		
+	
 
 	}
 

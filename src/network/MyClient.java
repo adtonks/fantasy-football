@@ -26,8 +26,6 @@ public class MyClient {
 			this.connection = new Socket(this.ip, this.port);
 			this.br = new BufferedReader(new InputStreamReader(this.connection.getInputStream()));
 			this.pw = new PrintWriter(this.connection.getOutputStream());
-			this.ow = new ObjectOutputStream(this.connection.getOutputStream());
-			this.or = new ObjectInputStream(this.connection.getInputStream());
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -35,20 +33,6 @@ public class MyClient {
 
 	}
 
-	public Object readObjectFromServer() {
-
-		Object obj = null; 
-		try {
-
-			while ((obj = this.or.readObject()) != null) {
-				return obj;
-			}
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
 	
 	public String readTextFromServer() {
 	
@@ -67,17 +51,6 @@ public class MyClient {
 	public void sendTextToServer(String text) {
 		this.pw.println(text);
 		this.pw.flush();
-	}
-
-	public void sendObjectToServer(Object obj) {
-		try {
-			this.ow.writeObject(obj);
-
-			this.ow.flush();
-			this.closeConnection();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void closeConnection() {

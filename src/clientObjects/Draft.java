@@ -95,7 +95,7 @@ public class Draft implements Serializable{
 	}
 	
 	public static Draft draftPull(int gameID) {
-		if (u)
+		return(null);
 	}
 	
 	

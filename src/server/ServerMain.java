@@ -24,38 +24,35 @@ import clientObjects.User;
 import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
-import network.server.MyServer;
 
 public abstract class ServerMain {
 
 	public static void main(String[] args) throws ResultsReadError, UserNotFound, IOException {
 		// this starts the server
-		String reply;
+		String input, reply;
 		Socket clientSocket;
-		PrintWriter socketWr;
-		ServerSocket myServer = new ServerSocket(8080);
+		BufferedWriter socketWr;
+		ServerSocket myServer = new ServerSocket(8888);
 		while(true) {
 			System.out.println("Waiting for client");
 			clientSocket = myServer.accept();
 			System.out.println("Client received");
-			String input = new BufferedReader(new InputStreamReader(
-					clientSocket.getInputStream())).lines().collect(Collectors.joining("\n"));
+			BufferedReader socketRd = new BufferedReader(
+					new InputStreamReader(
+							clientSocket.getInputStream()));
+			input = socketRd.readLine();
 			System.out.println("Received: " + input);
 			reply = TextProcessor.parseReq(input);
 			System.out.println("Sending: " + reply);
-			System.out.println("hello");
-			socketWr = new PrintWriter(clientSocket.getOutputStream());
-			try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+			System.out.println("Writing to socket");
+			socketWr = new BufferedWriter(
+					new OutputStreamWriter(
+							clientSocket.getOutputStream()));
 			socketWr.write(reply);
+			socketWr.write("\r\n");
+			System.out.println("Written: " + reply);
 			socketWr.flush();
-			System.out.println("written");
-			socketWr.close();
-			clientSocket.close();
 		}
 		
 	}

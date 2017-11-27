@@ -16,7 +16,6 @@ import clientObjects.LeaderBoard;
 import clientObjects.Player;
 import clientObjects.User;
 import exceptions.ResultsReadError;
-import network.client.Client;
 import server.TextProcessor;
 
 /**

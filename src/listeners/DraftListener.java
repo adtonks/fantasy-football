@@ -58,7 +58,8 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
+		
+		
 		Object sth = e.getSource();
 		if (sth instanceof MakePlayer) {
 			MakePlayer player = (MakePlayer) e.getSource();

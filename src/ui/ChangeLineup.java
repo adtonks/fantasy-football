@@ -126,6 +126,7 @@ public class ChangeLineup extends JPanel {
 			startingList.get(i).setName(Integer.toString(startingList.get(i).getID()));
 		}
 		
+		
 			
 		//Save Button
 		JButton save = new JButton("Save Lineup");

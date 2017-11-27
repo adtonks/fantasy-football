@@ -21,11 +21,24 @@ import javax.swing.text.StyleConstants;
 
 import listeners.ButtonListener;
 
+/**
+ * This class represents the Help screen that offers instructions and talks
+ * about what this game is about.
+ * @author charisannelim
+ *
+ */
 public class Help extends JPanel {
 	private JPanel screens;
 	private Font headerFont;
 	private Font textFont;
 	private BufferedImage bg = null;
+	
+	/**
+	  * This constructor points the parameters as the current instance.
+	 * @param screens, main JPanel with cardlayout
+	 * @param headerFont, custom font
+	 * @param textFont, custom font
+	 */
 	
 	public Help(JPanel screens, Font headerFont, Font textFont) {
 		this.screens = screens;
@@ -33,6 +46,9 @@ public class Help extends JPanel {
 		this.textFont = textFont;
 	}
 	
+	/**
+	 * This method adds all the necessary components to the JPanel.
+	 */
 	public void create() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBorder(new EmptyBorder(60, 30, 30, 30));
@@ -89,6 +105,9 @@ public class Help extends JPanel {
 		this.add(back);
 	}
 	
+	/** 
+	 * This method paints the background of the panel with a resource image.
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 		

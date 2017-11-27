@@ -24,6 +24,12 @@ import listeners.InputHintListener;
 import listeners.LogInListener;
 import listeners.SignUpListener;
 
+/**
+ * This class is the representation of the first screen that the user
+ * sees where he or she is prompted to log in or sign up for a new account
+ * @author charisannelim
+ *
+ */
 public class StartScreen extends JPanel {
 	
 	private JPanel screens;
@@ -31,12 +37,21 @@ public class StartScreen extends JPanel {
 	private Font textFont;
 	private BufferedImage bg = null;
 	
+	/**
+	 * This constructor points the parameters as the current instance.
+	 * @param screens, the main JPanel with cardlayout
+	 * @param headerFont, custom font
+	 * @param textFont, custom font
+	 */
 	public StartScreen(JPanel screens, Font headerFont, Font textFont) {
 		this.screens = screens;
 		this.headerFont = headerFont;
 		this.textFont = textFont;
 	}
 	
+	/**
+	 * This method adds all the necessary components to the JPanel.
+	 */
 	public void create() {
 		
 		//Change Font size as required
@@ -204,7 +219,9 @@ public class StartScreen extends JPanel {
 	}
 	
 
-	
+	/** 
+	 * This method paints the background of the panel with a resource image.
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 		

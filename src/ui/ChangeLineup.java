@@ -33,6 +33,11 @@ import exceptions.UserNotFound;
 import listeners.ButtonListener;
 import listeners.LineupListener;
 
+/**
+ * This class represents the panel where users can switch around their player positions.
+ * @author charisannelim
+ *
+ */
 public class ChangeLineup extends JPanel {
 	private JPanel screens;
 	private Font headerFont;
@@ -41,6 +46,13 @@ public class ChangeLineup extends JPanel {
 	private FirstDraft draft;
 	private int[] lineup_arr;
 	
+	/**
+	 * This constructor points the parameters as the current instance.
+	 * @param draft
+	 * @param screens, the main JPanel with cardlayout
+	 * @param headerFont, the custom font
+	 * @param textFont, the custom font
+	 */
 	public ChangeLineup(FirstDraft draft, JPanel screens, Font headerFont, Font textFont) {
 		this.draft = draft;
 		this.screens = screens;
@@ -48,6 +60,12 @@ public class ChangeLineup extends JPanel {
 		this.textFont = textFont;
 	}
 	
+	/** 
+	 * This method adds all the necessary components and players to the panel
+	 * and takes an array of players in the order they should be added
+	 * to the panel. 
+	 * @param lineup_arr, an array of player IDs with the index representing order of adding
+	 */
 	public void create(int[] lineup_arr) {
 		
 		Font smol = headerFont.deriveFont((float) 14);
@@ -127,6 +145,9 @@ public class ChangeLineup extends JPanel {
 		this.add(save);
 	}
 	
+	/** 
+	 * This method paints the background of the panel with a resource image.
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 		

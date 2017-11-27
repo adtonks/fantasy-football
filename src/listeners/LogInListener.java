@@ -12,6 +12,12 @@ import javax.swing.JTextField;
 
 import ui.StartScreen;
 
+/**
+ * This class is a Listener class that listens and gets the user input
+ * from the log-in fields.
+ * @author charisannelim
+ *
+ */
 public class LogInListener implements ActionListener {
 	
 	private JTextField user;
@@ -20,6 +26,14 @@ public class LogInListener implements ActionListener {
 	private JPanel screens;
 	private Font textFont;
 
+	/**
+	 * This constructor points the parameters as the current instance.
+	 * @param screens, the main JPanel
+	 * @param textFont, the custom Font
+	 * @param panel, the start screen itself
+	 * @param user, the JTextField for username
+	 * @param pw, the JTextField for password
+	 */
 	public LogInListener(JPanel screens, Font textFont, StartScreen panel, JTextField user, JTextField pw) {
 		this.panel = panel;
 		this.user = user;
@@ -28,6 +42,12 @@ public class LogInListener implements ActionListener {
 		this.textFont = textFont;
 	}
 	
+	/**
+	 * Text in JTextFields are parsed and compared to
+	 * that of those in the database. If both the username
+	 * and the password matches, the user will be led to the following page.
+	 * If not, an error message will pop up.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

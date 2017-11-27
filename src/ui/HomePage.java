@@ -29,6 +29,13 @@ import javax.swing.table.TableColumn;
 
 import listeners.ButtonListener;
 
+/**
+ * This class represents the HomePage that the users sees with the
+ * Leaderboard, the upcoming Match details and user options such as to
+ * view and switch their players, log out or refresh the leaderboard.
+ * @author charisannelim
+ *
+ */
 public class HomePage extends JPanel {
 	
 	private JPanel screens;
@@ -37,13 +44,21 @@ public class HomePage extends JPanel {
 	private Font textFont;
 	private BufferedImage bg = null;
 	
+/**
+  * This constructor points the parameters as the current instance.
+	 * @param screens, main JPanel with cardlayout
+	 * @param headerFont, custom font
+	 * @param textFont, custom font
+ */
 	public HomePage(JPanel screens, Font headerFont, Font textFont) {
 		this.screens = screens;
 		this.headerFont = headerFont;
 		this.textFont = textFont;
 	}
 
-	
+	/**
+	 * This method adds all necessary components to the JFrame.
+	 */
 	public void create() {
 		
 		this.setLayout(new GridBagLayout());
@@ -265,6 +280,9 @@ public class HomePage extends JPanel {
 		
 	}
 	
+	/** 
+	 * This method paints the background of the panel with a resource image.
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 		

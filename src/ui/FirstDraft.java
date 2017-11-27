@@ -31,6 +31,12 @@ import exceptions.UserNotFound;
 import listeners.ButtonListener;
 import listeners.DraftListener;
 
+/**
+ * This class represents the GUI of the drafting process where users come together to draft
+ * and take turns choosing their players.
+ * @author charisannelim
+ *
+ */
 public class FirstDraft extends JPanel {
 	
 	private JPanel screens;
@@ -42,17 +48,27 @@ public class FirstDraft extends JPanel {
 	private int[] bigarr;
 	private boolean isDrafted = false;
 	
+	/**
+	 * This class takes the array of all S league players in order.
+	 * @param bigarr, array of IDs of all S league players
+	 * @param screens, main JPanel with cardlayout
+	 * @param headerFont, custom font
+	 * @param textFont, custom font
+	 */
 	public FirstDraft(int[] bigarr, JPanel screens, Font headerFont, Font textFont) {
 		this.screens = screens;
 		this.headerFont = headerFont;
 		this.textFont = textFont;
 		this.bigarr = bigarr;
 	}
-	
-	public void setLineup(ChangeLineup cl) {
-		this.cl = cl;
-	}
 
+	
+	/** 
+	 * This method adds all the necessary components and players to the panel
+	 * and takes an array of players in the order they should be added
+	 * to the panel. 
+	 * @param bigarr, an array of all player IDs with the index representing order of adding
+	 */
 	public void create(int[] bigarr) {
 		
 		//Create Main Panel
@@ -452,10 +468,19 @@ public class FirstDraft extends JPanel {
 		
 	}
 	
+	/**
+	 * This getter returns the IDs of the user's chosen 17 players
+	 * @return an array of 17 player IDs
+	 */
 	public int[] getArr() {
 		return arr;
 	}
 	
+	/**
+	 * This setter sets the IDs of the user's chosen 17 players in an array
+	 * @param newarr array of 17 player IDs
+	 * @return array of 17 player IDs
+	 */
 	public int[] setArr(int[] newarr) {
 		arr = new int[17];
 		arr = newarr;
@@ -470,6 +495,13 @@ public class FirstDraft extends JPanel {
 		isDrafted = already;
 	}
 	
+	public void setLineup(ChangeLineup cl) {
+		this.cl = cl;
+	}
+	
+	/** 
+	 * This method paints the background of the panel with a resource image.
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 		

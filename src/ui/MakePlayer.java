@@ -13,10 +13,21 @@ import javax.swing.JPanel;
 
 import clientObjects.Player;
 
+/**
+ * This class takes the player Object and puts the player img_path,
+ * name and preferred Position into a JPanel for the UI.
+ * @author charisannelim
+ *
+ */
 public class MakePlayer extends JPanel {
 	
 	Player player;
 
+	/**
+	 * This class takes a custom font and a Player object
+	 * @param textFont, the custom font
+	 * @param player, the player object
+	 */
 	public MakePlayer(Font textFont, Player player) {
 		
 			this.player = player;
@@ -57,6 +68,10 @@ public class MakePlayer extends JPanel {
 			this.add(position_);
 		}
 	
+	/**
+	 * This method allows us to get the player ID from the MakePlayer class.
+	 * @return an int which is the player ID
+	 */
 	public int getID() {
 		return player.getPlayerID();
 		

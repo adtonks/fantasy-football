@@ -13,6 +13,12 @@ import javax.swing.JTextField;
 
 import ui.StartScreen;
 
+/**
+ * This class is a Listener class that listens and gets the user input
+ * from the sign-up fields.
+ * @author charisannelim
+ *
+ */
 public class SignUpListener implements ActionListener {
 
 	private JTextField user;
@@ -22,6 +28,15 @@ public class SignUpListener implements ActionListener {
 	private StartScreen panel;
 	private Font textFont;
 
+	/**
+	 * This constructor points the parameters as the current instance.
+	 * @param screens, the main JPanel
+	 * @param textFont, the custom Font
+	 * @param panel, the start screen itself
+	 * @param user, the JTextField for username
+	 * @param pw, the JTextField for password
+	 * @param email, the JTextField for email address
+	 */
 	public SignUpListener(JPanel screens, Font textFont, StartScreen panel, JTextField user, JTextField pw, JTextField email) {
 		this.user = user;
 		this.pw = pw;
@@ -31,6 +46,12 @@ public class SignUpListener implements ActionListener {
 		this.panel = panel;
 	}
 	
+	/**
+	 * Text in JTextFields are parsed and compared to
+	 * that of those in the database. If it matches, the user
+	 * cannot sign up for a new account. If it doesn't, it will be added successfully
+	 * and the user will be led to the following page.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -54,7 +75,6 @@ public class SignUpListener implements ActionListener {
 						  "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			
-			//consider doing special characters exception
 		}
 		
 	}

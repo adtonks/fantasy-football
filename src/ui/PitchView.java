@@ -25,6 +25,12 @@ import exceptions.UserNotFound;
 import listeners.DraftListener;
 import listeners.LineupListener;
 
+/**
+ * This class represents the starting line up of 11 players displayed
+ * on a rough visual representation of the football field.
+ * @author charisannelim
+ *
+ */
 public class PitchView extends JPanel {
 	
 	private BufferedImage bg = null;
@@ -34,7 +40,14 @@ public class PitchView extends JPanel {
 	private ChangeLineup cl;
 	private LineupListener gl;
 
-	
+	/**
+	 * This class takes a listener, an array of 17 player IDs, the JPanel it belongs to, custom font and the drafting screen
+	 * @param gl, listener
+	 * @param arr, array of 17 player IDs
+	 * @param cl, the class it belongs to
+	 * @param textFont, custom font
+	 * @param draft, the screen for drafting
+	 */
 	public PitchView(LineupListener gl, int[] arr, ChangeLineup cl, Font textFont, FirstDraft draft) {
 		
 		this.gl = gl;
@@ -122,52 +135,7 @@ public class PitchView extends JPanel {
 		this.add(fw);
 		this.add(fw_title);
 		
-		
-//		if (draft.isDrafted() == true) {
-//			
-//			// adding initial starting lineup
-//			arr = new int[17];
-//			arr = draft.getArr();
-//
-//			List<MakePlayer> startingList = new ArrayList<MakePlayer>();
-//			
-//			for (int i = 0; i < 11; i++) {
-//				try {
-//					startingList.add(new MakePlayer(textFont, new Player(arr[i])));
-//				} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-//					e.printStackTrace();
-//				}
-//			}
-//			
-//			gk.add(Box.createRigidArea(new Dimension(330, 0)));
-//			gk.add(startingList.get(0));
-//			
-//			df.add(Box.createRigidArea(new Dimension(60, 0)));
-//			df.add(startingList.get(1));
-//			df.add(Box.createRigidArea(new Dimension(80, 0)));
-//			df.add(startingList.get(2));
-//			df.add(Box.createRigidArea(new Dimension(80, 0)));
-//			df.add(startingList.get(3));
-//			df.add(Box.createRigidArea(new Dimension(80, 0)));
-//			df.add(startingList.get(4));
-//			
-//			mf.add(Box.createRigidArea(new Dimension(60, 0)));
-//			mf.add(startingList.get(5));
-//			mf.add(Box.createRigidArea(new Dimension(80, 0)));
-//			mf.add(startingList.get(6));
-//			mf.add(Box.createRigidArea(new Dimension(80, 0)));
-//			mf.add(startingList.get(7));
-//			mf.add(Box.createRigidArea(new Dimension(80, 0)));
-//			mf.add(startingList.get(8));
-//			
-//			fw.add(Box.createRigidArea(new Dimension(200, 0)));
-//			fw.add(startingList.get(9));
-//			fw.add(Box.createRigidArea(new Dimension(180, 0)));
-//			fw.add(startingList.get(10));
-//
-//		}
-		
-//		LineupListener gl = new LineupListener(this, cl, arr);
+
 		List<MakePlayer> startingList = new ArrayList<MakePlayer>();
 		
 		for (int i = 0; i < 11; i++) {
@@ -204,6 +172,10 @@ public class PitchView extends JPanel {
 		
 	}
 	
+	
+	/** 
+	 * This method paints the background of the panel with a resource image.
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 		

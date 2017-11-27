@@ -11,6 +11,13 @@ import javax.swing.JOptionPane;
 import ui.ChangeLineup;
 import ui.MakePlayer;
 
+/**
+ * This Listener listens for user clicks on two players they would like to switch
+ * and makes the switch accordingly by repainting the panel with a new order of players
+ * in an array.
+ * @author charisannelim
+ *
+ */
 public class LineupListener implements MouseListener, ActionListener {
 	
 	private ChangeLineup cl;
@@ -18,11 +25,19 @@ public class LineupListener implements MouseListener, ActionListener {
 	private int store1 = 0, store2 = 0;
 	private int[] arr;
 	
+	/**
+	 * This constructor points the parameters as the current instance.
+	 * @param cl, the current JPanel that needs to be repainted
+	 * @param arr, the array of 17 players that is ordered
+	 */
 	public LineupListener(ChangeLineup cl, int[] arr) {
 		this.cl = cl;
 		this.arr = arr;
 	}
 	
+	/**
+	 * This class observes user's selected players and switches the players.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object sth = e.getSource();

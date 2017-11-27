@@ -19,6 +19,12 @@ import ui.FirstDraft;
 import ui.MakePlayer;
 import ui.PitchView;
 
+/**
+ * This Listener observes which players the user clicks on from the pool of available
+ * players and moves the player to the Chosen panel.
+ * @author charisannelim
+ *
+ */
 public class DraftListener implements  MouseListener, MouseMotionListener {
 
 	private JPanel screens;
@@ -28,6 +34,14 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 	private int[] bigarr, arr;
 	private FirstDraft draft;
 	
+	/**
+	 * This constructor points the parameters as the current instance.
+	 * @param bigarr, ID array of all players in S League
+	 * @param draft, the drafting screen
+	 * @param dest, the chosen players panel
+	 * @param screens, the main JPanel
+	 * @param headerFont, the custom font
+	 */
 	public DraftListener(int[] bigarr, FirstDraft draft, JPanel dest, JPanel screens, Font headerFont) {
 		this.draft = draft;
 		this.dest = dest;
@@ -36,6 +50,12 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 		this.bigarr = bigarr;
 	}
 	
+	/**
+	 * On a click, the method takes that MakePlayer, which is a representation of a PLayer
+	 * and removes it from the pool and adds it to the chosen player Panel instead. When the user
+	 * chooses 17 players, he or she will be prompted to save their line up and
+	 * proceed to the homepage. 
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 

@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.BorderLayout;
+
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -14,12 +15,22 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * This class is the main GUI Frame which implements a JPanel with a CardLayout.
+ * @author charisannelim
+ *
+ */
 public class MainFrame {
 	private JPanel screens;
 	private Font headerFont;
 	private Font textFont;
 	private int[] arr, anotherarr;
 
+	/**
+	 * This method creates the various screens, each with its own class, and
+	 * adds all these screens as cards to the main pane.
+	 * @param pane, the main content pane
+	 */
 	public void addComponentToPane(Container pane) {
 		
 		//Register Custom Fonts
@@ -91,6 +102,10 @@ public class MainFrame {
 		pane.add(screens);
 	}
 
+/**
+ * This method sets the frame parameters and arguments,
+ * and makes the actual frame of the entire application.
+ */
   private static void makeFrame() {
 	//Create and set up window
 	JFrame mainFrame = new JFrame("S League Fantasy Football");
@@ -114,7 +129,6 @@ public class MainFrame {
     
   }
 
-  
   public static void main(String[] args) {
 	  makeFrame();
   }

@@ -18,6 +18,13 @@ import javax.swing.border.EmptyBorder;
 
 import listeners.ButtonListener;
 
+/**
+ * This class represents the screen where the user has just signed up
+ * and can choose whether to create a new game or join one that
+ * has already been created.
+ * @author charisannelim
+ *
+ */
 public class NewAccount extends JPanel {
 	
 	private JPanel screens;
@@ -26,12 +33,22 @@ public class NewAccount extends JPanel {
 	private String username;
 	private BufferedImage bg = null;
 	
+/**
+ 	 * This constructor points the parameters as the current instance.
+	 * @param screens, main JPanel with cardlayout
+	 * @param headerFont, custom font
+	 * @param textFont, custom font
+
+ */
 	public NewAccount(JPanel screens, Font headerFont, Font textFont) {
 		this.screens = screens;
 		this.headerFont = headerFont;
 		this.textFont = textFont;
 	}
 	
+	/**
+	 * This method adds all necessary components to the JPanel.
+	 */
 	public void create() {
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -80,6 +97,10 @@ public class NewAccount extends JPanel {
 		this.add(create);
 	}
 	
+	
+	/** 
+	 * This method paints the background of the panel with a resource image.
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 		

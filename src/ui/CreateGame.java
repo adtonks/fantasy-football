@@ -22,6 +22,13 @@ import javax.swing.border.EmptyBorder;
 
 import listeners.ButtonListener;
 
+/**
+ * This class represents the screen where users just signed up and are choosing
+ * to create a new game with a unique game ID they can share
+ * with their friends.
+ * @author charisannelim
+ *
+ */
 public class CreateGame extends JPanel {
 	
 	private BufferedImage bg = null;
@@ -29,12 +36,22 @@ public class CreateGame extends JPanel {
 	private Font headerFont;
 	private Font textFont;
 	
+/**
+ * This constructor points the parameters as the current instance.
+	 * @param screens, main JPanel with cardlayout
+	 * @param headerFont, custom font
+	 * @param textFont, custom font
+
+ */
 	public CreateGame(JPanel screens, Font headerFont, Font textFont) {
 		this.screens = screens;
 		this.headerFont = headerFont;
 		this.textFont = textFont;
 	}
 	
+	/**
+	 * This method adds all necessary components to the JPanel.
+	 */
 	public void create() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBorder(new EmptyBorder(60, 30, 30, 30));
@@ -126,6 +143,9 @@ public class CreateGame extends JPanel {
 		this.add(home);
 	}
 	
+	/** 
+	 * This method paints the background of the panel with a resource image.
+	 */
 	@Override
 	  protected void paintComponent(Graphics g) {
 		

@@ -6,14 +6,27 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+/**
+ * This Listener observes various buttons across the application
+ * and directs the user to the necessary screens accordingly.
+ * @author charisannelim
+ *
+ */
 public class ButtonListener implements ActionListener {
 	
 	private JPanel screens;
 	
+	/**
+	 * This constructor points the parameters as the current instance.
+	 * @param screens, the main JPanel with the cardlayout
+	 */
 	public ButtonListener(JPanel screens) {
 		this.screens = screens;
 	}
 
+	/**
+	 * This method switches screens depending on which button is pressed
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

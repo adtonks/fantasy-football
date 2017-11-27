@@ -14,7 +14,7 @@ public class GameIDgenerator {
 	}
 	
 	public int getGameID() throws ResultsReadError, PlayerNotFound, IOException {
-		while(ServerMain.cGameIDExist(currGameID))
+		while(Cfunctions.cGameIDExist(currGameID))
 			currGameID++;
 		return(currGameID++);
 	}

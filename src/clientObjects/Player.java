@@ -105,5 +105,10 @@ public class Player implements Serializable {
 	public String getImgPath() {
 		return imgPath;
 	}
+	
+	public String toCSVrow() {
+		return(this.playerID + "," + this.name + "," + this.nationality + "," +
+				this.team + "," + this.prefPosition + "," + this.imgPath);
+	}
 		
 }

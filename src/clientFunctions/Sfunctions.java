@@ -3,6 +3,7 @@ package clientFunctions;
 import clientObjects.LeaderBoard;
 import clientObjects.Player;
 import clientObjects.User;
+import server.TextProcessor;
 
 // this class holds the s prefixed functions
 // the sFunctions are wrappers for client requests for c prefixed functions
@@ -13,13 +14,14 @@ public abstract class Sfunctions {
 		// check username validity using sUsernameExist first before calling
 		String request = "sUserPull:" + _username + "," + _password + ";";
 		System.out.println(request);
+		System.out.println(TextProcessor.parseReq(request));
 		return(null);
 	}
 	
 	public static Player sGetPlayer(int _playerID) {
 		// returns null if player cannot be found
 		String request = "sGetPlayer:" + _playerID + ";";
-		System.out.println(request);
+		System.out.println(TextProcessor.parseReq(request));
 		return(null);
 	}
 	

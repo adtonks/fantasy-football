@@ -13,12 +13,8 @@ public class clientTest_Adam {
 		Player testP = new Player(23);
 		User testU1 = new User("adtonks");
 		User testU2 = new User("adtonks", "hello", "dog@chat.com", 1002, false);
-		Sfunctions.sUserPull("adtonks", "pinkdog");
-		Sfunctions.sGetPlayer(34);
-		Sfunctions.sNewUser(testU2);
-		Sfunctions.sUserPush(testU1);
-		Sfunctions.sUsernameExist("billy");
-		Sfunctions.sGameIDExist(1005);
+		Sfunctions.sUserPull("bill", "qwerty");
+		Sfunctions.sGetPlayer(30);
 	}
 
 }

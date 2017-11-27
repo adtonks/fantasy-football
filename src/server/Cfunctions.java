@@ -260,7 +260,10 @@ public abstract class Cfunctions {
 		return(new LeaderBoard(_gameID));
 	}
 	
-	static int cGenGameID(GameIDgenerator IDgen) throws ResultsReadError, PlayerNotFound, IOException {
-		return(IDgen.getGameID());
+	static int cGenGameID() throws ResultsReadError, PlayerNotFound, IOException {
+		int currGameID = 1000;
+		while(Cfunctions.cGameIDExist(currGameID))
+			currGameID++;
+		return(currGameID);
 	}
 }

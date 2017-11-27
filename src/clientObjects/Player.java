@@ -3,6 +3,7 @@ package clientObjects;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -71,6 +72,27 @@ public class Player implements Serializable {
 			csvReader.close();
 			throw new ResultsReadError();
 		}
+		csvReader.close();
+	}
+	
+	// construct User object from csv line
+	public Player(CSVline input) throws ResultsReadError {
+		Scanner csvReader = new Scanner(input.string);
+		int i;
+		csvReader.useDelimiter(",");				
+		// throw exception if complete player info is not present
+			try {
+				this.playerID = csvReader.nextInt();
+				this.name = csvReader.next();
+				this.nationality = csvReader.next();
+				this.team = csvReader.next();
+				this.prefPosition = Positions.valueOf(csvReader.next());
+				this.imgPath = csvReader.next();				
+			} catch(NoSuchElementException e) {
+				System.out.println("Player information incomplete");
+				csvReader.close();
+				throw new ResultsReadError();
+			}
 		csvReader.close();
 	}
 	

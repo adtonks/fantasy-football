@@ -14,8 +14,8 @@ import exceptions.UserNotFound;
 public class LeaderBoard {
 	private final int gameID;
 	// ordered list of (username, points) pairs in descending order
-	private final List<UserPoints> userPointsList;
 	private final int boardLen;
+	private final List<UserPoints> userPointsList;
 
 	public LeaderBoard(int _gameID) throws ResultsReadError, FileNotFoundException, UserNotFound {
 		this.gameID = _gameID;
@@ -71,6 +71,19 @@ public class LeaderBoard {
 		this.boardLen = userPointsList.size();
 		
 	}
+	
+	// construct leaderboard from CSV line
+	public LeaderBoard(CSVline input) {
+		Scanner csvReader = new Scanner(input.string);
+		csvReader.useDelimiter(",");
+		this.gameID = csvReader.nextInt();
+		this.boardLen = csvReader.nextInt();
+		this.userPointsList = new ArrayList<UserPoints>();
+		while(csvReader.hasNext()) {
+			userPointsList.add(new UserPoints(
+					csvReader.next(), csvReader.nextInt()));
+		}
+	}
 
 	public int getGameID() {
 		return gameID;
@@ -82,5 +95,16 @@ public class LeaderBoard {
 	
 	public List<UserPoints> getUserPointsList() {
 		return userPointsList;
+	}
+	
+	public String toCSVrow() {
+		int i;
+		String csvRow = this.gameID + "," + this.boardLen;
+		for(i=0; i<this.userPointsList.size(); i++) {
+			csvRow += "," + userPointsList.get(i).username +
+					"," + userPointsList.get(i).points;
+		}
+		return(csvRow);
+		
 	}
 }

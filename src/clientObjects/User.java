@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import exceptions.IndexDoesNotExist;
+import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 
@@ -31,7 +32,7 @@ public class User  implements Serializable {
 	/* only called by server */
 	public User(String _username) throws ResultsReadError,
 	FileNotFoundException,UserNotFound {
-		int i;
+		int i, ID;
 		String[] csvHeader = new String[]
 				{"username", "password", "email", "gameID", "isHost",
 						"points", "week", "GK0", "DF0", "DF1", "DF2",
@@ -78,16 +79,41 @@ public class User  implements Serializable {
 			this.isHost = (csvReader.nextInt() == 1);
 			this.points = csvReader.nextInt();
 			this.week = csvReader.nextInt();
-			for(i=0; i<1; i++)
-				GKs.add(new Player(csvReader.nextInt()));
-			for(i=0; i<4; i++)
-				DFs.add(new Player(csvReader.nextInt()));
-			for(i=0; i<4; i++)
-				MFs.add(new Player(csvReader.nextInt()));
-			for(i=0; i<2; i++)
-				FWs.add(new Player(csvReader.nextInt()));
-			for(i=0; i<6; i++)
-				SUBs.add(new Player(csvReader.nextInt()));					
+			for(i=0; i<1; i++) {
+				ID = csvReader.nextInt();
+				if(ID != -1)
+					GKs.add(new Player(ID));
+				else
+					GKs.add(null);
+			}
+			for(i=0; i<4; i++) {
+				ID = csvReader.nextInt();
+				if(ID != -1)
+					DFs.add(new Player(ID));
+				else
+					DFs.add(null);
+			}
+			for(i=0; i<4; i++) {
+				ID = csvReader.nextInt();
+				if(ID != -1)
+					MFs.add(new Player(ID));
+				else
+					MFs.add(null);
+			}
+			for(i=0; i<2; i++) {
+				ID = csvReader.nextInt();
+				if(ID != -1)
+					FWs.add(new Player(ID));
+				else
+					FWs.add(null);
+			}
+			for(i=0; i<6; i++) {
+				ID = csvReader.nextInt();
+				if(ID != -1)
+					SUBs.add(new Player(ID));
+				else
+					SUBs.add(null);	
+			}
 		} catch(NoSuchElementException e) {
 			System.out.println("User information incomplete");
 			csvReader.close();
@@ -99,7 +125,7 @@ public class User  implements Serializable {
 	// construct User object from csv line
 	public User(CSVline input) throws ResultsReadError {
 		Scanner csvReader = new Scanner(input.string);
-		int i;
+		int i, ID;
 		csvReader.useDelimiter(",");
 
 		this.GKs = new ArrayList<Player>();
@@ -116,16 +142,41 @@ public class User  implements Serializable {
 			this.isHost = (csvReader.nextInt() == 1);
 			this.points = csvReader.nextInt();
 			this.week = csvReader.nextInt();
-			for(i=0; i<1; i++)
-				GKs.add(new Player(csvReader.nextInt()));
-			for(i=0; i<4; i++)
-				DFs.add(new Player(csvReader.nextInt()));
-			for(i=0; i<4; i++)
-				MFs.add(new Player(csvReader.nextInt()));
-			for(i=0; i<2; i++)
-				FWs.add(new Player(csvReader.nextInt()));
-			for(i=0; i<6; i++)
-				SUBs.add(new Player(csvReader.nextInt()));					
+			for(i=0; i<1; i++) {
+				ID = csvReader.nextInt();
+				if(ID != -1)
+					GKs.add(new Player(ID));
+				else
+					GKs.add(null);
+			}
+			for(i=0; i<4; i++) {
+				ID = csvReader.nextInt();
+				if(ID != -1)
+					DFs.add(new Player(ID));
+				else
+					DFs.add(null);
+			}
+			for(i=0; i<4; i++) {
+				ID = csvReader.nextInt();
+				if(ID != -1)
+					MFs.add(new Player(ID));
+				else
+					MFs.add(null);
+			}
+			for(i=0; i<2; i++) {
+				ID = csvReader.nextInt();
+				if(ID != -1)
+					FWs.add(new Player(ID));
+				else
+					FWs.add(null);
+			}
+			for(i=0; i<6; i++) {
+				ID = csvReader.nextInt();
+				if(ID != -1)
+					SUBs.add(new Player(ID));
+				else
+					SUBs.add(null);
+			}				
 		} catch(NoSuchElementException | FileNotFoundException | ResultsReadError | UserNotFound e) {
 			System.out.println("User information incomplete");
 			csvReader.close();
@@ -220,30 +271,35 @@ public class User  implements Serializable {
 		return(this.SUBs.get(index));
 	}
 	
-	public Player findPlayerByID(int playerID) {
-		// returns the player if player ID exists, null otherwise
+	public Player findPlayerByID(int playerID) throws PlayerNotFound {
+		// returns the player if player ID exists, exception otherwise
 		int i;
 		for(i=0; i<1; i++) {
-			if(this.GKs.get(i).getPlayerID() == playerID)
-				return(this.GKs.get(i));
+			if(this.GKs.get(i) != null)
+				if(this.GKs.get(i).getPlayerID() == playerID)
+					return(this.GKs.get(i));
 		}	
 		for(i=0; i<4; i++) {
-			if(this.DFs.get(i).getPlayerID() == playerID)
-				return(this.DFs.get(i));
+			if(this.DFs.get(i) != null)
+				if(this.DFs.get(i).getPlayerID() == playerID)
+					return(this.DFs.get(i));
 		}		
 		for(i=0; i<4; i++) {
-			if(this.MFs.get(i).getPlayerID() == playerID)
-				return(this.MFs.get(i));
+			if(this.MFs.get(i) != null)
+				if(this.MFs.get(i).getPlayerID() == playerID)
+					return(this.MFs.get(i));
 		}
 		for(i=0; i<2; i++) {
-			if(this.FWs.get(i).getPlayerID() == playerID)
-				return(this.FWs.get(i));
+			if(this.FWs.get(i) != null)
+				if(this.FWs.get(i).getPlayerID() == playerID)
+					return(this.FWs.get(i));
 		}
 		for(i=0; i<6; i++) {
-			if(this.SUBs.get(i).getPlayerID() == playerID)
-				return(this.SUBs.get(i));
+			if(this.SUBs.get(i) != null)
+				if(this.SUBs.get(i).getPlayerID() == playerID)
+					return(this.SUBs.get(i));
 		}
-		return(null);
+		throw new PlayerNotFound();
 	}
 	
 	private int insertPlayerIntoID(Player newPlayer, int playerID1,
@@ -311,8 +367,15 @@ public class User  implements Serializable {
 	}
 	
 	public void substitute(int playerID1, int playerID2) {
-		Player player1 = findPlayerByID(playerID1);
-		Player player2 = findPlayerByID(playerID2);
+		Player player1 = null;
+		Player player2 = null;
+		try {
+			player1 = findPlayerByID(playerID1);
+			player2 = findPlayerByID(playerID2);
+		} catch (PlayerNotFound e) {
+			System.out.println("Players not found");
+			e.printStackTrace();
+		}
 		insertPlayerIntoID(player2, playerID1, playerID2,
 				insertPlayerIntoID(player1, playerID2, playerID1, 0));
 	}

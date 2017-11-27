@@ -1,8 +1,10 @@
 package clientFunctions;
 
+import clientObjects.CSVline;
 import clientObjects.LeaderBoard;
 import clientObjects.Player;
 import clientObjects.User;
+import exceptions.ResultsReadError;
 import server.TextProcessor;
 
 // this class holds the s prefixed functions
@@ -13,23 +15,35 @@ public abstract class Sfunctions {
 		// returns null if incorrect password
 		// check username validity using sUsernameExist first before calling
 		String request = "sUserPull:" + _username + "," + _password + ";";
-		System.out.println(request);
-		System.out.println(TextProcessor.parseReq(request));
-		return(null);
+		String reply = TextProcessor.parseReq(request);
+		try {
+			return(new User(new CSVline(reply)));
+		} catch (ResultsReadError e) {
+			System.out.println("Format error");
+			e.printStackTrace();
+			return(null);
+		}
 	}
 	
 	public static Player sGetPlayer(int _playerID) {
 		// returns null if player cannot be found
 		String request = "sGetPlayer:" + _playerID + ";";
-		System.out.println(TextProcessor.parseReq(request));
-		return(null);
+		String reply = TextProcessor.parseReq(request);
+		try {
+			return(new Player(new CSVline(reply)));
+		} catch (ResultsReadError e) {
+			System.out.println("Format error");
+			e.printStackTrace();
+			return(null);
+		}
 	}
 	
 	
 	public static void sNewUser(User _newUser) {
 		// inputs _newUser into the CSV file on server
 		String request = "sNewUser:" + _newUser.toCSVrow() + ";";
-		System.out.println(request);
+		String reply = TextProcessor.parseReq(request);
+		return;
 	}
 	
 	public static boolean sUserPush(User _inUser) {
@@ -37,37 +51,37 @@ public abstract class Sfunctions {
 		// returns true on success
 		// false if the week variable do not match (server has refreshed scores)
 		String request = "sUserPush:" + _inUser.toCSVrow() + ";";
-		System.out.println(request);
-		return(true);
+		String reply = TextProcessor.parseReq(request);
+		return(reply.equals("SERVER_TRU"));
 	}
 	
 	public static boolean sUsernameExist(String _username) {
 		// returns true if username exists, false otherwise
 		String request = "sUsernameExist:" + _username + ";";
-		System.out.println(request);
-		return(true);
+		String reply = TextProcessor.parseReq(request);
+		return(reply.equals("SERVER_TRU"));
 	}
 	
 	public static boolean sGameIDExist(int _gameID) {
 		// returns true if gameID exists, false otherwise
 		String request = "sGameIDExist:" + _gameID + ";";
-		System.out.println(request);
-		return(true);
+		String reply = TextProcessor.parseReq(request);
+		return(reply.equals("SERVER_TRU"));
 	}
 	
 	public static LeaderBoard sGetBoard(int _gameID) {
 		// returns the leaderboard object for given gameID
 		// use sGameIDExist first for safety
 		String request = "sGetBoard:" + _gameID + ";";
-		System.out.println(request);
-		return(null);
+		String reply = TextProcessor.parseReq(request);
+		return(new LeaderBoard(new CSVline(reply)));
 	}
 	
 	public static int sGenGameID() {
 		// generates a new unique gameID
 		String request = "sGenGameID:" + ";";
-		System.out.println(request);
-		return(1005);
+		String reply = TextProcessor.parseReq(request);
+		return(Integer.valueOf(reply));
 	}
 
 }

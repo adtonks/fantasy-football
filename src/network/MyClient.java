@@ -67,7 +67,6 @@ public class MyClient {
 	public void sendTextToServer(String text) {
 		this.pw.println(text);
 		this.pw.flush();
-		this.closeConnection();
 	}
 
 	public void sendObjectToServer(Object obj) {

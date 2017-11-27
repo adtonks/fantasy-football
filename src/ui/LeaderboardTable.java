@@ -47,19 +47,29 @@ public class LeaderboardTable extends JPanel {
 	public void create() {
 		
 	//Change Leaderboard to Object[][]
-	for (int i = 0; i < lb.getBoardLen(); i++) {
-		for (int j = 0; j < 3; j++) {
-			if (j == 0) {
-				data[i][j] = "#" + Integer.toString(i + 1);
-			}
-			else if (j == 1) {
-				data[i][j] = lb.getUserPointsList().get(i).username;
-			}
-			else if (j == 2) {
-				data[i][j] = Integer.toString(lb.getUserPointsList().get(i).points);
-			}
+//	for (int i = 0; i < lb.getBoardLen(); i++) {
+//		for (int j = 0; j < 3; j++) {
+//			if (j == 0) {
+//				data[i][j] = "#" + Integer.toString(i + 1);
+//			}
+//			else if (j == 1) {
+//				data[i][j] = lb.getUserPointsList().get(i).username;
+//			}
+//			else if (j == 2) {
+//				data[i][j] = Integer.toString(lb.getUserPointsList().get(i).points);
+//			}
+//		}
+//	}
+		this.data = new Object[lb.getBoardLen()+1][3];
+		data[0][0] = "RANK";
+		data[0][1] = "PLAYER";
+		data[0][2] = "POINTS";
+		
+		for (int i = 1; i <= lb.getBoardLen(); i++) {
+			data[i][0] = "#" + Integer.toString(i);
+			data[i][1] = lb.getUserPointsList().get(i-1).username;
+			data[i][2] = Integer.toString(lb.getUserPointsList().get(i-1).points);
 		}
-	}
 	
 	JTable table = new JTable(data, headers);
 	table.setBackground(new Color(104, 0, 0));

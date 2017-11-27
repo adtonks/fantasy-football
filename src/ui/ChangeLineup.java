@@ -12,7 +12,10 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -24,21 +27,28 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import clientObjects.Player;
+import exceptions.ResultsReadError;
+import exceptions.UserNotFound;
 import listeners.ButtonListener;
+import listeners.LineupListener;
 
 public class ChangeLineup extends JPanel {
 	private JPanel screens;
 	private Font headerFont;
 	private Font textFont;
 	private BufferedImage bg = null;
+	private FirstDraft draft;
+	private int[] lineup_arr;
 	
-	public ChangeLineup(JPanel screens, Font headerFont, Font textFont) {
+	public ChangeLineup(FirstDraft draft, JPanel screens, Font headerFont, Font textFont) {
+		this.draft = draft;
 		this.screens = screens;
 		this.headerFont = headerFont;
 		this.textFont = textFont;
 	}
 	
-	public void create() {
+	public void create(int[] lineup_arr) {
 		
 		Font smol = headerFont.deriveFont((float) 14);
 		
@@ -59,12 +69,14 @@ public class ChangeLineup extends JPanel {
 		pitch.setBackground(new Color(0,0,0,0));
 		
 		//Pitch View and Team
-		PitchView view = new PitchView(textFont);
-		
+		LineupListener gl = new LineupListener(this, lineup_arr);		
+		PitchView view = new PitchView(gl, lineup_arr, this, textFont, draft);
+
+				
 		JPanel team = new JPanel();
 		team.setLayout(new BoxLayout(team, BoxLayout.Y_AXIS));
 		team.setMaximumSize(new Dimension(150, 550));
-		team.setBorder(new EmptyBorder(10, 20, 10, 20));
+		team.setBorder(new EmptyBorder(0, 20, 10, 20));
 		team.setBackground(new Color(104, 0, 0));
 		team.setAlignmentY(TOP_ALIGNMENT);
 		
@@ -78,26 +90,25 @@ public class ChangeLineup extends JPanel {
 		myTeam.setFont(sm0l);
 		myTeam.setForeground(Color.WHITE);
 		myTeam.setAlignmentX(CENTER_ALIGNMENT);
+
 		
-//		team.add(myTeam);
-//		team.add(Box.createRigidArea(new Dimension(0, 10)));
+		List<MakePlayer> startingList = new ArrayList<MakePlayer>();
 		
-		/* EXAMPLE */
-//		ImageIcon image5 = new ImageIcon("player_images/Albirex_Niigata/19-kenya-kodama-mf.png");
-//		MakePlayer twelve = new MakePlayer(textFont, image5, "Basil Chan","GK");
-//		MakePlayer thirteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-//		MakePlayer fourteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-//		MakePlayer fifteen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-//		MakePlayer sixteen = new MakePlayer(textFont, image5, "Basil Chan","GK");
-//		MakePlayer seventeen = new MakePlayer(textFont, image5, "Emmeric Ong","MF");
-//		
-//		team.add(twelve);
-//		team.add(thirteen);
-//		team.add(fourteen);
-//		team.add(fifteen);
-//		team.add(sixteen);
-//		team.add(seventeen);
-//		
+		for (int i = 11; i < 17; i++) {
+			try {
+				startingList.add(new MakePlayer(textFont, new Player(lineup_arr[i])));
+			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
+				e.printStackTrace();
+			}
+		}
+		
+		for (int i = 0; i < 6; i++) {
+			team.add(startingList.get(i));
+			startingList.get(i).addMouseListener(gl);
+			startingList.get(i).setName(Integer.toString(startingList.get(i).getID()));
+		}
+		
+			
 		//Save Button
 		JButton save = new JButton("Save Lineup");
 		save.setFont(smol);
@@ -106,6 +117,7 @@ public class ChangeLineup extends JPanel {
 		ButtonListener bl = new ButtonListener(screens);
 		save.setActionCommand("home");
 		save.addActionListener(bl);
+		save.addActionListener(gl);
 
 	    //Add everything to main panel
 		this.add(user);

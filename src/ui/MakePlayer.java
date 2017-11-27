@@ -14,16 +14,20 @@ import javax.swing.JPanel;
 import clientObjects.Player;
 
 public class MakePlayer extends JPanel {
+	
+	Player player;
 
 	public MakePlayer(Font textFont, Player player) {
+		
+			this.player = player;
 
 	 		ImageIcon image = new ImageIcon(player.getImgPath());			
 		
 			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			this.setMaximumSize(new Dimension(200, 200));
 			this.setBackground(new Color(0, 0, 0, 0));
 			this.setOpaque(false);
+			this.setMaximumSize(new Dimension(200, 150));
 			
 			Font newFont = textFont.deriveFont((float) 12);
 			
@@ -36,14 +40,14 @@ public class MakePlayer extends JPanel {
 			name_.setFont(newFont);
 			name_.setAlignmentX(CENTER_ALIGNMENT);
 			name_.setOpaque(true);
-			name_.setBackground(new Color(104, 0, 0));
+			name_.setBackground(new Color(0, 0, 0, 0));
 			name_.setForeground(Color.white);
 			
 			JLabel position_ = new JLabel(player.getPrefPosition().name());
 			position_.setFont(newFont);
 			position_.setAlignmentX(CENTER_ALIGNMENT);
 			position_.setOpaque(true);
-			position_.setBackground(new Color(104, 0, 0));
+			position_.setBackground(new Color(0, 0, 0, 0));
 			position_.setForeground(Color.white);
 			
 			this.add(pic);
@@ -52,5 +56,10 @@ public class MakePlayer extends JPanel {
 			this.add(Box.createRigidArea(new Dimension(0, 3)));
 			this.add(position_);
 		}
+	
+	public int getID() {
+		return player.getPlayerID();
+		
+	}
  
 }

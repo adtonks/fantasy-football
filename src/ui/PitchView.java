@@ -1,27 +1,45 @@
 package ui;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import clientObjects.Player;
+import exceptions.ResultsReadError;
+import exceptions.UserNotFound;
+import listeners.DraftListener;
+import listeners.LineupListener;
+
 public class PitchView extends JPanel {
 	
 	private BufferedImage bg = null;
+	private DraftListener dl;
+	private int[] arr;
+	private FirstDraft draft;
+	private ChangeLineup cl;
+	private LineupListener gl;
+
 	
-	public PitchView(Font sm0l) {
+	public PitchView(LineupListener gl, int[] arr, ChangeLineup cl, Font textFont, FirstDraft draft) {
+		
+		this.gl = gl;
+		this.arr = arr;
+		this.cl = cl;
 		
 		//Layout of panel
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -35,31 +53,30 @@ public class PitchView extends JPanel {
 		
 		//Goalkeepers
 		JLabel gk_title = new JLabel("Goalkeeper");
-		gk_title.setFont(sm0l);
+		gk_title.setFont(textFont);
 		gk_title.setAlignmentX(CENTER_ALIGNMENT);
 		gk_title.setOpaque(true);
 		gk_title.setBackground(Color.green);
-		gk_title.setMaximumSize(new Dimension(150, 40));
+		gk_title.setMaximumSize(new Dimension(150, 30));
 		gk_title.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JPanel gk = new JPanel();
-		gk.setLayout(new BoxLayout(gk, BoxLayout.X_AXIS));
+		JPanel gk = new JPanel(new GridLayout(1, 4, 10, 10));
 		gk.setMaximumSize(new Dimension(800, 150));
 		gk.setOpaque(false);
 		gk.setBackground(new Color(0,0,0,0));
 		gk.setAlignmentX(CENTER_ALIGNMENT);
-		
+	
+
 		//Defenders
 		JLabel df_title = new JLabel("Defenders");
-		df_title.setFont(sm0l);
+		df_title.setFont(textFont);
 		df_title.setAlignmentX(CENTER_ALIGNMENT);
 		df_title.setBackground(Color.green);
 		df_title.setOpaque(true);
-		df_title.setMaximumSize(new Dimension(150, 40));
+		df_title.setMaximumSize(new Dimension(150, 30));
 		df_title.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JPanel df = new JPanel();
-		df.setLayout(new BoxLayout(df, BoxLayout.X_AXIS));
+		JPanel df = new JPanel(new GridLayout(1, 4, 10, 10));
 		df.setMaximumSize(new Dimension(800, 150));
 		df.setOpaque(false);
 		df.setBackground(new Color(0,0,0,0));
@@ -67,15 +84,14 @@ public class PitchView extends JPanel {
 		
 		//Midfielders
 		JLabel mf_title = new JLabel("Midfielders");
-		mf_title.setFont(sm0l);
+		mf_title.setFont(textFont);
 		mf_title.setAlignmentX(CENTER_ALIGNMENT);
 		mf_title.setBackground(Color.green);
 		mf_title.setOpaque(true);
-		mf_title.setMaximumSize(new Dimension(150, 40));
+		mf_title.setMaximumSize(new Dimension(150, 30));
 		mf_title.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JPanel mf = new JPanel();
-		mf.setLayout(new BoxLayout(mf, BoxLayout.X_AXIS));
+		JPanel mf = new JPanel(new GridLayout(1, 4, 10, 10));
 		mf.setMaximumSize(new Dimension(800, 150));
 		mf.setOpaque(false);
 		mf.setBackground(new Color(0,0,0,0));
@@ -83,15 +99,14 @@ public class PitchView extends JPanel {
 		
 		//Strikers
 		JLabel fw_title = new JLabel("Forwards");
-		fw_title.setFont(sm0l);
+		fw_title.setFont(textFont);
 		fw_title.setAlignmentX(CENTER_ALIGNMENT);
 		fw_title.setBackground(Color.green);
 		fw_title.setOpaque(true);
-		fw_title.setMaximumSize(new Dimension(150, 40));
+		fw_title.setMaximumSize(new Dimension(150, 30));
 		fw_title.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JPanel fw = new JPanel();
-		fw.setLayout(new BoxLayout(fw, BoxLayout.X_AXIS));
+		JPanel fw = new JPanel(new GridLayout(1, 4, 10, 10));
 		fw.setMaximumSize(new Dimension(800, 150));
 		fw.setOpaque(false);
 		fw.setBackground(new Color(0,0,0,0));
@@ -108,48 +123,84 @@ public class PitchView extends JPanel {
 		this.add(fw_title);
 		
 		
+//		if (draft.isDrafted() == true) {
+//			
+//			// adding initial starting lineup
+//			arr = new int[17];
+//			arr = draft.getArr();
+//
+//			List<MakePlayer> startingList = new ArrayList<MakePlayer>();
+//			
+//			for (int i = 0; i < 11; i++) {
+//				try {
+//					startingList.add(new MakePlayer(textFont, new Player(arr[i])));
+//				} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
+//					e.printStackTrace();
+//				}
+//			}
+//			
+//			gk.add(Box.createRigidArea(new Dimension(330, 0)));
+//			gk.add(startingList.get(0));
+//			
+//			df.add(Box.createRigidArea(new Dimension(60, 0)));
+//			df.add(startingList.get(1));
+//			df.add(Box.createRigidArea(new Dimension(80, 0)));
+//			df.add(startingList.get(2));
+//			df.add(Box.createRigidArea(new Dimension(80, 0)));
+//			df.add(startingList.get(3));
+//			df.add(Box.createRigidArea(new Dimension(80, 0)));
+//			df.add(startingList.get(4));
+//			
+//			mf.add(Box.createRigidArea(new Dimension(60, 0)));
+//			mf.add(startingList.get(5));
+//			mf.add(Box.createRigidArea(new Dimension(80, 0)));
+//			mf.add(startingList.get(6));
+//			mf.add(Box.createRigidArea(new Dimension(80, 0)));
+//			mf.add(startingList.get(7));
+//			mf.add(Box.createRigidArea(new Dimension(80, 0)));
+//			mf.add(startingList.get(8));
+//			
+//			fw.add(Box.createRigidArea(new Dimension(200, 0)));
+//			fw.add(startingList.get(9));
+//			fw.add(Box.createRigidArea(new Dimension(180, 0)));
+//			fw.add(startingList.get(10));
+//
+//		}
+		
+//		LineupListener gl = new LineupListener(this, cl, arr);
+		List<MakePlayer> startingList = new ArrayList<MakePlayer>();
+		
+		for (int i = 0; i < 11; i++) {
+			try {
+				startingList.add(new MakePlayer(textFont, new Player(arr[i])));
+			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
+				e.printStackTrace();
+			}
+		}
+		
+		for (int i = 0; i < 11; i++) {
+			startingList.get(i).addMouseListener(gl);
+			startingList.get(i).setName(Integer.toString(startingList.get(i).getID()));
+		}
 		
 		
-		/* ************** EXAMPLE ************** */
-		ImageIcon image5 = new ImageIcon(getClass().getResource("test.png"));
+		gk.add(startingList.get(0));
+
+		df.add(startingList.get(1));
+		df.add(startingList.get(2));
+		df.add(startingList.get(3));
+		df.add(startingList.get(4));
+	
+		mf.add(startingList.get(5));
+		mf.add(startingList.get(6));
+		mf.add(startingList.get(7));
+		mf.add(startingList.get(8));
 		
-//		MakePlayer one = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-//		MakePlayer two = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-//		MakePlayer three = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-//		MakePlayer four = new MakePlayer(sm0l, image5, "Basil Chan","GK");
-//		MakePlayer five = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-//		MakePlayer seven = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-//		MakePlayer eight = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-//		MakePlayer nine = new MakePlayer(sm0l, image5, "Basil Chan","GK");
-//		MakePlayer six = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-//		MakePlayer ten = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-//		MakePlayer eleven = new MakePlayer(sm0l, image5, "Emmeric Ong","MF");
-//		
-//		gk.add(Box.createRigidArea(new Dimension(350, 0)));
-//		gk.add(one);
-//		
-//		df.add(Box.createRigidArea(new Dimension(80, 0)));
-//		df.add(two);
-//		df.add(Box.createRigidArea(new Dimension(80, 0)));
-//		df.add(three);
-//		df.add(Box.createRigidArea(new Dimension(80, 0)));
-//		df.add(four);
-//		df.add(Box.createRigidArea(new Dimension(80, 0)));
-//		df.add(five);
-//		
-//		mf.add(Box.createRigidArea(new Dimension(80, 0)));
-//		mf.add(eight);
-//		mf.add(Box.createRigidArea(new Dimension(80, 0)));
-//		mf.add(nine);
-//		mf.add(Box.createRigidArea(new Dimension(80, 0)));
-//		mf.add(six);
-//		mf.add(Box.createRigidArea(new Dimension(80, 0)));
-//		mf.add(seven);
-//		
-//		fw.add(Box.createRigidArea(new Dimension(200, 0)));
-//		fw.add(ten);
-//		fw.add(Box.createRigidArea(new Dimension(180, 0)));
-//		fw.add(eleven);
+		fw.add(startingList.get(9));
+		fw.add(startingList.get(10));
+		
+		
+	
 		
 	}
 	

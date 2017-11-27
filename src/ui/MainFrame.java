@@ -18,6 +18,7 @@ public class MainFrame {
 	private JPanel screens;
 	private Font headerFont;
 	private Font textFont;
+	private int[] arr, anotherarr;
 
 	public void addComponentToPane(Container pane) {
 		
@@ -54,14 +55,26 @@ public class MainFrame {
 		JoinGame joinGame = new JoinGame(screens, headerFont, textFont);
 		joinGame.create();
 		
-		FirstDraft firstDraft = new FirstDraft(screens, headerFont, textFont);
-		firstDraft.create();
+		arr = new int[203];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = i+1;
+		}
+		FirstDraft firstDraft = new FirstDraft(arr, screens, headerFont, textFont);
+		firstDraft.create(arr);
 		
 		Help help = new Help(screens, headerFont, textFont);
 		help.create();
 		
-		ChangeLineup lineup = new ChangeLineup(screens, headerFont, textFont);
-		lineup.create();
+		
+		//TEST FIRST
+		anotherarr = new int[17];
+		for (int i = 0; i < anotherarr.length; i++) {
+			anotherarr[i] = i+1;
+		}
+		ChangeLineup lineup = new ChangeLineup(firstDraft, screens, headerFont, textFont);
+		firstDraft.setLineup(lineup);
+		lineup.create(anotherarr);
+		
 		
 		
 		

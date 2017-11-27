@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -98,7 +100,8 @@ public class HomePage extends JPanel {
 		ButtonListener buttonListener = new ButtonListener(screens);
 
 		//Ongoing Games Panel
-		JLabel name = new JLabel("MYBESTPALS");
+		String groupname = "MYBESTPALS";
+		JLabel name = new JLabel(groupname);
 		name.setForeground(Color.WHITE);
 		name.setAlignmentX(CENTER_ALIGNMENT);
 		name.setFont(headerFont);
@@ -177,7 +180,7 @@ public class HomePage extends JPanel {
 		draft.setAlignmentX(CENTER_ALIGNMENT);
 		draft.setAlignmentY(BOTTOM_ALIGNMENT);
 		draft.setHorizontalAlignment(JLabel.CENTER);
-		draft.setMaximumSize(new Dimension(200, 50));
+		draft.setMaximumSize(new Dimension(200, 40));
 		draft.addActionListener(buttonListener);
 		draft.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		draft.setActionCommand("draft");
@@ -188,7 +191,7 @@ public class HomePage extends JPanel {
 		nonhost.setAlignmentX(CENTER_ALIGNMENT);
 		nonhost.setAlignmentY(BOTTOM_ALIGNMENT);
 		nonhost.setHorizontalAlignment(JLabel.CENTER);;
-		nonhost.setMaximumSize(new Dimension(200, 50));
+		nonhost.setMaximumSize(new Dimension(200, 40));
 		nonhost.addActionListener(buttonListener);
 		nonhost.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		nonhost.setActionCommand("draft");
@@ -200,7 +203,30 @@ public class HomePage extends JPanel {
 		changeplayers.setFont(sm0l);
 		changeplayers.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		changeplayers.setAlignmentX(CENTER_ALIGNMENT);
-		changeplayers.setMaximumSize(new Dimension(200, 50));
+		changeplayers.setMaximumSize(new Dimension(200, 40));
+		
+		JButton refresh = new JButton("Refresh Leaderboard");
+		refresh.setActionCommand("refresh");
+		refresh.addActionListener(new ActionListener() {
+			
+			 @Override
+	            public void actionPerformed(ActionEvent e) {
+				 games.removeAll();
+				 games.add(name);
+				 games.add(lb);
+				 games.add(Box.createRigidArea(new Dimension(0, 15)));
+				 
+				 //new something here ask adam
+				 games.add(leaderboard);
+				 games.revalidate();
+				 games.repaint();
+			 }
+			
+		});
+		refresh.setFont(sm0l);
+		refresh.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		refresh.setAlignmentX(CENTER_ALIGNMENT);
+		refresh.setMaximumSize(new Dimension(200, 40));
 		
 		JButton help = new JButton("HELP");
 		help.setActionCommand("help");
@@ -208,7 +234,7 @@ public class HomePage extends JPanel {
 		help.setFont(sm0l);
 		help.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		help.setAlignmentX(CENTER_ALIGNMENT);
-		help.setMaximumSize(new Dimension(200, 50));
+		help.setMaximumSize(new Dimension(200, 40));
 		
 		JButton logout = new JButton("Log Out");
 		logout.setActionCommand("logout");
@@ -216,7 +242,7 @@ public class HomePage extends JPanel {
 		logout.setFont(sm0l);
 		logout.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		logout.setAlignmentX(CENTER_ALIGNMENT);
-		logout.setMaximumSize(new Dimension(200, 50));
+		logout.setMaximumSize(new Dimension(200, 40));
 		
 //		if (user.isHost()) {
 			menu.add(host_msg);
@@ -230,6 +256,8 @@ public class HomePage extends JPanel {
 //		}
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));
 		menu.add(changeplayers);
+		menu.add(Box.createRigidArea(new Dimension(0, 10)));
+		menu.add(refresh);
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));
 		menu.add(help);
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));

@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import clientFunctions.Sfunctions;
 import clientObjects.Player;
 import clientObjects.User;
 import exceptions.ResultsReadError;
@@ -163,13 +164,7 @@ public class FirstDraft extends JPanel {
 		
 		//1 to 23
 		for (int i = 0; i < 23; i++) {
-			try {
-				if (bigarr[i] != 0) {
-					albirexList.add(new MakePlayer(textFont, new Player(bigarr[i])));
-				}
-			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-				e.printStackTrace();
-			}
+				albirexList.add(new MakePlayer(textFont, Sfunctions.sGetPlayer(bigarr[i])));
 		}
 		
 		for (int i = 0; i < albirexList.size(); i++)
@@ -195,13 +190,7 @@ public class FirstDraft extends JPanel {
 		
 		//24 to 43
 		for (int i = 23; i < 43; i++) {
-			try {
-				if (bigarr[i] != 0) {
-				balestierList.add(new MakePlayer(textFont, new Player(bigarr[i])));
-				}
-			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-				e.printStackTrace();
-			}
+				balestierList.add(new MakePlayer(textFont, Sfunctions.sGetPlayer(bigarr[i])));
 		}
 		
 		for (int i = 0; i < balestierList.size(); i++)
@@ -227,13 +216,7 @@ public class FirstDraft extends JPanel {
 		
 		//44  to 68
 		for (int i = 43; i < 68; i++) {
-			try {
-				if (bigarr[i] != 0) {
-					bruneiList.add(new MakePlayer(textFont, new Player(bigarr[i])));
-				}
-			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-				e.printStackTrace();
-			}
+				bruneiList.add(new MakePlayer(textFont, Sfunctions.sGetPlayer(bigarr[i])));
 		}
 		
 		for (int i = 0; i < bruneiList.size(); i++)
@@ -259,13 +242,7 @@ public class FirstDraft extends JPanel {
 				
 		//69 to 95
 		for (int i = 68; i < 95; i++) {
-			try {
-				if (bigarr[i] != 0) {
-					garenaList.add(new MakePlayer(textFont, new Player(bigarr[i])));
-				}
-			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-				e.printStackTrace();
-			}
+				garenaList.add(new MakePlayer(textFont, Sfunctions.sGetPlayer(bigarr[i])));
 		}
 				
 		for (int i = 0; i < garenaList.size(); i++)
@@ -291,13 +268,7 @@ public class FirstDraft extends JPanel {
 					
 		//95 to 115
 		for (int i = 95; i < 115; i++) {
-			try {
-				if (bigarr[i] != 0) {
-					geylangList.add(new MakePlayer(textFont, new Player(bigarr[i])));
-				}
-			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-				e.printStackTrace();
-			}
+					geylangList.add(new MakePlayer(textFont, Sfunctions.sGetPlayer(bigarr[i])));
 		}
 						
 		for (int i = 0; i < geylangList.size(); i++)
@@ -307,133 +278,109 @@ public class FirstDraft extends JPanel {
 			geylangList.get(i).setName(Integer.toString(geylangList.get(i).getID()));
 		}
 		
-				//homeU
-				JLabel homeU = new JLabel("Home United FC");
-				homeU.setFont(headerFont);
-				homeU.setAlignmentX(CENTER_ALIGNMENT);
-				homeU.setForeground(Color.white);
+			//homeU
+			JLabel homeU = new JLabel("Home United FC");
+			homeU.setFont(headerFont);
+			homeU.setAlignmentX(CENTER_ALIGNMENT);
+			homeU.setForeground(Color.white);
 						
-				JPanel homeU_players = new JPanel(new GridLayout(4, 6, 10, 10));
-				homeU_players.setAlignmentX(CENTER_ALIGNMENT);
-				homeU_players.setMaximumSize(new Dimension(600, 500));
-				homeU_players.setOpaque(false);
-				homeU_players.setBackground(new Color(0,0,0,0));
+			JPanel homeU_players = new JPanel(new GridLayout(4, 6, 10, 10));
+			homeU_players.setAlignmentX(CENTER_ALIGNMENT);
+			homeU_players.setMaximumSize(new Dimension(600, 500));
+			homeU_players.setOpaque(false);
+			homeU_players.setBackground(new Color(0,0,0,0));
 						
-				List<MakePlayer> homeUList = new ArrayList<MakePlayer>();
+			List<MakePlayer> homeUList = new ArrayList<MakePlayer>();
 					
-				//116 to 137
-				for (int i = 115; i < 137; i++) {
-					try {
-						if (bigarr[i] != 0) {
-							homeUList.add(new MakePlayer(textFont, new Player(bigarr[i])));
-						}
-					} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-						e.printStackTrace();
-					}
+			//116 to 137
+			for (int i = 115; i < 137; i++) {
+							homeUList.add(new MakePlayer(textFont, Sfunctions.sGetPlayer(bigarr[i])));
 				}
 						
-				for (int i = 0; i < homeUList.size(); i++)
-				{
-					homeU_players.add(homeUList.get(i));
-					homeUList.get(i).addMouseListener(gl);
-					homeUList.get(i).setName(Integer.toString(homeUList.get(i).getID()));
-				}		
+			for (int i = 0; i < homeUList.size(); i++)
+			{
+				homeU_players.add(homeUList.get(i));
+				homeUList.get(i).addMouseListener(gl);
+				homeUList.get(i).setName(Integer.toString(homeUList.get(i).getID()));
+			}		
 
-				//hougang
-				JLabel hougang = new JLabel("Hougang United FC");
-				hougang.setFont(headerFont);
-				hougang.setAlignmentX(CENTER_ALIGNMENT);
-				hougang.setForeground(Color.white);
-						
-				JPanel hougang_players = new JPanel(new GridLayout(4, 6, 10, 10));
-				hougang_players.setAlignmentX(CENTER_ALIGNMENT);
-				hougang_players.setMaximumSize(new Dimension(600, 500));
-				hougang_players.setOpaque(false);
-				hougang_players.setBackground(new Color(0,0,0,0));
-						
-				List<MakePlayer> hougangList = new ArrayList<MakePlayer>();
-						
-				//138 to 159
-				for (int i = 137; i < 159; i++) {
-					try {
-						if (bigarr[i] != 0) {
-							hougangList.add(new MakePlayer(textFont, new Player(bigarr[i])));
-						}
-					} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-						e.printStackTrace();
-					}
-				}
-						
-				for (int i = 0; i < hougangList.size(); i++)
-				{
-					hougang_players.add(hougangList.get(i));
-					hougangList.get(i).addMouseListener(gl);
-					hougangList.get(i).setName(Integer.toString(hougangList.get(i).getID()));
-				}
+			//hougang
+			JLabel hougang = new JLabel("Hougang United FC");
+			hougang.setFont(headerFont);
+			hougang.setAlignmentX(CENTER_ALIGNMENT);
+			hougang.setForeground(Color.white);
+					
+			JPanel hougang_players = new JPanel(new GridLayout(4, 6, 10, 10));
+			hougang_players.setAlignmentX(CENTER_ALIGNMENT);
+			hougang_players.setMaximumSize(new Dimension(600, 500));
+			hougang_players.setOpaque(false);
+			hougang_players.setBackground(new Color(0,0,0,0));
+					
+			List<MakePlayer> hougangList = new ArrayList<MakePlayer>();
+					
+			//138 to 159
+			for (int i = 137; i < 159; i++) {
+					hougangList.add(new MakePlayer(textFont, Sfunctions.sGetPlayer(bigarr[i])));
+			}
+					
+			for (int i = 0; i < hougangList.size(); i++)
+			{
+				hougang_players.add(hougangList.get(i));
+				hougangList.get(i).addMouseListener(gl);
+				hougangList.get(i).setName(Integer.toString(hougangList.get(i).getID()));
+			}
+			
+			//tampines
+			JLabel tampines = new JLabel("Tampines Rovers");
+			tampines.setFont(headerFont);
+			tampines.setAlignmentX(CENTER_ALIGNMENT);
+			tampines.setForeground(Color.white);
+					
+			JPanel tampines_players = new JPanel(new GridLayout(4, 6, 10, 10));
+			tampines_players.setAlignmentX(CENTER_ALIGNMENT);
+			tampines_players.setMaximumSize(new Dimension(600, 500));
+			tampines_players.setOpaque(false);
+			tampines_players.setBackground(new Color(0,0,0,0));
+					
+			List<MakePlayer> tampinesList = new ArrayList<MakePlayer>();
+					
+			//160 to 183
+			for (int i = 159; i < 183; i++) {
+					tampinesList.add(new MakePlayer(textFont, Sfunctions.sGetPlayer(bigarr[i])));
+			}
+					
+			for (int i = 0; i < tampinesList.size(); i++)
+			{
+				tampines_players.add(tampinesList.get(i));
+				tampinesList.get(i).addMouseListener(gl);
+				tampinesList.get(i).setName(Integer.toString(tampinesList.get(i).getID()));
+			}	
+
+			//warriors
+			JLabel warriors = new JLabel("Warriors FC");
+			warriors.setFont(headerFont);
+			warriors.setAlignmentX(CENTER_ALIGNMENT);
+			warriors.setForeground(Color.white);
+					
+			JPanel warriors_players = new JPanel(new GridLayout(4, 6, 10, 10));
+			warriors_players.setAlignmentX(CENTER_ALIGNMENT);
+			warriors_players.setMaximumSize(new Dimension(600, 500));
+			warriors_players.setOpaque(false);
+			warriors_players.setBackground(new Color(0,0,0,0));
+					
+			List<MakePlayer> warriorsList = new ArrayList<MakePlayer>();
 				
-				//tampines
-				JLabel tampines = new JLabel("Tampines Rovers");
-				tampines.setFont(headerFont);
-				tampines.setAlignmentX(CENTER_ALIGNMENT);
-				tampines.setForeground(Color.white);
-						
-				JPanel tampines_players = new JPanel(new GridLayout(4, 6, 10, 10));
-				tampines_players.setAlignmentX(CENTER_ALIGNMENT);
-				tampines_players.setMaximumSize(new Dimension(600, 500));
-				tampines_players.setOpaque(false);
-				tampines_players.setBackground(new Color(0,0,0,0));
-						
-				List<MakePlayer> tampinesList = new ArrayList<MakePlayer>();
-						
-				//160 to 183
-				for (int i = 159; i < 183; i++) {
-					try {
-						if (bigarr[i] != 0) {
-							tampinesList.add(new MakePlayer(textFont, new Player(bigarr[i])));
-						}
-					} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-						e.printStackTrace();
-					}
-				}
-						
-				for (int i = 0; i < tampinesList.size(); i++)
-				{
-					tampines_players.add(tampinesList.get(i));
-					tampinesList.get(i).addMouseListener(gl);
-					tampinesList.get(i).setName(Integer.toString(tampinesList.get(i).getID()));
-				}	
-
-				//warriors
-				JLabel warriors = new JLabel("Warriors FC");
-				warriors.setFont(headerFont);
-				warriors.setAlignmentX(CENTER_ALIGNMENT);
-				warriors.setForeground(Color.white);
-						
-				JPanel warriors_players = new JPanel(new GridLayout(4, 6, 10, 10));
-				warriors_players.setAlignmentX(CENTER_ALIGNMENT);
-				warriors_players.setMaximumSize(new Dimension(600, 500));
-				warriors_players.setOpaque(false);
-				warriors_players.setBackground(new Color(0,0,0,0));
-						
-				List<MakePlayer> warriorsList = new ArrayList<MakePlayer>();
+			//184 to 203
+			for (int i = 183; i < 203; i++) {
+					warriorsList.add(new MakePlayer(textFont, Sfunctions.sGetPlayer(bigarr[i])));
+			}
 					
-				//184 to 203
-				for (int i = 183; i < 203; i++) {
-					try {
-						if (bigarr[i] != 0) {
-							warriorsList.add(new MakePlayer(textFont, new Player(bigarr[i])));
-						}
-					} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-						e.printStackTrace();
-					}
-				}
-						
-				for (int i = 0; i < warriorsList.size(); i++)
-				{
-					warriors_players.add(warriorsList.get(i));
-					warriorsList.get(i).addMouseListener(gl);
-					warriorsList.get(i).setName(Integer.toString(warriorsList.get(i).getID()));
-				}
+			for (int i = 0; i < warriorsList.size(); i++)
+			{
+				warriors_players.add(warriorsList.get(i));
+				warriorsList.get(i).addMouseListener(gl);
+				warriorsList.get(i).setName(Integer.toString(warriorsList.get(i).getID()));
+			}
 		
 		player.add(albirex);
 		player.add(Box.createRigidArea(new Dimension(0, 30)));

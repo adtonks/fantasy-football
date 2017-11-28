@@ -15,7 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import clientFunctions.Sfunctions;
 import clientObjects.User;
+import exceptions.IndexDoesNotExist;
 import ui.ChangeLineup;
 import ui.FirstDraft;
 import ui.HomePage;
@@ -115,8 +117,17 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 					dest.add(save);
 					
 					//returns an array of the 17 Player IDs
+					user_obj.setDraftTrue();
 					user_obj.insertArr(arr);
+					try {
+						System.out.println("GK is" + user_obj.getGK(0).getPlayerID());
+					} catch (IndexDoesNotExist e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					Sfunctions.sUserPush(user_obj);
 					
+
 					//refresh homepage, make draft button invalid
 					 HomePage homepage = (HomePage) screens.getComponent(2);
 					 homepage.removeAll();

@@ -134,8 +134,7 @@ public class CreateGame extends JPanel {
 				User test = new User(SignUpListener.getUsername(),
 									 SignUpListener.getPW(),
 									 SignUpListener.getEmail(),
-									 gameID,
-									 true);
+									 gameID);
 				Sfunctions.sNewUser(test);
 				
 				HomePage homepage = (HomePage) screens.getComponent(2);

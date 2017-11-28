@@ -91,7 +91,7 @@ public class LineupListener implements MouseListener, ActionListener {
 				String text = "Switching " + player1 + " with " + player2 + ". Are you sure?     ";
 				JLabel label = new JLabel(text);
 				label.setFont(textFont);
-				JOptionPane.showConfirmDialog(cl, text,
+				JOptionPane.showConfirmDialog(cl, label,
 							 "Confirm",JOptionPane.OK_CANCEL_OPTION);
 					 
 				System.out.println(store1);
@@ -144,6 +144,7 @@ public class LineupListener implements MouseListener, ActionListener {
 			 System.out.print(arr[x] + "\t");
 			}
 		user_obj.insertArr(arr);
+		Sfunctions.sUserPush(user_obj);
 		
 	}
 	

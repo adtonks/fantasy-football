@@ -25,7 +25,7 @@ public class User  implements Serializable {
 	private final String password;
 	private final String email;
 	private final int gameID;
-	private final boolean isHost;
+	private boolean hasDrafted;
 	private final int points;
 	private final int week;
 	private final List<Player> GKs; // 1 player
@@ -91,7 +91,7 @@ public class User  implements Serializable {
 			this.password = csvReader.next();
 			this.email = csvReader.next();
 			this.gameID = csvReader.nextInt();
-			this.isHost = (csvReader.nextInt() == 1);
+			this.hasDrafted = (csvReader.nextInt() == 1);
 			this.points = csvReader.nextInt();
 			this.week = csvReader.nextInt();
 			for(i=0; i<1; i++) {
@@ -159,7 +159,7 @@ public class User  implements Serializable {
 			this.password = csvReader.next();
 			this.email = csvReader.next();
 			this.gameID = csvReader.nextInt();
-			this.isHost = (csvReader.nextInt() == 1);
+			this.hasDrafted = (csvReader.nextInt() == 1);
 			this.points = csvReader.nextInt();
 			this.week = csvReader.nextInt();
 			for(i=0; i<1; i++) {
@@ -215,13 +215,13 @@ public class User  implements Serializable {
 	 */
 	/* construct a new player object, for insertion into CSV by server */
 	public User(String _username, String _password, String _email,
-			int _gameID, boolean _isHost) {
+			int _gameID) {
 		int i;
 		this.username = _username;
 		this.password = _password;
 		this.email = _email;
 		this.gameID = _gameID;
-		this.isHost = _isHost;
+		this.hasDrafted = false;
 		this.points = 0;
 		this.week = 0;
 		this.GKs = new ArrayList<Player>();
@@ -290,11 +290,19 @@ public class User  implements Serializable {
 	}
 
 	/** 
-	 * Getter for whether the user is the game host
+	 * Getter for whether the user has drafted
 	 * @return boolean value
 	 */
-	public boolean isHost() {
-		return isHost;
+	public boolean hasDrafted() {
+		return hasDrafted;
+	}
+	
+	/** 
+	 * Getter for whether the user has drafted
+	 * @return boolean value
+	 */
+	public void setDraftTrue() {
+		this.hasDrafted = true;
 	}
 	
 	/**
@@ -514,7 +522,7 @@ public class User  implements Serializable {
 	 */
 	public String toCSVrow() {
 		return(this.username + "," + this.password + "," + this.email + "," +
-				this.gameID + "," + (this.isHost?1:0) + "," +
+				this.gameID + "," + (this.hasDrafted?1:0) + "," +
 				this.points + "," + this.week + "," +
 				((this.GKs.get(0)==null)?-1:this.GKs.get(0).getPlayerID()) + "," +
 				((this.DFs.get(0)==null)?-1:this.DFs.get(0).getPlayerID()) + "," +

@@ -60,17 +60,15 @@ public class JoinValidGameListener implements ActionListener {
 			
 			//check game IDs
 			if (Sfunctions.sGameIDExist(Integer.parseInt(code_))) {
-//			 if (code_.equals("1234")) {
 				 
 				//Create new User object
 				User test = new User(SignUpListener.getUsername(),
 										 SignUpListener.getPW(),
 										 SignUpListener.getEmail(),
-										 Integer.parseInt(code_),
-										 true);
+										 Integer.parseInt(code_));
 				Sfunctions.sNewUser(test);
 				
-				HomePage homepage = (HomePage) screens.getComponent(2);
+					HomePage homepage = (HomePage) screens.getComponent(2);
 				 homepage.removeAll();
 				 homepage.create(test);
 				 homepage.revalidate();

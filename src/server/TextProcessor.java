@@ -29,8 +29,12 @@ public class TextProcessor {
 		case "sUserPull":
 			try {
 				argReader.useDelimiter(",");
-				return(Cfunctions.cUserPull(
-						argReader.next(), argReader.next()).toCSVrow());
+				User sendUser = Cfunctions.cUserPull(
+						argReader.next(), argReader.next());
+				if(sendUser != null)
+					return(sendUser.toCSVrow());
+				else
+					return("SERVER_ERR");
 			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
 				e.printStackTrace();
 				return("SERVER_ERR");

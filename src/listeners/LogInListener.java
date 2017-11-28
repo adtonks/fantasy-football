@@ -89,9 +89,52 @@ public class LogInListener implements ActionListener {
 					
 					anotherarr = new int[17];
 					
-					//REMOVE THIS CHANGE IT TO GET THE ARR FROM USER
+					//GET USERS IN POSITION FOR PLAYER
 					for (int i = 0; i < 17; i ++) {
-						anotherarr[i] = -1;
+						if (i == 0) {
+							try {
+								anotherarr[i] = user_obj.getGK(0).getPlayerID();
+							} catch (IndexDoesNotExist e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						
+						if (i >= 1 || i <= 4) {
+							try {
+								anotherarr[i] = user_obj.getDF(i - 1).getPlayerID();
+							} catch (IndexDoesNotExist e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						
+						if (i >= 5 || i <= 8) {
+							try {
+								anotherarr[i] = user_obj.getMF(i - 5).getPlayerID();
+							} catch (IndexDoesNotExist e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						
+						if (i == 9 || i == 10) {
+							try {
+								anotherarr[i] = user_obj.getFW(i - 9).getPlayerID();
+							} catch (IndexDoesNotExist e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						
+						if (i >= 11 || i <= 16) {
+							try {
+								anotherarr[i] = user_obj.getSUB(i - 11).getPlayerID();
+							} catch (IndexDoesNotExist e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
 					}
 					
 					 //change lineup immediately

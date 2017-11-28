@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ui.NewAccount;
 import ui.StartScreen;
 
 /**
@@ -69,6 +70,7 @@ public class SignUpListener implements ActionListener {
 			
 			//check database for existing usernames
 			if (Sfunctions.sUsernameExist(user_) == false) {
+				
 				 cl.show(screens, "NEW");
 				 
 				 setUsername(user_);
@@ -76,6 +78,12 @@ public class SignUpListener implements ActionListener {
 				 setPW(pw_);
 				 //store email
 				 setEmail(email_);
+				 
+				 NewAccount newaccount = (NewAccount) screens.getComponent(1);
+				 newaccount.removeAll();
+				 newaccount.create();
+				 newaccount.revalidate();
+				 newaccount.repaint();
 			 }
 			 else {
 				 JLabel label = new JLabel("This username has already been taken...");

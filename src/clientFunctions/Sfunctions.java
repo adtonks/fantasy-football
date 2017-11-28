@@ -62,7 +62,10 @@ public abstract class Sfunctions {
 			e.printStackTrace();;
 		}
 		try {
-			return(new User(new CSVline(reply)));
+			if(reply.equals("SERVER_ERR"))
+				return(null);
+			else
+				return(new User(new CSVline(reply)));
 		} catch (ResultsReadError e) {
 			System.out.println("Format error");
 			e.printStackTrace();

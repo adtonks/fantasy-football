@@ -67,6 +67,7 @@ public class HomePage extends JPanel {
 
 	/**
 	 * This method adds all necessary components to the JFrame.
+	 * @param User, user object
 	 */
 	public void create(User user_obj) {
 		
@@ -193,18 +194,7 @@ public class HomePage extends JPanel {
 		draft.addActionListener(buttonListener);
 		draft.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		draft.setActionCommand("draft");
-		
-		//Non host's button
-		JButton nonhost = new JButton("Draft My Team");
-		nonhost.setFont(sm0l);
-		nonhost.setAlignmentX(CENTER_ALIGNMENT);
-		nonhost.setAlignmentY(BOTTOM_ALIGNMENT);
-		nonhost.setHorizontalAlignment(JLabel.CENTER);;
-		nonhost.setMaximumSize(new Dimension(200, 40));
-		nonhost.addActionListener(buttonListener);
-		nonhost.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		nonhost.setActionCommand("draft");
-		nonhost.setEnabled(false);
+	
 		
 		JButton changeplayers = new JButton("View My Players");
 		changeplayers.setActionCommand("changeplayers");
@@ -252,11 +242,11 @@ public class HomePage extends JPanel {
 		logout.setAlignmentX(CENTER_ALIGNMENT);
 		logout.setMaximumSize(new Dimension(200, 40));
 		
-		if (user_obj.isHost()) {
+		if (user_obj.hasDrafted()) {
 			menu.add(host_msg);
 			menu.add(Box.createRigidArea(new Dimension(0, 10)));
 			menu.add(draft);
-			//draft.setEnabled(false);
+			draft.setEnabled(false);
 		}
 			
 		else {

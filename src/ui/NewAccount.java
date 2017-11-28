@@ -16,7 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import clientObjects.User;
 import listeners.ButtonListener;
+import listeners.SignUpListener;
 
 /**
  * This class represents the screen where the user has just signed up
@@ -58,7 +60,7 @@ public class NewAccount extends JPanel {
 		ButtonListener bl = new ButtonListener(screens);
 		
 		
-		username = new String("Charis");
+		username = SignUpListener.getUsername();
 		JLabel user = new JLabel("Welcome, " + username + "  ");
 		user.setForeground(Color.WHITE);
 		user.setFont(headerFont);

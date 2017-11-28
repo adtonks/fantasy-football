@@ -82,7 +82,24 @@ public class LogInListener implements ActionListener {
 					}
 						
 					FirstDraft firstdraft = (FirstDraft) screens.getComponent(5);
+					firstdraft.removeAll();
 					firstdraft.create(user_obj, arr);
+					firstdraft.revalidate();
+					firstdraft.repaint();
+					
+					anotherarr = new int[17];
+					
+					//REMOVE THIS CHANGE IT TO GET THE ARR FROM USER
+					for (int i = 0; i < 17; i ++) {
+						anotherarr[i] = -1;
+					}
+					
+					 //change lineup immediately
+					ChangeLineup lineup = (ChangeLineup) screens.getComponent(7);
+					lineup.removeAll();
+					lineup.create(user_obj, anotherarr);
+					lineup.revalidate();
+					lineup.repaint();
 					
 					cl.show(screens, "HOME");
 				 }

@@ -108,6 +108,7 @@ public class ChangeLineup extends JPanel {
 		myTeam.setForeground(Color.WHITE);
 		myTeam.setAlignmentX(CENTER_ALIGNMENT);
 		
+		if (lineup_arr[0] != -1) {
 		
 		List<MakePlayer> startingList = new ArrayList<MakePlayer>();
 		
@@ -125,6 +126,7 @@ public class ChangeLineup extends JPanel {
 			startingList.get(i).setName(Integer.toString(startingList.get(i).getID()));
 		}
 		
+	}
 		
 		//Save Button
 		JButton save = new JButton("Save Lineup");

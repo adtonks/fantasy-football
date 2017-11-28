@@ -150,15 +150,23 @@ public class CreateGame extends JPanel {
 				}
 				
 				FirstDraft firstdraft = (FirstDraft) screens.getComponent(5);
+				firstdraft.removeAll();
 				firstdraft.create(test, arr);
+				firstdraft.revalidate();
+				firstdraft.repaint();
 				
+				//When it is here, user is new so no players selected
 				anotherarr = new int[17];
 				for (int i = 0; i < anotherarr.length; i++) {
-					anotherarr[i] = i+1;
+					anotherarr[i] = -1;
 				}
 				
 				ChangeLineup lineup = (ChangeLineup) screens.getComponent(7);
+				lineup.removeAll();
 				lineup.create(test, anotherarr);
+				lineup.revalidate();
+				lineup.repaint();
+				
 			}
 	    });
 		

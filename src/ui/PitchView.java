@@ -138,6 +138,9 @@ public class PitchView extends JPanel {
 		this.add(fw);
 		this.add(fw_title);
 		
+		if (arr[0] != -1) {
+			
+		
 
 		List<MakePlayer> startingList = new ArrayList<MakePlayer>();
 		
@@ -148,15 +151,6 @@ public class PitchView extends JPanel {
 				e.printStackTrace();
 			}
 		}
-		
-		//Add array into database
-//		for (int i = 0; i < 11; i++) {
-//			try {
-//				startingList.add(new MakePlayer(textFont, user_obj.getSUB(i)));
-//			} catch (FileNotFoundException | ResultsReadError | UserNotFound e) {
-//				e.printStackTrace();
-//			}
-//		}
 		
 		
 		for (int i = 0; i < 11; i++) {
@@ -181,7 +175,7 @@ public class PitchView extends JPanel {
 		fw.add(startingList.get(10));
 		
 		
-	
+		}
 		
 	}
 	

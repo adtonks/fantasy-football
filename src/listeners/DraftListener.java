@@ -123,6 +123,14 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 					 homepage.create(user_obj);
 					 homepage.revalidate();
 					 homepage.repaint();
+					 
+					 //change lineup immediately
+					ChangeLineup lineup = (ChangeLineup) screens.getComponent(7);
+					lineup.removeAll();
+					lineup.create(user_obj, arr);
+					lineup.revalidate();
+					lineup.repaint();
+
 					
 				}
 			}

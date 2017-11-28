@@ -122,6 +122,7 @@ public class MainFrame {
 
   public static void main(String[] args) {
 	  makeFrame();
+	  System.out.println("bla bla");
   }
   
   

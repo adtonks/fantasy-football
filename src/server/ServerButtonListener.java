@@ -45,12 +45,17 @@ public class ServerButtonListener implements ActionListener {
 		if (e.getActionCommand() == "update") {
 			try {
 				this.update();
-			} catch (ResultsReadError | PlayerNotFound | IOException e) {
+			} catch (ResultsReadError | PlayerNotFound | IOException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
 		} else if(e.getActionCommand() == "end") {
-			this.endSeason();
+			try {
+				this.endSeason();
+			} catch (ResultsReadError | PlayerNotFound | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 		

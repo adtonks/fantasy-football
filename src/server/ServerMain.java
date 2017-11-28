@@ -1,5 +1,10 @@
 package server;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,12 +23,15 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import javax.swing.JFrame;
+
 import clientObjects.LeaderBoard;
 import clientObjects.Positions;
 import clientObjects.User;
 import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
+import ui.MainFrame;
 
 public abstract class ServerMain {
 
@@ -33,6 +41,7 @@ public abstract class ServerMain {
 		Lock csvLock = new Lock();
 		ServerGUI gui = new ServerGUI(csvLock);
 		gui.create();
+		makeFrame(gui);
 		String input, reply;
 		Socket clientSocket;
 		BufferedWriter socketWr;
@@ -63,6 +72,37 @@ public abstract class ServerMain {
 		}
 		
 	}
+	
+	public void addComponentToPane(Container pane) {
+		pane.add(comp)
+	}
+	
+	/**
+	 * This method sets the frame parameters and arguments,
+	 * and makes the actual frame of the entire application.
+	 */
+	  private static void makeFrame(ServerGUI gui) {
+		//Create and set up window
+		JFrame mainFrame = new JFrame("S League Fantasy Football");
+		mainFrame.setMinimumSize(new Dimension(1050, 700));
+		mainFrame.setResizable(false);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setLayout(new BorderLayout());
+		mainFrame.addWindowListener(new WindowAdapter() {
+		public void windowClosing(WindowEvent windowEvent){
+			System.exit(0);
+		}        
+		}); 
+		
+		//Create and set up content pane
+		ServerMain frame = new ServerMain();
+		frame.addComponentToPane(mainFrame.getContentPane());
+		
+		//Display the window
+		mainFrame.pack(); 
+	    mainFrame.setVisible(true); 
+	    
+	  }
 	
 
 }

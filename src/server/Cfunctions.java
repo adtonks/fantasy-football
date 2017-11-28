@@ -17,8 +17,8 @@ import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 
 /**
- * C Prefixed functions that the client requests for, but are found on the server side.
- * @author charisannelim
+ * C Prefixed functions that the client requests for, but are found on the server side
+ * @author adtonks
  *
  */
 public abstract class Cfunctions {

@@ -141,7 +141,11 @@ public class FirstDraft extends JPanel {
 		chosen.add(Box.createRigidArea(new Dimension(0, 10)));
 		
 		//Listener
-		DraftListener gl = new DraftListener(user_obj, bigarr, this, chosen, screens, headerFont);
+		arr = new int[17];
+		for (int i = 0; i < 17; i++) {
+			arr[i] = -1;
+		}
+		DraftListener gl = new DraftListener(user_obj, arr, this, chosen, screens, headerFont, textFont);
 		
 		//ALBIREX NIIGATA	
 		JLabel albirex = new JLabel("Albirex Niigata FC(S)  ");
@@ -489,23 +493,6 @@ public class FirstDraft extends JPanel {
 		return arr;
 	}
 	
-	/**
-	 * This boolean getter is for the lineup screen to know if 
-	 * players are already chosen or not.
-	 * @return
-	 */
-	public boolean isDrafted() {
-		return isDrafted;
-	}
-	
-	/**
-	 * This boolean setter is to let the system know that the user
-	 * has already drafted or not.
-	 * @param already
-	 */
-	public void setDrafted(boolean already) {
-		isDrafted = already;
-	}
 	
 	/** 
 	 * This method paints the background of the panel with a resource image.

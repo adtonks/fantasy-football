@@ -11,12 +11,14 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import clientObjects.User;
 import ui.ChangeLineup;
 import ui.FirstDraft;
+import ui.HomePage;
 import ui.MakePlayer;
 import ui.PitchView;
 
@@ -29,10 +31,10 @@ import ui.PitchView;
 public class DraftListener implements  MouseListener, MouseMotionListener {
 
 	private JPanel screens;
-	private Font headerFont;
+	private Font headerFont, textFont;
 	private JPanel dest;
 	private int id, counter = 0;
-	private int[] bigarr, arr;
+	private int[] arr;
 	private FirstDraft draft;
 	private User user_obj;
 	
@@ -45,13 +47,14 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 	 * @param screens, the main JPanel
 	 * @param headerFont, the custom font
 	 */
-	public DraftListener(User user_obj, int[] bigarr, FirstDraft draft, JPanel dest, JPanel screens, Font headerFont) {
+	public DraftListener(User user_obj, int[] arr, FirstDraft draft, JPanel dest, JPanel screens, Font headerFont, Font textFont) {
 		this.user_obj = user_obj;
 		this.draft = draft;
 		this.dest = dest;
 		this.headerFont = headerFont;
+		this.textFont = textFont;
 		this.screens = screens;
-		this.bigarr = bigarr;
+		this.arr = arr;
 	}
 	
 	/**
@@ -72,13 +75,17 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 		
 			//increment team counter
 			counter++;
+			System.out.println(counter);
 			if (counter > 17) {
-				JOptionPane.showMessageDialog(draft, "Too many players selected. Please save and exit.",
+				JLabel label = new JLabel("Too many players selected. Please save and exit.    ");
+				label.setFont(textFont);
+				JOptionPane.showMessageDialog(draft, label,
 					  "Error",JOptionPane.ERROR_MESSAGE);
 			}
-			System.out.println(counter);
 			
+			else {
 			
+			//Add player to team
 			player.setVisible(false);
 			dest.add(player);
 			player.setMaximumSize(new Dimension (150, 100));
@@ -87,37 +94,15 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 			arr[counter-1] = id;
 			System.out.println(arr[counter-1]);
 			
-			//stops user from pressing anything
-			draft.setEnabled(false);
-			JOptionPane.showMessageDialog(draft, "Too many players selected. Please save and exit.",
-					  "In Process",JOptionPane.OK_OPTION);
-			
-			//mark player as taken in array maybe no need
-			for (int i = 0; i < 203; i++) {
-				if (player.getID() == bigarr[i]) {
-					bigarr[i] = 0;
-					break;
-				}
-			}
-
-			//send message that this player has been taken out with my player that has been taken out
-			
-			//sends draft requests repeatedly until the one i get back returns a
-			//draft object that has all the remaining players
-			
-			//map it to an array with zeroes representing those that are not in the remaining players.
-			
-			//after which I need to repaint everything with the new array
-			draft.removeAll();
-			draft.create(user_obj, bigarr);
-			draft.revalidate();
-			draft.repaint();
-			draft.setEnabled(true);
-			
 				
-	
-				if (counter == 17) {
+			//Stop and save players
+			if (counter == 17) {
 					ButtonListener bl = new ButtonListener(screens);
+					
+					JLabel label2 = new JLabel("Awesome! You have your team. Please save and exit.    ");
+					label2.setFont(textFont);
+					JOptionPane.showMessageDialog(draft, label2,
+							  "Save",JOptionPane.OK_OPTION);
 						
 					JButton save = new JButton("SAVE");
 					save.setFont(headerFont);
@@ -129,12 +114,17 @@ public class DraftListener implements  MouseListener, MouseMotionListener {
 					dest.add(Box.createRigidArea(new Dimension(0, 20)));
 					dest.add(save);
 					
-					draft.setDrafted(true);
 					//returns an array of the 17 Player IDs
 					user_obj.insertArr(arr);
 					
-					//
+					//refresh homepage, make draft button invalid
+					 HomePage homepage = (HomePage) screens.getComponent(2);
+					 homepage.removeAll();
+					 homepage.create(user_obj);
+					 homepage.revalidate();
+					 homepage.repaint();
 					
+				}
 			}
 		}
 	}		

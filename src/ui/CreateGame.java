@@ -139,7 +139,10 @@ public class CreateGame extends JPanel {
 				Sfunctions.sNewUser(test);
 				
 				HomePage homepage = (HomePage) screens.getComponent(2);
-				homepage.create(test);
+				 homepage.removeAll();
+				 homepage.create(test);
+				 homepage.revalidate();
+				 homepage.repaint();
 				
 				arr = new int[203];
 				for (int i = 0; i < arr.length; i++) {

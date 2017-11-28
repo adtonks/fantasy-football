@@ -1,11 +1,13 @@
 package listeners;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import clientFunctions.Sfunctions;
@@ -27,16 +29,19 @@ public class LineupListener implements MouseListener, ActionListener {
 	private int store1 = 0, store2 = 0;
 	private int[] arr;
 	private User user_obj;
+	private Font textFont;
+	private String player1, player2;
 	
 	/**
 	 * This constructor points the parameters as the current instance.
 	 * @param cl, the current JPanel that needs to be repainted
 	 * @param arr, the array of 17 players that is ordered
 	 */
-	public LineupListener(User user_obj, ChangeLineup cl, int[] arr) {
+	public LineupListener(User user_obj, ChangeLineup cl, int[] arr, Font textFont) {
 		this.user_obj = user_obj;
 		this.cl = cl;
 		this.arr = arr;
+		this.textFont = textFont;
 	}
 	
 	/**
@@ -54,8 +59,9 @@ public class LineupListener implements MouseListener, ActionListener {
 				player.setOpaque(true);
 				clicked = 1;
 				store1 = Integer.parseInt(player.getName());
+				player1 = player.getRealName();
 				System.out.println("Clicked" + clicked);
-				System.out.println("First player " + store1 + " is selected.");
+				System.out.println("First player " + player1 + " is selected.");
 						
 			}
 			
@@ -66,6 +72,7 @@ public class LineupListener implements MouseListener, ActionListener {
 				clicked = 0;
 				System.out.println("First player " + store1 + " deselected.");
 				store1 = 0;
+				player1 = "";
 				System.out.println("Clicked" + clicked);
 				
 			}
@@ -76,11 +83,14 @@ public class LineupListener implements MouseListener, ActionListener {
 				player.setBackground(Color.green);
 				player.setOpaque(true);
 				store2 = Integer.parseInt(player.getName());
+				player2 = player.getRealName();
 				System.out.println("Clicked" + clicked);
-				System.out.println("Second player: "+ store2 + " is selected.");
+				System.out.println("Second player: "+ player2 + " is selected.");
 				
-
-				String text = "Player" + store1 + " switch with Player" + store2 + ".Confirm?";
+				
+				String text = "Switching " + player1 + " with " + player2 + ". Are you sure?     ";
+				JLabel label = new JLabel(text);
+				label.setFont(textFont);
 				JOptionPane.showConfirmDialog(cl, text,
 							 "Confirm",JOptionPane.OK_CANCEL_OPTION);
 					 

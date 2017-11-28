@@ -74,7 +74,15 @@ public class MakePlayer extends JPanel {
 	 */
 	public int getID() {
 		return player.getPlayerID();
-		
+	
+	/**
+	 * This method allows us to get the player's real name from the MakePlayer class.
+	 * @return a String with the player name
+	 */
+	}
+	
+	public String getRealName() {
+		return player.getName();
 	}
  
 }

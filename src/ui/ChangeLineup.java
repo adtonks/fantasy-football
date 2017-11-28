@@ -87,7 +87,7 @@ public class ChangeLineup extends JPanel {
 		pitch.setBackground(new Color(0,0,0,0));
 		
 		//Pitch View and Team
-		LineupListener gl = new LineupListener(user_obj, this, lineup_arr);		
+		LineupListener gl = new LineupListener(user_obj, this, lineup_arr, textFont);		
 		PitchView view = new PitchView(gl, lineup_arr, this, textFont, draft);
 			
 		JPanel team = new JPanel();
@@ -108,7 +108,6 @@ public class ChangeLineup extends JPanel {
 		myTeam.setForeground(Color.WHITE);
 		myTeam.setAlignmentX(CENTER_ALIGNMENT);
 		
-		if (draft.isDrafted()) {
 		
 		List<MakePlayer> startingList = new ArrayList<MakePlayer>();
 		
@@ -124,8 +123,6 @@ public class ChangeLineup extends JPanel {
 			team.add(startingList.get(i));
 			startingList.get(i).addMouseListener(gl);
 			startingList.get(i).setName(Integer.toString(startingList.get(i).getID()));
-		}
-		
 		}
 		
 		

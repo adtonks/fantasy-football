@@ -136,21 +136,9 @@ public class HomePage extends JPanel {
 		
 		String[] columnNames = {"RANK", "PLAYER", "POINTS"};
 		
-		Object[][] data = { {"RANK", "PLAYER", "POINTS"},
-							{"#--", "ADAMTONKS", new Integer(0)},
-						    {"#--", "LOGANYE", new Integer(0)},
-						    {"#--", "ME", new Integer(0)},
-						    {"#--", "SIMON", new Integer(0)},
-						    {"#--", "PERRAULT", new Integer(0)},
-						    {"#--", "FANDI AHMAD", new Integer(0)},
-		};
-		
-//		LeaderboardTable leaderboard_table = new LeaderboardTable(data, columnNames, textFont);    
-//		leaderboard_table.create();
-		
 		leaderboard = Sfunctions.sGetBoard(user_obj.getGameID());
 		
-		LeaderboardTable leaderboard_table = new LeaderboardTable(leaderboard, columnNames, textFont);    
+		LeaderboardTable leaderboard_table = new LeaderboardTable(user_obj, leaderboard, columnNames, textFont);    
 		leaderboard_table.create();
 		
 		games.add(name);
@@ -189,17 +177,11 @@ public class HomePage extends JPanel {
 		//Menu Panel
 		
 		//Labels depending on whether you are host or not
-		JLabel host_msg = new JLabel("You are the host of this game.  ");
+		JLabel host_msg = new JLabel("You have already drafted your team.  ");
 		host_msg.setFont(textFont);
 		host_msg.setAlignmentX(CENTER_ALIGNMENT);
 		host_msg.setHorizontalAlignment(JLabel.CENTER);
 		host_msg.setForeground(Color.white);
-		
-		JLabel nonhost_msg = new JLabel("The host of the game has to start the draft.   ");
-		nonhost_msg.setFont(textFont);
-		nonhost_msg.setAlignmentX(CENTER_ALIGNMENT);
-		nonhost_msg.setHorizontalAlignment(JLabel.CENTER);
-		nonhost_msg.setForeground(Color.white);
 		
 		//Host's Button
 		JButton draft = new JButton("Start Draft");
@@ -235,65 +217,98 @@ public class HomePage extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ChangeLineup lineup = (ChangeLineup) screens.getComponent(7);
-				lineup.removeAll();
-				
 				anotherarr = new int[17];
 				for (int i = 0; i < anotherarr.length; i++) {
 					
 					//Goalies
 					if (i == 0) {
-						try {
-							anotherarr[i] = user_obj.getGK(0).getPlayerID();
-						} catch (IndexDoesNotExist e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						anotherarr[i] = i+1;
 					}
 					
 					//Defenders
 					if (i >= 1 && i <= 4) {
-						try {
-							anotherarr[i] = user_obj.getDF(i-1).getPlayerID();
-						} catch (IndexDoesNotExist e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						anotherarr[i] = i+1;
 					}
-					
+
 					//Midfielders
 					if (i >= 5 && i <= 8) {
-						try {
-							anotherarr[i] = user_obj.getMF(i-5).getPlayerID();
-						} catch (IndexDoesNotExist e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						anotherarr[i] = i+1;
 					}
 					//Forwards
 					if (i >= 9 && i <= 10) {
-						try {
-							anotherarr[i] = user_obj.getFW(i-9).getPlayerID();
-						} catch (IndexDoesNotExist e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						anotherarr[i] = i+1;
 					}
 					//Substitutes
 					if (i >= 11 && i <= 16) {
-						try {
-							anotherarr[i] = user_obj.getMF(i-11).getPlayerID();
-						} catch (IndexDoesNotExist e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						anotherarr[i] = i+1;
 					}
 					
 				}
 				
+				ChangeLineup lineup = (ChangeLineup) screens.getComponent(7);
+				lineup.removeAll();
 				lineup.create(user_obj, anotherarr);
 				lineup.revalidate();
 				lineup.repaint();
+				
+//				ChangeLineup lineup = (ChangeLineup) screens.getComponent(7);
+//				
+//				anotherarr = new int[17];
+//				for (int i = 0; i < anotherarr.length; i++) {
+//					
+//					//Goalies
+//					if (i == 0) {
+//						try {
+//							anotherarr[i] = user_obj.getGK(0).getPlayerID();
+//						} catch (IndexDoesNotExist e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
+//					}
+//					
+//					//Defenders
+//					if (i >= 1 && i <= 4) {
+//						try {
+//							anotherarr[i] = user_obj.getDF(i-1).getPlayerID();
+//						} catch (IndexDoesNotExist e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
+//					}
+//					
+//					//Midfielders
+//					if (i >= 5 && i <= 8) {
+//						try {
+//							anotherarr[i] = user_obj.getMF(i-5).getPlayerID();
+//						} catch (IndexDoesNotExist e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
+//					}
+//					//Forwards
+//					if (i >= 9 && i <= 10) {
+//						try {
+//							anotherarr[i] = user_obj.getFW(i-9).getPlayerID();
+//						} catch (IndexDoesNotExist e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
+//					}
+//					//Substitutes
+//					if (i >= 11 && i <= 16) {
+//						try {
+//							anotherarr[i] = user_obj.getMF(i-11).getPlayerID();
+//						} catch (IndexDoesNotExist e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
+//					}
+//					
+//				}
+//				lineup.removeAll();
+//				lineup.create(user_obj, anotherarr);
+//				lineup.revalidate();
+//				lineup.repaint();
 				
 			}
 			
@@ -341,12 +356,14 @@ public class HomePage extends JPanel {
 			menu.add(host_msg);
 			menu.add(Box.createRigidArea(new Dimension(0, 10)));
 			menu.add(draft);
+			//draft.setEnabled(false);
 		}
+			
 		else {
-			menu.add(nonhost_msg);
 			menu.add(Box.createRigidArea(new Dimension(0, 10)));
-			menu.add(nonhost);
+			menu.add(draft);
 		}
+	
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));
 		menu.add(changeplayers);
 		menu.add(Box.createRigidArea(new Dimension(0, 10)));

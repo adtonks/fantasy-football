@@ -58,7 +58,6 @@ public class MainFrame {
 		newAccount.create();
 		
 		HomePage userHome = new HomePage(screens, headerFont, textFont);
-//		userHome.create();
 		
 		CreateGame createGame = new CreateGame(screens, headerFont, textFont);
 		createGame.create();
@@ -68,7 +67,6 @@ public class MainFrame {
 		
 
 		FirstDraft firstDraft = new FirstDraft(arr, screens, headerFont, textFont);
-//		firstDraft.create(arr);
 		
 		Help help = new Help(screens, headerFont, textFont);
 		help.create();

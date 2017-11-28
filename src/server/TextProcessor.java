@@ -10,12 +10,22 @@ import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 import exceptions.UserNotFound;
 
+/**
+ * This class processes server and client String requests and makes them do the necessary actions
+ * @author charisannelim
+ *
+ */
 public class TextProcessor {
 
 	public TextProcessor() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * A parser for the requests
+	 * @param request, a String
+	 * @return instruction, a String
+	 */
 	public static String parseReq(String request) {
 		Scanner reader = new Scanner(request);
 		reader.useDelimiter(":");

@@ -142,7 +142,8 @@ public class LineupListener implements MouseListener, ActionListener {
 
 		for (int x = 0; x < 17; x++) {
 			 System.out.print(arr[x] + "\t");
-			}
+			}	
+		user_obj = Sfunctions.sUserPull(user_obj.getUsername(), user_obj.getPassword());
 		user_obj.insertArr(arr);
 		Sfunctions.sUserPush(user_obj);
 		

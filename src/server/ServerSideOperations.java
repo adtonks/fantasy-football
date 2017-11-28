@@ -14,9 +14,18 @@ import clientObjects.Positions;
 import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 
+/**
+ * This class extends the Thread class to manage the CSV file
+ * @author charisannelim
+ *
+ */
 public class ServerSideOperations extends Thread {
 	Lock csvLock;
-
+	
+	/**
+	 * Takes in an instance of the Lock class
+	 * @param _csvLock
+	 */
 	public ServerSideOperations(Lock _csvLock) {
 		this.csvLock = _csvLock;
 		

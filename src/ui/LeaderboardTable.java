@@ -8,6 +8,7 @@ import javax.swing.JTable;
 
 import javax.swing.table.TableColumn;
 
+import clientFunctions.Sfunctions;
 import clientObjects.LeaderBoard;
 import clientObjects.User;
 
@@ -49,7 +50,7 @@ public class LeaderboardTable extends JPanel {
 	 */
 	public void create() {
 
-		this.data = new Object[lb.getBoardLen()+1][3];
+		this.data = new Object[lb.getBoardLen()+3][3];
 		data[0][0] = "RANK";
 		data[0][1] = "PLAYER";
 		data[0][2] = "POINTS";
@@ -58,6 +59,25 @@ public class LeaderboardTable extends JPanel {
 			data[i][0] = "#" + Integer.toString(i);
 			data[i][1] = lb.getUserPointsList().get(i-1).username;
 			data[i][2] = Integer.toString(lb.getUserPointsList().get(i-1).points);
+		}
+		
+		
+		
+		if (Sfunctions.sUserPull(user.getUsername(), user.getPassword()).getWeek() == -1) {
+			data[lb.getBoardLen() + 1][0] = "";
+			data[lb.getBoardLen() + 1][1] = "THE SEASON HAS ENDED.";
+			data[lb.getBoardLen() + 1][2] = "";
+			data[lb.getBoardLen() + 2][0] = "";
+			data[lb.getBoardLen() + 2][1] = "THANKS FOR PLAYING!";
+			data[lb.getBoardLen() + 2][2] = "";
+		}
+		else {
+			data[lb.getBoardLen() + 1][0] = "";
+			data[lb.getBoardLen() + 1][1] = "";
+			data[lb.getBoardLen() + 1][2] = "";
+			data[lb.getBoardLen() + 2][0] = "";
+			data[lb.getBoardLen() + 2][1] = "";
+			data[lb.getBoardLen() + 2][2] = "";
 		}
 	
 	JTable table = new JTable(data, headers);

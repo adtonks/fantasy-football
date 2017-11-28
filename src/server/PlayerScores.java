@@ -2,7 +2,7 @@ package server;
 
 /**
  * This object is just used as a wrapper for 4 integers
- * @author adamtonks
+ * @author adtonks
  *
  */
 class PlayerScores {

@@ -2,7 +2,7 @@ package clientObjects;
 
 /**
  * A list of the different positions in a soccer game
- * @author adamtonks
+ * @author adtonks
  *
  */
 public enum Positions {

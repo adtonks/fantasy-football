@@ -11,8 +11,8 @@ import exceptions.PlayerNotFound;
 import exceptions.ResultsReadError;
 
 /**
- * A class tha tmaps the player ID to the set of scores
- * @author charisannelim
+ * A class that maps the player ID to the set of scores using a hash table
+ * @author adtonks
  *
  */
 public class PlayerScoreDict {

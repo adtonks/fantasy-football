@@ -70,7 +70,7 @@ public class ServerGUI extends JPanel {
 		
 		ServerButtonListener serverButtons = new ServerButtonListener(csvLock);
 		
-		JLabel user = new JLabel("S.League Fantasy Football Server");
+		JLabel user = new JLabel("S.League Fantasy Football Server  ");
 		user.setForeground(Color.WHITE);
 		user.setFont(headerFont);
 		user.setAlignmentX(CENTER_ALIGNMENT);
@@ -84,7 +84,7 @@ public class ServerGUI extends JPanel {
 		JButton join = new JButton("Update with New Results");
 		join.setActionCommand("update");
 		join.addActionListener(serverButtons);
-		join.setMaximumSize(new Dimension(300, 50));
+		join.setMaximumSize(new Dimension(500, 50));
 		join.setFont(headerFont);
 		join.setAlignmentX(CENTER_ALIGNMENT);
 		join.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -93,7 +93,7 @@ public class ServerGUI extends JPanel {
 		JButton create = new JButton("End Season");
 		create.setActionCommand("end");
 		create.addActionListener(serverButtons);
-		create.setMaximumSize(new Dimension(300, 50));
+		create.setMaximumSize(new Dimension(500, 50));
 		create.setFont(headerFont);
 		create.setAlignmentX(CENTER_ALIGNMENT);
 		create.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

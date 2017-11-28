@@ -215,6 +215,11 @@ public class HomePage extends JPanel {
 				 games.add(lb);
 				 games.add(Box.createRigidArea(new Dimension(0, 15)));
 				 
+				 leaderboard = Sfunctions.sGetBoard(user_obj.getGameID());
+					
+				 LeaderboardTable leaderboard_table = new LeaderboardTable(user_obj, leaderboard, columnNames, textFont); 
+				 leaderboard_table.create();
+				 
 				 games.add(leaderboard_table);
 				 games.revalidate();
 				 games.repaint();

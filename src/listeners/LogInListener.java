@@ -100,7 +100,7 @@ public class LogInListener implements ActionListener {
 							}
 						}
 						
-						if (i >= 1 || i <= 4) {
+						if ((i >= 1) && (i <= 4)) {
 							try {
 								anotherarr[i] = user_obj.getDF(i - 1).getPlayerID();
 							} catch (IndexDoesNotExist e1) {
@@ -109,7 +109,7 @@ public class LogInListener implements ActionListener {
 							}
 						}
 						
-						if (i >= 5 || i <= 8) {
+						if ((i >= 5) && (i <= 8)) {
 							try {
 								anotherarr[i] = user_obj.getMF(i - 5).getPlayerID();
 							} catch (IndexDoesNotExist e1) {
@@ -118,7 +118,7 @@ public class LogInListener implements ActionListener {
 							}
 						}
 						
-						if (i == 9 || i == 10) {
+						if ((i >= 9) && (i <= 10)) {
 							try {
 								anotherarr[i] = user_obj.getFW(i - 9).getPlayerID();
 							} catch (IndexDoesNotExist e1) {
@@ -127,7 +127,7 @@ public class LogInListener implements ActionListener {
 							}
 						}
 						
-						if (i >= 11 || i <= 16) {
+						if ((i >= 11) && (i <= 16)) {
 							try {
 								anotherarr[i] = user_obj.getSUB(i - 11).getPlayerID();
 							} catch (IndexDoesNotExist e1) {

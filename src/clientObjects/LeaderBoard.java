@@ -40,7 +40,7 @@ public class LeaderBoard {
 						"points", "week", "GK0", "DF0", "DF1", "DF2",
 						"DF3", "MF0", "MF1", "MF2", "MF3", "FW0", "FW1",
 						"SUB0", "SUB1", "SUB2", "SUB3", "SUB4", "SUB5"};
-		Scanner csvReader = new Scanner(new File("csv_tables/user_list.csv"));
+		Scanner csvReader = new Scanner(new File(System.getProperty("user.home") + "/csv_tables/user_list.csv"));
 		csvReader.useDelimiter(",|\\n");
 		// check that table headers are correct
 		for(i=0; i<24; i++) {

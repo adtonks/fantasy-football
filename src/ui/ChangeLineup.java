@@ -154,7 +154,7 @@ public class ChangeLineup extends JPanel {
 	  protected void paintComponent(Graphics g) {
 		
 		try {
-		    bg = ImageIO.read(getClass().getResource("bg.png"));
+		    bg = ImageIO.read(getClass().getResource("bga.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

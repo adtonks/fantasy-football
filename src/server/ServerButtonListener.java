@@ -72,7 +72,7 @@ public class ServerButtonListener implements ActionListener {
 						"DF3", "MF0", "MF1", "MF2", "MF3", "FW0", "FW1",
 						"SUB0", "SUB1", "SUB2", "SUB3", "SUB4", "SUB5"};
 		synchronized(this.csvLock) {
-			Scanner csvReader = new Scanner(new File("csv_tables/user_list.csv"));
+			Scanner csvReader = new Scanner(new File(System.getProperty("user.home") + "/csv_tables/user_list.csv"));
 			csvReader.useDelimiter(",|\\n");
 			// check that table headers are correct
 			for(i=0; i<24; i++) {
@@ -110,10 +110,10 @@ public class ServerButtonListener implements ActionListener {
 			}
 			csvReader.close();
 			// now we need to print the new scores
-			csvReader = new Scanner(new File("csv_tables/user_list.csv"));
+			csvReader = new Scanner(new File(System.getProperty("user.home") + "/csv_tables/user_list.csv"));
 			csvReader.useDelimiter(",|\\n");
 			csvWriter = new BufferedWriter(new OutputStreamWriter(
-		              new FileOutputStream("csv_tables/user_list.csv.tmp"), "utf-8"));
+		              new FileOutputStream(System.getProperty("user.home") + "/csv_tables/user_list.csv.tmp"), "utf-8"));
 			
 			for(i=0; i<24; i++) {
 				csvWriter.write(csvReader.next());
@@ -146,9 +146,9 @@ public class ServerButtonListener implements ActionListener {
 			csvReader.close();
 			
 			// now delete the old file and rename the temporary one
-			File oldFile = new File("csv_tables/user_list.csv");
+			File oldFile = new File(System.getProperty("user.home") + "/csv_tables/user_list.csv");
 			oldFile.delete();
-			File newFile = new File("csv_tables/user_list.csv.tmp");
+			File newFile = new File(System.getProperty("user.home") + "/csv_tables/user_list.csv.tmp");
 			newFile.renameTo(oldFile);
 		}
 		
@@ -162,10 +162,10 @@ public class ServerButtonListener implements ActionListener {
 		
 		// modify table by simultaneous reader and writer objects
 		synchronized(this.csvLock) {
-			csvReader = new Scanner(new File("csv_tables/user_list.csv"));
+			csvReader = new Scanner(new File(System.getProperty("user.home") + "/csv_tables/user_list.csv"));
 			csvReader.useDelimiter(",|\\n");
 			csvWriter = new BufferedWriter(new OutputStreamWriter(
-		              new FileOutputStream("csv_tables/user_list.csv.tmp"), "utf-8"));
+		              new FileOutputStream(System.getProperty("user.home") + "/csv_tables/user_list.csv.tmp"), "utf-8"));
 			String heading;
 			String[] csvHeader = new String[]
 					{"username", "password", "email", "gameID", "isHost",
@@ -210,9 +210,9 @@ public class ServerButtonListener implements ActionListener {
 			csvReader.close();
 			
 			// now delete the old file and rename the temporary one
-			File oldFile = new File("csv_tables/user_list.csv");
+			File oldFile = new File(System.getProperty("user.home") + "/csv_tables/user_list.csv");
 			oldFile.delete();
-			File newFile = new File("csv_tables/user_list.csv.tmp");
+			File newFile = new File(System.getProperty("user.home") + "/csv_tables/user_list.csv.tmp");
 			newFile.renameTo(oldFile);
 		}
 		

@@ -41,7 +41,7 @@ public class Player implements Serializable {
 				{"playerID", "name", "nationality", "team",
 						"prefPosition", "img_path"};
 		
-		Scanner csvReader = new Scanner(new File("csv_tables/player_array.csv"));
+		Scanner csvReader = new Scanner(new File(System.getProperty("user.home") + "/csv_tables/player_array.csv"));
 		csvReader.useDelimiter(",|\\n");
 		// check that table headers are correct
 		for(i=0; i<6; i++) {

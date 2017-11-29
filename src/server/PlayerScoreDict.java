@@ -40,7 +40,7 @@ public class PlayerScoreDict {
 		int GKpts, DFpts, MFpts, FWpts;
 		String[] csvHeader = new String[]
 				{"playerID", "goals", "assists", "tackles", "saves"};
-		Scanner csvReader = new Scanner(new File("csv_tables/player_results.csv"));
+		Scanner csvReader = new Scanner(new File(System.getProperty("user.home") + "/csv_tables/player_results.csv"));
 		csvReader.useDelimiter(",|\\n");
 		// check that table headers are correct
 		for(i=0; i<5; i++) {

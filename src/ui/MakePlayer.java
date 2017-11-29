@@ -32,7 +32,7 @@ public class MakePlayer extends JPanel {
 		
 			this.player = player;
 
-	 		ImageIcon image = new ImageIcon(player.getImgPath());			
+	 		ImageIcon image = new ImageIcon(getClass().getResource(player.getImgPath()));			
 		
 			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

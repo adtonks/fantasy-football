@@ -77,9 +77,9 @@ public abstract class Cfunctions {
 						"points", "week", "GK0", "DF0", "DF1", "DF2",
 						"DF3", "MF0", "MF1", "MF2", "MF3", "FW0", "FW1",
 						"SUB0", "SUB1", "SUB2", "SUB3", "SUB4", "SUB5"};
-		Scanner csvReader = new Scanner(new File("csv_tables/user_list.csv"));
+		Scanner csvReader = new Scanner(new File(System.getProperty("user.home") + "/csv_tables/user_list.csv"));
 		csvWriter = new BufferedWriter(new OutputStreamWriter(
-	              new FileOutputStream("csv_tables/user_list.csv.tmp"), "utf-8"));
+	              new FileOutputStream(System.getProperty("user.home") + "/csv_tables/user_list.csv.tmp"), "utf-8"));
 		csvReader.useDelimiter(",|\\n");
 		
 		// check that table headers are correct
@@ -114,9 +114,9 @@ public abstract class Cfunctions {
 		csvReader.close();
 		
 		// now delete the old file and rename the temporary one
-		File oldFile = new File("csv_tables/user_list.csv");
+		File oldFile = new File(System.getProperty("user.home") + "/csv_tables/user_list.csv");
 		oldFile.delete();
-		File newFile = new File("csv_tables/user_list.csv.tmp");
+		File newFile = new File(System.getProperty("user.home") + "/csv_tables/user_list.csv.tmp");
 		newFile.renameTo(oldFile);
 		
 	}
@@ -138,9 +138,9 @@ public abstract class Cfunctions {
 						"points", "week", "GK0", "DF0", "DF1", "DF2",
 						"DF3", "MF0", "MF1", "MF2", "MF3", "FW0", "FW1",
 						"SUB0", "SUB1", "SUB2", "SUB3", "SUB4", "SUB5"};
-		Scanner csvReader = new Scanner(new File("csv_tables/user_list.csv"));
+		Scanner csvReader = new Scanner(new File(System.getProperty("user.home") + "/csv_tables/user_list.csv"));
 		csvWriter = new BufferedWriter(new OutputStreamWriter(
-	              new FileOutputStream("csv_tables/user_list.csv.tmp"), "utf-8"));
+	              new FileOutputStream(System.getProperty("user.home") + "/csv_tables/user_list.csv.tmp"), "utf-8"));
 		csvReader.useDelimiter(",|\\n");
 		
 		// check that table headers are correct
@@ -198,9 +198,9 @@ public abstract class Cfunctions {
 			return(false);
 		} else {
 			// now delete the old file and rename the temporary one
-			File oldFile = new File("csv_tables/user_list.csv");
+			File oldFile = new File(System.getProperty("user.home") + "/csv_tables/user_list.csv");
 			oldFile.delete();
-			File newFile = new File("csv_tables/user_list.csv.tmp");
+			File newFile = new File(System.getProperty("user.home") + "/csv_tables/user_list.csv.tmp");
 			newFile.renameTo(oldFile);
 			return(true);
 		}
@@ -218,7 +218,7 @@ public abstract class Cfunctions {
 						"points", "week", "GK0", "DF0", "DF1", "DF2",
 						"DF3", "MF0", "MF1", "MF2", "MF3", "FW0", "FW1",
 						"SUB0", "SUB1", "SUB2", "SUB3", "SUB4", "SUB5"};
-		Scanner csvReader = new Scanner(new File("csv_tables/user_list.csv"));
+		Scanner csvReader = new Scanner(new File(System.getProperty("user.home") + "/csv_tables/user_list.csv"));
 		csvReader.useDelimiter(",|\\n");
 		// check that table headers are correct
 		for(i=0; i<24; i++) {
@@ -263,7 +263,7 @@ public abstract class Cfunctions {
 						"points", "week", "GK0", "DF0", "DF1", "DF2",
 						"DF3", "MF0", "MF1", "MF2", "MF3", "FW0", "FW1",
 						"SUB0", "SUB1", "SUB2", "SUB3", "SUB4", "SUB5"};
-		Scanner csvReader = new Scanner(new File("csv_tables/user_list.csv"));
+		Scanner csvReader = new Scanner(new File(System.getProperty("user.home") + "/csv_tables/user_list.csv"));
 		csvReader.useDelimiter(",|\\n");
 		// check that table headers are correct
 		for(i=0; i<24; i++) {
